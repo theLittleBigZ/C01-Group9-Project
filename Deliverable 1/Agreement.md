@@ -55,9 +55,8 @@ Cross-functional Collaboration: Team members from different roles will collabora
 
 ### 5. Time Management: 
 
-###### Time Blocking: 
+- Time Blocking: 
 At the beginning of each sprint, use the story points as goals to determine the required contribution in hours expected from each group member for the week. 
-
 We will respect each other's time and avoid scheduling meetings during designated focus time. 
 
  
@@ -72,7 +71,7 @@ We will respect each other's time and avoid scheduling meetings during designate
    
 - Ownership: Team members take ownership of their tasks and deliverables.  
 
- -Accountability: If challenges arise, team members will communicate proactively and seek help when needed. Team members will aim to finish deliverables by the deadline. 
+- Accountability: If challenges arise, team members will communicate proactively and seek help when needed. Team members will aim to finish deliverables by the deadline. 
 
  
 

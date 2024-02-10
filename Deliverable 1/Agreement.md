@@ -92,6 +92,8 @@ Agreed upon by:
 [Team Members' Names and Signatures] 
 
 Yann Gbaguidi
+
+Clare Zhu
  
 
 Date: 10/02/2024 

@@ -90,6 +90,7 @@ We will respect each other's time and avoid scheduling meetings during designate
 Agreed upon by: 
 
 [Team Members' Names and Signatures] 
+
 Yann Gbaguidi
  
 

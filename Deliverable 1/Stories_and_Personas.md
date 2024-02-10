@@ -29,3 +29,71 @@
 
 
 # Personas
+
+### User 1: Doja  
+
+- male, 86 years old 
+
+- limited mobility (arthritis) 
+
+- Immigrated from India in 2022  
+
+- was a mechanic  
+
+- uses his phone to watch local and international news  
+
+- Uses speech to text to help with his limited mobility    
+
+- Uses larger app icons on homescreen to navigate to other apps more easily 
+
+ 
+
+### User 2: Sean S. McCarthy 
+
+- Male, 75 years old 
+
+- Is impaired vision 
+
+- Immigrated from Spain in 2021 
+
+- Was a Control and valve repairer 
+
+- Uses his phone to keep in touch with his children and grand-children 
+
+- Uses the app to adjust settings so that viewing phone is easier 
+
+- Uses larger app icons on homescreen to navigate to other apps more easily 
+
+ 
+
+### User 3:   Lara Souza Melo 
+
+- Female, 64 years old 
+
+- Has hard of hearing 
+
+- Immigrated from Brazil in 2014 
+
+- Operations director 
+
+- Uses her phone to play games / keep herself entertained 
+
+- Uses the app's flashing lights & vibration for notifications 
+
+ 
+
+### User 4: Sonam Wangchuk 
+
+- Female, 55 years old 
+
+- Short term memory loss 
+
+- Immigrated from Bhutan in 2018 
+
+- Uses phone to remember appointments 
+
+- Uses the app's settings for notifications to keep track of her day 
+
+- Uses the app's translation feature to understand inputted phases  
+
+ 

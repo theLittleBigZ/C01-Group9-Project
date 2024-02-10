@@ -1,7 +1,9 @@
 # User Stories:
 - As a user, I want an intuitive and easy to understand user interface that I can interact with without much external help so that I can use the app on my own 
 
-- As a user, I want to be able to access my phone's dial screen in one step. 
+- As a user, I want to be able to access the app without an account that I must sign up for and log into, so that barriers to using the app as a mobile phone beginner is minimized. 
+
+- As a user, I want to be able to access my phone's dial screen or contacts list in one step so that I don't have to navigate the phone app. 
 
 - As a user, I want an accessible home page that holds shortcuts to apps and settings I frequent so that I have quick and easy access to them 
 
@@ -23,7 +25,11 @@
 
 - As a user with audio impairments, I want the option to have screen flash(s) accompany phone notifications so that I can be notified 
 
-- As a user, I want the option to change my screen's brightness so I can see the components I need to interact with
+- As a user with visual impairments, I want the option to change my screen's brightness so I can see the components I need to interact with 
+
+- As a user with audio impairments, I want the option to have captions for media I cannot hear properly so that I can still understand the information being provided to me on my phone 
+
+- As a user, I want to see large intuitive icons/buttons so I can navigate through my phone without having to read as much. 
 
 
 

@@ -20,3 +20,8 @@ Name: Henie Patel, Email: henie.patel@mail.utoronto.ca, Student Number: 10082274
 <br/>I am a third year computer science student currently attending the University of Toronto Scarborough campus in the Information Systems Specialist program. I have familiarity with programming languages C, Python, Java, and JavaScript. I have worked with softwares like Postman, Git, and Docker, and am also knowledgeable in database systems like MySQL and NoSQL, through Firebase and MongoDB. I seek to continuously pursue new opportunities to learn and improve my skills, and my current interest is in learning C++.
 
 <img src=https://github.com/czhu24/C01Lab1/assets/114100703/dc1c6351-e91c-4721-92cd-04629b5f0240 width="200">
+
+
+<br/> Name: Gelila Samuel email: gelila.samuel@mail.utoronto.ca, student number: 1008466928, utorid: samuelg3 
+I am a third year Computer Science (Software Engineering Specialist) student at the University of Toronto Scarborough. I have experience using various programming languages, including Python, Java, and C. For my first co-op term, I worked as an IT QA Assistant with the Ministry of Education where I automated and ran smoke and regression tests for each release and my team operated using Scrum with Azure Devops. I also know SQL and used it during my job to query and manipulate our environment databases before and after testing. I'm eager to continue to learn more about developing! In my free time, I enjoy playing with my dog and crochet. 
+<br /> <img src=https://github.com/theLittleBigZ/C01-Group9-Project/assets/59943669/5f57db33-8377-4b98-8eb3-0e96c427b8d5 width="250">

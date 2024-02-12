@@ -1,5 +1,10 @@
-Name: Zeeshan Badr, Email: zeeshan.badr@mail.utoronto.ca, Discord: theLittleBigZ
+## Zeeshan Badr 
 
+Email: zeeshan.badr@mail.utoronto.ca, Student #: 1004973442, Utorid: badrzees, discord: thelittlebigz
+
+<br /> <img src=https://github.com/theLittleBigZ/C01-Group9-Project/assets/24850908/e7fc4a69-ce57-4e40-8f8b-511b9b6dde35 width="250">
+
+I am is a dedicated student with a strong interest in software development and teaching. I has gained valuable experience as an Instructor at Code Ninja, where I taught computer science and programming to various age groups, and as a Software Application Developer Co-op at CIBC. I was also an IT Director at DECA U, where I has built programs to automate and improve club events. I am currently pursuing a Bachelor’s degree in Math and Statistics from the University of Toronto (currently a fourth year). I am proficient in several programming languages and tools, including JavaScript, Python, SQL, Docker, MATLAB, and Java.
 
 
 ### Yann Gbaguidi 

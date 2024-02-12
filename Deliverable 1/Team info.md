@@ -34,7 +34,7 @@ I am a third year Computer Science (Software Engineering Specialist) student at 
 
 ## Jasjot Singh Benipal
 
-Email: jasjot.benipal@mail.utoronto.ca | Student #: 1008332494 | Utorid: benipa19, discord: yupme
+Email: jasjot.benipal@mail.utoronto.ca | Student #: 1008332494 | Utorid: benipa19 | Discord: yupme
 
 <br /> <img src=https://github.com/theLittleBigZ/C01-Group9-Project/assets/90628155/e0c115ba-5761-4a3d-86b4-333d5b966160 width="250">
 

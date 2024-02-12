@@ -36,7 +36,7 @@ I am a third year Computer Science (Software Engineering Specialist) student at 
 
 Email: jasjot.benipal@mail.utoronto.ca | Student #: 1008332494 | Utorid: benipa19, discord: yupme
 
-<br /> <img src=![Jasjot](https://github.com/theLittleBigZ/C01-Group9-Project/assets/90628155/e0c115ba-5761-4a3d-86b4-333d5b966160) width="250">
+<br /> <img src=https://github.com/theLittleBigZ/C01-Group9-Project/assets/90628155/e0c115ba-5761-4a3d-86b4-333d5b966160 width="250">
 
 I am a third-year Computer Science student at the University of Toronto Scarborough. My coursework and projects have equipped me with proficiency in various programming languages, frameworks, and technologies, including Java, Python, C, CRUD apps: HTML/CSS/JS, JSON, DDL/DML: SQL/MySQL/SQLAlchemy, DBMS: Relational Algebra, Flask, HTTP, Bootstrap, Git, Linux, and Github.  I possess extensive experience in Java 17 from Eclipse and I am learning more about the Spring Framework, enabling me to develop robust and scalable applications. During my time at the University of Toronto, I actively engaged in extracurricular activities. As Director of Logistics at UTSC’s Residence Council, I managed funds, resources, and the timing of events, collaborating closely with other executives. This experience sharpened my collaboration skills and honed my logistical management to ensure that the final event meets the community's expectations.
 

@@ -30,3 +30,13 @@ Name: Henie Patel, Email: henie.patel@mail.utoronto.ca, Student Number: 10082274
 <br/> Name: Gelila Samuel email: gelila.samuel@mail.utoronto.ca, student number: 1008466928, utorid: samuelg3 
 I am a third year Computer Science (Software Engineering Specialist) student at the University of Toronto Scarborough. I have experience using various programming languages, including Python, Java, and C. For my first co-op term, I worked as an IT QA Assistant with the Ministry of Education where I automated and ran smoke and regression tests for each release and my team operated using Scrum with Azure Devops. I also know SQL and used it during my job to query and manipulate our environment databases before and after testing. I'm eager to continue to learn more about developing! In my free time, I enjoy playing with my dog and crochet. 
 <br /> <img src=https://github.com/theLittleBigZ/C01-Group9-Project/assets/59943669/5f57db33-8377-4b98-8eb3-0e96c427b8d5 width="250">
+
+
+## Jasjot Singh Benipal
+
+Email: jasjot.benipal@mail.utoronto.ca | Student #: 1008332494 | Utorid: benipa19, discord: yupme
+
+<br />
+
+I am a third-year Computer Science student at the University of Toronto Scarborough. My coursework and projects have equipped me with proficiency in various programming languages, frameworks, and technologies, including Java, Python, C, CRUD apps: HTML/CSS/JS, JSON, DDL/DML: SQL/MySQL/SQLAlchemy, DBMS: Relational Algebra, Flask, HTTP, Bootstrap, Git, Linux, and Github.  I possess extensive experience in Java 17 from Eclipse and I am learning more about the Spring Framework, enabling me to develop robust and scalable applications. During my time at the University of Toronto, I actively engaged in extracurricular activities. As Director of Logistics at UTSC’s Residence Council, I managed funds, resources, and the timing of events, collaborating closely with other executives. This experience sharpened my collaboration skills and honed my logistical management to ensure that the final event meets the community's expectations.
+

@@ -1,14 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import SavedApps from './components/SavedApps';
 import { PaperProvider } from 'react-native-paper';
+import index from './app/index';
 
 export default function App() {
-  console.log("saved apps being called"); //kill me
   return (
     <PaperProvider>
       <View style={styles.container}>
-        <SavedApps />
+        <index/>
         <StatusBar style="auto" />
       </View>
     </PaperProvider>
@@ -25,3 +24,7 @@ const styles = StyleSheet.create({
     padding: '20px',
   },
 });
+
+//app/index.js  -> / resembles the main page
+//app/home.js -> /home resembles the homes page
+//app/proflie.js -> profile resembles the profile

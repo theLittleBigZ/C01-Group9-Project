@@ -21,6 +21,7 @@ async function addButtonsIfNeeded(db, collection) {
       { id: 1, state: 'off' },
       { id: 2, state: 'off' },
       // Add more buttons as needed
+
     ];
     await collection.insertMany(buttons);
     console.log(`${buttons.length} buttons were added.`);

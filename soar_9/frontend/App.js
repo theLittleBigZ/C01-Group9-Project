@@ -3,6 +3,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useEffect } from 'react';
 import { getOrCreateUUID } from './services/uuidManager';
 import Viewer from './viewer/viewer';
+import { PaperProvider } from 'react-native-paper';
+import index from './app/index';
 
 export default function App() {
   
@@ -11,12 +13,13 @@ export default function App() {
   }, []);
 
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      < Viewer />
-      < Text > Open up App.js to start working on your app! </Text>
-      <StatusBar style="auto" />
-    </View>
+
+    <PaperProvider>
+      <View style={styles.container}>
+        <index/>
+        <StatusBar style="auto" />
+      </View>
+    </PaperProvider>
   );
 
 }
@@ -27,5 +30,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    overflow: 'auto',
+    padding: '20px',
   },
 });
+
+//app/index.js  -> / resembles the main page
+//app/home.js -> /home resembles the homes page
+//app/proflie.js -> profile resembles the profile

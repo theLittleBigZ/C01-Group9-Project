@@ -2,13 +2,12 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { useEffect } from 'react';
 import { getOrCreateUUID } from './services/uuidManager';
-import Viewer from './viewer/viewer';
 import { PaperProvider } from 'react-native-paper';
-import index from './app/index';
 
 export default function App() {
   
   useEffect(() => {
+    console.log('App started');
     getOrCreateUUID(); // early in the app's lifecycle
   }, []);
 
@@ -16,7 +15,7 @@ export default function App() {
 
     <PaperProvider>
       <View style={styles.container}>
-        <index/>
+        {/* <index/> */}
         <StatusBar style="auto" />
       </View>
     </PaperProvider>

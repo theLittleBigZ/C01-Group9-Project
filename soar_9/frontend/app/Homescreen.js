@@ -1,21 +1,50 @@
-import React, {useState} from 'react';
-import { View, Text, Button, StyleSheet, Pressable, FlatList} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import { View, Text, Pressable, StyleSheet, FlatList} from 'react-native';
 import { sample } from '../sample-apps.js';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Link, router } from 'expo-router';
-const Homescreen = () => {
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-    const [sampleData, setSampleData ] = useState(sample);
+
+const Homescreen = () => {
+    const [sampleData, setSampleData] = useState(sample);
+
+    const [savedApps, setSavedApps] = useState([]); 
+
+
+
+    const getCacheAndUpdateSampleData = async () => {
+        try {
+            let value = await AsyncStorage.getItem('@UserPreferences');
+            if (value !== null) {
+                value = JSON.parse(value);
+                const savedAppNames = value.favoritedApps.selectedApps; // Array of app names
+                setSavedApps(savedAppNames);
+
+                const updatedSampleData = sample.map((app) => ({
+                    ...app,
+                    saved: savedAppNames.includes(app.appName),
+                }));
+                setSampleData(updatedSampleData);
+            }
+        } catch (error) {
+            console.error('Error getting preferences:', error);
+        }
+    };
+
+    useEffect(() => {
+        getCacheAndUpdateSampleData();
+    }, []);
 
     function unsaveApp(appName) {
-        setSampleData(sampleData.map((app)=> {
+        setSampleData(sampleData.map((app) => {
             if (app.appName === appName) {
-                app.saved = false;
+                return { ...app, saved: false };
             }
             return app;
-        }))
+        }));
     }
-
+    
     return (
         <View style={styles.savedAppsContainer}>
             <Text style={styles.Header}> Home Page </Text>
@@ -26,7 +55,7 @@ const Homescreen = () => {
                 renderItem={({item}) => <Text style={styles.item}>
                     <Icon style={styles.icon} name={item.icon}></Icon>
                     {item.appName}
-                    <Button title='UnFavorite App'onPress={() => {unsaveApp(item.appName)}}/>
+                    <Pressable title='UnFavorite App'onPress={() => {unsaveApp(item.appName)}}/>
                 </Text>}
             />
             <View>
@@ -37,8 +66,12 @@ const Homescreen = () => {
                 <Text style={styles.words}>Go to profile page</Text>
             </Pressable>
 
-            <Pressable style={styles.press} onPress={() => router.replace("/AllApps")}>
+            {/* <Pressable style={styles.press} onPress={() => router.replace("/AllApps")}>
                 <Text style={styles.words}>See All Apps</Text>
+            </Pressable> */}
+
+            <Pressable style={styles.press} onPress={() => router.replace("/Questionaire")}>
+                <Text style={styles.words}>Go to Questionaire</Text>
             </Pressable>
 
             </View>
@@ -46,7 +79,7 @@ const Homescreen = () => {
     )
 }
 
-export default Homescreen
+export default Homescreen;
 
 const styles = StyleSheet.create({
     savedAppsContainer: {
@@ -95,4 +128,4 @@ const styles = StyleSheet.create({
         fontSize: 40,
         fontWeight: 'bold',
     }
-});
+    });

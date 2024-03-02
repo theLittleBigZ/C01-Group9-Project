@@ -1,4 +1,4 @@
-import { Pressable, SafeAreaView, StyleSheet, Text, View, FlatList, Button, TextInput } from 'react-native';
+import { Pressable, StyleSheet, Text, View, FlatList, Button, TextInput } from 'react-native';
 import React, { useState } from 'react';
 import { sample } from '../sample-apps.js';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -24,19 +24,24 @@ const AllApps = () => {
             <Text style={styles.Header}>All Apps</Text>
 
             <TextInput style={styles.input}
-                placeholder="Search apps by name"
+                placeholder="🔍︎ Search apps by name"
                 value={appSearch}
                 onChangeText={(e) => setAppSearch(e)}
+
             />
+            <Button onPress={() => setAppSearch('')} title={'Clear Search'}></Button>
 
             <FlatList style={styles.appList}
-                data={sampleData}
+                data={sampleData.filter(({appName}) => appName.toLowerCase().startsWith(appSearch.toLowerCase()))}
                 renderItem={({item}) => <Text style={styles.item}>
-                    <Icon style={styles.icon} name={item.icon}></Icon>
-                    {item.appName}
-                    <Button title='Favorite App'onPress={() => {saveApp(item.appName)}}/>
+                    <View style={styles.itemView}>
+                        <Icon style={styles.icon} name={item.icon}></Icon>
+                        <span>{item.appName}</span>
+                    </View>
+                    <Button style={styles.saveButton} title='Favorite App'onPress={() => {saveApp(item.appName)}}/>
                 </Text>}
             />
+
             <View style={styles.addAppsContainer}>
                 <Pressable style={styles.press}
                     onPress={() => router.replace("/Homescreen")}>
@@ -83,7 +88,7 @@ const styles = StyleSheet.create({
     Header: {
         fontSize: 35,
         fontWeight: 'bold',
-        fontFamily: 'monospace',
+        fontFamily: 'arial',
         color: '#1f0160',
     },
     input:  {
@@ -92,35 +97,64 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         marginBottom: 10,
         paddingHorizontal: 10,
+        borderRadius: 5,
+        fontSize: 30,
+        color: 'grey',
+        fontFamily: 'arial',
+        textAlign: 'center',
     },
     icon: {
         padding: '2px',
         marginLeft: 20,
+        marginRight: 20,
         color: '#1f0160',
         fontSize: 20,
         borderColor: '#1f0160',
         borderWidth: 2,
+        borderRadius: 5,
     },
     item: {
         padding: 10,
         fontSize: 20,
-        height: 44,
+        height: 'auto',
+        width: 400,
+        display: 'flex',
+        justifyContent: 'space-between',
+        backgroundColor: '#effafa',
+        margin: 5,
+        borderRadius: 5,
+    },
+    itemView: {
+        display: 'flex',
+        flexDirection: 'row',
     },
     appList: {
         marginHorizontal: 20,
     },
+    saveButton: {
+        backgroundColor: '#1f0160',
+        color: '#060540',
+        alignItems: 'flex-end',
+        display: 'none',
+        right: 1,
+        position: 'absolute',
+    },
     press:{
-        borderColor: 'blue',
-        borderWidth: 1,
-        borderRadius: 1,
+        borderColor: '#1f0160',
+        borderWidth: 2,
+        borderRadius: 2,
+        width: 450,
         backgroundColor: "white",
         marginTop: 20,
+        borderRadius: 5,
+        marginBottom: 10,
     },
     pressWords: {
         color: '#1f0160',
         margin: 4,
-        alignItems: 'center',
         fontSize: 30,
         fontWeight: 'bold',
+        fontFamily: 'arial',
+        textAlign: 'center',
     }
 });

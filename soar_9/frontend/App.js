@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     overflow: 'auto',
     padding: '20px',
+    width: '100%'
   },
 });
 

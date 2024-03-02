@@ -2,71 +2,85 @@ export const sample = [
     {
         "appName": "Phone",
         "icon": "phone",
-        "saved": true
+        "saved": false,
+        "order": 0,
     },
     {
         "appName": "Gallery",
         "icon": "flower",
-        "saved": true
+        "saved": false,
+        "order": 0,
     },
     {
         "appName": "Clock",
         "icon": "clock",
-        "saved": true
+        "saved": false,
+        "order": 0,
     },
     {
         "appName": "Contacts",
         "icon": "contacts",
-        "saved": true
+        "saved": false,
+        "order": 0,
     },
     {
         "appName": "Notepad",
         "icon": "notebook",
-        "saved": true
+        "saved": false,
+        "order": 0,
     },
     {
         "appName": "YouTube",
         "icon": "youtube",
-        "saved": false
+        "saved": false,
+        "order": 0,
     },
     {
         "appName": "Health",
         "icon": "heart",
-        "saved": false
+        "saved": false,
+        "order": 0,
     },
     {
         "appName": "Settings",
         "icon": "wrench",
-        "saved": false
+        "saved": false,
+        "order": 0,
     },
     {
         "appName": "Chrome",
         "icon": "google-chrome",
-        "saved": false
+        "saved": false,
+        "order": 0,
     },
     {
         "appName": "Messages",
         "icon": "android-messages",
-        "saved": false
+        "saved": false,
+        "order": 0,
     },
     {
         "appName": "Calendar",
         "icon": "calendar",
-        "saved": false
+        "saved": false,
+        "order": 0,
     },
     {
         "appName": "Calculator",
         "icon": "calculator",
-        "saved": false
+        "saved": false,
+        "order": 0,
     },
     {
         "appName": "Camera",
         "icon": "camera",
-        "saved": false
+        "saved": false,
+        "order": 0,
     },
     {
         "appName": "Files",
         "icon": "folder",
-        "saved": false
+        "saved": false,
+        "order": 0,
     }
 ]

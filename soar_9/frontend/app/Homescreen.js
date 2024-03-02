@@ -6,6 +6,7 @@ import { Link, router } from 'expo-router';
 const Homescreen = () => {
 
     const [sampleData, setSampleData ] = useState(sample);
+    sampleData.sort((a, b) => a.appName.localeCompare(b.appName));
 
     function unsaveApp(appName) {
         setSampleData(sampleData.map((app)=> {
@@ -18,15 +19,19 @@ const Homescreen = () => {
 
     return (
         <View style={styles.savedAppsContainer}>
-            <Text style={styles.Header}> Home Page </Text>
-            <Text style={styles.Header}>Saved Apps</Text>
+            <View style={styles.headerView}>
+                <Text style={styles.Header}> Home Page </Text>
+                <Text style={styles.Header}>Saved Apps</Text>
+            </View>
 
-            <FlatList style={styles.appList}
+            <FlatList
                 data={sampleData.filter(({ saved }) => saved)}
                 renderItem={({item}) => <Text style={styles.item}>
-                    <Icon style={styles.icon} name={item.icon}></Icon>
-                    {item.appName}
-                    <Button title='UnFavorite App'onPress={() => {unsaveApp(item.appName)}}/>
+                    <View style={styles.itemView}>
+                        <Icon style={styles.icon} name={item.icon}></Icon>
+                        <span>{item.appName}</span>
+                    </View>
+                    <Button style={styles.unfavButton} title='UnFavorite App'onPress={() => {unsaveApp(item.appName)}}/>
                 </Text>}
             />
             <View>
@@ -50,10 +55,19 @@ export default Homescreen
 
 const styles = StyleSheet.create({
     savedAppsContainer: {
-      margin: 20,
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      padding: 20,
       backgroundColor: '#1f0160',
       flex: 1,
-      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    headerView: {
+        backgroundColor: '#effafa',
+        borderRadius: 15,
+        width: 300,
+        marginLeft: 'auto',
+        marginRight: 'auto',
     },
     appItem: {
       flexDirection: 'row',
@@ -62,32 +76,51 @@ const styles = StyleSheet.create({
       padding: 10,
       marginVertical: 5,
       borderColor: 'gray',
-      borderWidth: 1,
+      borderWidth: 10,
       borderRadius: 5,
     },
+    itemView: {
+        display: 'flex',
+        flexDirection: 'row',
+    },
     item: {
-        fontSize: 40,
+        fontSize: 30,
         color: 'white',
+        padding: 10,
+        height: 'auto',
+        width: 400,
+        display: 'flex',
+        justifyContent: 'space-between',
+        margin: 5,
+        borderRadius: 5,
     },
     icon: {
         padding: '2px',
         marginLeft: 20,
+        marginRight: 10,
         color: 'white',
-        fontSize: 40,
+        fontSize: 30,
         borderColor: 'white',
         borderWidth: 2,
+        borderRadius: 5,
+    },
+    unfavButton: {
+        textAlign: 'center',
+        height: 'auto',
     },
     press:{
         borderColor: 'blue',
         borderWidth: 1,
-        borderRadius: 1,
+        borderRadius: 5,
         backgroundColor: "white",
+        marginBottom: 10,
     },
     Header: {
         fontSize: 35,
         fontWeight: 'bold',
         fontFamily: 'monospace',
-        color: 'white',
+        color: '#060540',
+        textAlign: 'center',
     },
     words: {
         color: '#1f0160',

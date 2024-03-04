@@ -14,4 +14,5 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Soar 9"
-include ':app'
+include(":app")
+ 

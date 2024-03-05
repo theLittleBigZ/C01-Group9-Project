@@ -1,5 +1,4 @@
-import * as Permissions from 'expo-permissions';
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import * as Contacts from 'expo-contacts';
 import { View, Text, Button, StyleSheet } from 'react-native';
 
@@ -38,10 +37,20 @@ const ContactScreen = () => {
         ))}
       </View>
      );
-    
-    const styles = StyleSheet.create({
-    });
 }
+
+const styles = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+    marginTop: 50,
+  },
+  text: {
+    fontSize: 20,
+    marginBottom: 20,
+  },
+});
+
+export default ContactScreen;
 
 
   

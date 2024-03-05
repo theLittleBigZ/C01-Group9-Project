@@ -1,6 +1,9 @@
 import * as Permissions from 'expo-permissions';
+import React, { useState } from 'react';
+import * as Contacts from 'expo-contacts';
+import { View, Text, Button, StyleSheet } from 'react-native';
 
-const Contacts = () => {
+const ContactScreen = () => {
     useEffect(() => {
         askForContactPermission();
       }, []);
@@ -10,11 +13,11 @@ const Contacts = () => {
         if (status !== 'granted') {
           console.log('Contact permission denied');
         }
-    };
+      };
 
     const getContacts = async () => {
         const { status, data } = await Contacts.getContactsAsync({
-          fields: [Contacts.Fields.Name, Contacts.Fields.PhoneNumbers],
+          fields: [Contacts.Fields.ID, Contacts.Fields.FirstName, Contact.Fields.LastName, Contacts.Fields.PhoneNumbers],
         });
     
         if (status === 'granted') {
@@ -24,7 +27,20 @@ const Contacts = () => {
           console.log('Contact permission denied');
           // Handle denial or use a fallback
         }
-      };
+     };
+
+    return (
+      <View style={styles.container}>
+        {data.map((contact) => (
+          <View key={contact.ID}>
+            <Text style={styles.text}>{contact.Name}</Text>
+          </View>
+        ))}
+      </View>
+     );
+    
+    const styles = StyleSheet.create({
+    });
 }
 
 

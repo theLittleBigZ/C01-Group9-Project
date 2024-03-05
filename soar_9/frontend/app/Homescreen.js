@@ -21,7 +21,6 @@ const Homescreen = () => {
         <View style={styles.savedAppsContainer}>
             <View style={styles.headerView}>
                 <Text style={styles.Header}> Home Page </Text>
-                <Text style={styles.Header}>Saved Apps</Text>
             </View>
 
             <FlatList
@@ -38,13 +37,17 @@ const Homescreen = () => {
 
             {/**<Link href="/profile"> Go to Profile </Link> */}
 
-            <Pressable style={styles.press} onPress={() => router.replace("/Profile")}>
-                <Text style={styles.words}>Go to profile page</Text>
-            </Pressable>
+            <View>
+                <Pressable style={styles.press} onPress={() => router.replace("/Profile")}>
+                    <Text style={styles.words}>Go to profile page</Text>
+                </Pressable>
 
-            <Pressable style={styles.press} onPress={() => router.replace("/AllApps")}>
-                <Text style={styles.words}>See All Apps</Text>
-            </Pressable>
+                <Pressable style={styles.press} onPress={() => router.replace("/AllApps")}>
+                    <Text style={styles.words}>See All Apps</Text>
+                </Pressable>
+            </View>
+
+
 
             </View>
         </View>
@@ -57,17 +60,17 @@ const styles = StyleSheet.create({
     savedAppsContainer: {
       marginLeft: 'auto',
       marginRight: 'auto',
-      padding: 20,
       backgroundColor: '#1f0160',
       flex: 1,
       justifyContent: 'center',
     },
     headerView: {
         backgroundColor: '#effafa',
-        borderRadius: 15,
-        width: 300,
+        borderRadius: 2,
+        width: 'auto',
         marginLeft: 'auto',
         marginRight: 'auto',
+        marginTop: 10,
     },
     appItem: {
       flexDirection: 'row',
@@ -109,11 +112,13 @@ const styles = StyleSheet.create({
         height: 'auto',
     },
     press:{
-        borderColor: 'blue',
-        borderWidth: 1,
+        borderColor: '#effafa',
+        borderWidth: 3,
         borderRadius: 5,
-        backgroundColor: "white",
+        backgroundColor: "#211d43",
         marginBottom: 10,
+        marginRight: 10,
+        marginLeft: 10,
     },
     Header: {
         fontSize: 35,
@@ -123,7 +128,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     words: {
-        color: '#1f0160',
+        color: '#effafa',
         alignItems: 'center',
         fontSize: 40,
         fontWeight: 'bold',

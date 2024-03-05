@@ -3,16 +3,9 @@ import React from 'react';
 import { Link, Redirect } from 'expo-router';
 
 const index = () => {
-    if (true) {
-        return (
-            <Redirect href="/Questionaire" />
-        )
-    }
-    else {
-        return (
+    return (
             <Redirect href="/Homescreen"/>
-        )
-    }
+    )
 }
 
 export default index

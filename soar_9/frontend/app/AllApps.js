@@ -36,7 +36,7 @@ const AllApps = () => {
                 renderItem={({item}) => <Text style={styles.item}>
                     <View style={styles.itemView}>
                         <Icon style={styles.icon} name={item.icon}></Icon>
-                        <span>{item.appName}</span>
+                        <Text>{item.appName}</Text>
                     </View>
                     <Button style={styles.saveButton} title='Favorite App'onPress={() => {saveApp(item.appName)}}/>
                 </Text>}
@@ -63,16 +63,6 @@ const AllApps = () => {
 export default AllApps
 
 const styles = StyleSheet.create({
-    appItem: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      padding: 10,
-      marginVertical: 5,
-      borderColor: 'gray',
-      borderWidth: 1,
-      borderRadius: 5,
-    },
     container: {
         flex: 1,
         paddingTop: 22,
@@ -83,7 +73,6 @@ const styles = StyleSheet.create({
         borderColor: 'gray',
         borderWidth: 1,
         borderRadius: 5,
-        margin: 50,
     },
     Header: {
         fontSize: 35,
@@ -106,7 +95,7 @@ const styles = StyleSheet.create({
     icon: {
         padding: '2px',
         marginLeft: 20,
-        marginRight: 20,
+        marginRight: 10,
         color: '#1f0160',
         fontSize: 20,
         borderColor: '#1f0160',
@@ -117,7 +106,6 @@ const styles = StyleSheet.create({
         padding: 10,
         fontSize: 20,
         height: 'auto',
-        width: 400,
         display: 'flex',
         justifyContent: 'space-between',
         backgroundColor: '#effafa',
@@ -127,9 +115,11 @@ const styles = StyleSheet.create({
     itemView: {
         display: 'flex',
         flexDirection: 'row',
+        marginRight: 5,
     },
     appList: {
         marginHorizontal: 20,
+        width: 'auto',
     },
     saveButton: {
         backgroundColor: '#1f0160',

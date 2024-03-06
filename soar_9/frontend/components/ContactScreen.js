@@ -31,19 +31,33 @@ const ContactScreen = () => {
     const { data } = await Contacts.getContactsAsync({
       fields: [Contacts.Fields.ID, Contacts.Fields.FirstName, Contacts.Fields.LastName, Contacts.Fields.PhoneNumbers],
     });
-      console.log('Contacts:', data);
+      //console.log('Contacts:', data);
+      /*data.forEach(contact => {
+        if (contact.phoneNumbers && contact.phoneNumbers.length > 0) {
+          contact.phoneNumbers.forEach(phone => {
+            console.log(`Contact: ${contact.displayName}, Phone: ${phone.number}`);
+          });
+        }
+      });*/
       return data || []; // Ensure that data is an array or provide a default empty array
   };
 
-  const callContact = async () => {
-
+  function callContact(contact) {
+    if (contact.phoneNumbers && contact.phoneNumbers.length > 0) {
+      const primaryNumber = contact.phoneNumbers.find((phone) => phone.isPrimary) || contact.phoneNumbers[0];
+      console.log(primaryNumber);
+      console.log('Calling:', primaryNumber.number);
+      Linking.openURL("tel:" + primaryNumber.number);
+    } else {
+      console.log("This contact does not have a phone number associated with it,");
+    }
   }
 
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scrollViewContainer}>
         {contactsData.map((contact) => (
-          <Pressable key={contact.id} onPress={callContact}>
+          <Pressable key={contact.id} onPress={() => callContact(contact)}>
            <Text style={styles.text}>
               {contact.firstName} 
               {contact.lastName ? `${contact.lastName}` : ""}

@@ -1,43 +1,59 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as Contacts from 'expo-contacts';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, Pressable, StyleSheet, ScrollView } from 'react-native';
+import * as Linking from 'expo-linking';
 
 const ContactScreen = () => {
-    useEffect(() => {
-        askForContactPermission();
-      }, []);
+  const [contactsData, setContactsData] = useState([]);
 
-    const askForContactPermission = async () => {
-        const { status } = await Contacts.requestPermissionsAsync();
-        if (status !== 'granted') {
-          console.log('Contact permission denied');
+  useEffect(() => {
+      const fetchData = async () => {
+        const status = await askForContactPermission();
+        if (status === "granted"){
+          const data = await getAllContacts();
+          setContactsData(data);
         }
       };
+  
+      fetchData();
+  }, []);
 
-    const getContacts = async () => {
-        const { status, data } = await Contacts.getContactsAsync({
-          fields: [Contacts.Fields.ID, Contacts.Fields.FirstName, Contact.Fields.LastName, Contacts.Fields.PhoneNumbers],
-        });
-    
-        if (status === 'granted') {
-          console.log('Contacts:', data);
-          // Want to display contact cards and allow for favouriting and search
-        } else {
-          console.log('Contact permission denied');
-          // Handle denial or use a fallback
-        }
-     };
+  const askForContactPermission = async () => {
+    const { status } = await Contacts.requestPermissionsAsync();
+    console.log('Contact permission status:', status);
+    /*if (status !== 'granted') {
+      console.log('Contact permission denied');
+    }*/
+    return status;
+  };
 
-    return (
-      <View style={styles.container}>
-        {data.map((contact) => (
-          <View key={contact.ID}>
-            <Text style={styles.text}>{contact.Name}</Text>
-          </View>
-        ))}
-      </View>
-     );
-}
+  const getAllContacts = async () => {
+    const { data } = await Contacts.getContactsAsync({
+      fields: [Contacts.Fields.ID, Contacts.Fields.FirstName, Contacts.Fields.LastName, Contacts.Fields.PhoneNumbers],
+    });
+      console.log('Contacts:', data);
+      return data || []; // Ensure that data is an array or provide a default empty array
+  };
+
+  const callContact = async () => {
+
+  }
+
+  return (
+    <View style={styles.container}>
+      <ScrollView style={styles.scrollViewContainer}>
+        {contactsData.map((contact) => (
+          <Pressable key={contact.id} onPress={callContact}>
+           <Text style={styles.text}>
+              {contact.firstName} 
+              {contact.lastName ? `${contact.lastName}` : ""}
+             </Text>
+          </Pressable>
+       ))}
+      </ScrollView>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -48,9 +64,9 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginBottom: 20,
   },
+  scrollViewContainer: {
+    paddingVertical: 20,
+  },
 });
 
 export default ContactScreen;
-
-
-  

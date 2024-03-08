@@ -12,7 +12,7 @@ const uri = "mongodb+srv://yannelroy0:U0DS5s7KLG5A6NLQ@cluster0.wkd6hm1.mongodb.
 const client = new MongoClient(uri);
 const dbName = "Cluster0";
 const collectionName = "buttonStates";
-
+ 
 async function addButtonsIfNeeded(db, collection) {
   const existingButtonsCount = await collection.countDocuments();
   if (existingButtonsCount === 0) {

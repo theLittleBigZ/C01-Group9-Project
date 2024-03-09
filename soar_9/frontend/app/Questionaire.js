@@ -109,7 +109,7 @@ const Questionnaire = () => {
     ))}
     
     </View>
-
+    
 
       <Text>Primary Language:</Text>
       <TextInput
@@ -156,7 +156,7 @@ const Questionnaire = () => {
               onPress={() => toggleAppSelection(app.appName)}
             >
               <Text style={{ color: selectedApps.includes(app.appName) ? '#FF6347' : '#000' }}>
-                {app.appName}
+              {selectedApps.includes(app.appName) ? app.appName + ' [remove]': app.appName + ' [add]' }
               </Text>
             </Pressable>
           ))}
@@ -178,11 +178,11 @@ const Questionnaire = () => {
   </View>
   
   </ScrollView>
-
     <View style={styles.footer}>
-        <Button title="Save Preferences" onPress={savePreferences} />
-      </View>
-    </ScrollView>
+        <Button title="save preferences and go to home" onPress={savePreferences} />
+    </View>
+  </ScrollView>
+  
   );
 };
 

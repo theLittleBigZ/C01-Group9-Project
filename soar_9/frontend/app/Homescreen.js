@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { View, Text, Pressable, StyleSheet, FlatList} from 'react-native';
+import { View, Text, Pressable, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
 import { sample } from '../sample-apps.js';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Link, router } from 'expo-router';
@@ -36,45 +36,22 @@ const Homescreen = () => {
         getCacheAndUpdateSampleData();
     }, []);
 
-    function unsaveApp(appName) {
-        setSampleData(sampleData.map((app) => {
-            if (app.appName === appName) {
-                return { ...app, saved: false };
-            }
-            return app;
-        }));
-    }
     
     return (
         <View style={styles.savedAppsContainer}>
             <Text style={styles.Header}> Home Page </Text>
-            <Text style={styles.Header}>Saved Apps</Text>
 
             <FlatList style={styles.appList}
                 data={sampleData.filter(({ saved }) => saved)}
-                renderItem={({item}) => <Text style={styles.item}>
+                renderItem={({item}) =>
+                <TouchableOpacity style={styles.inLine} onPress={() => {alert("launch app")}}>
                     <Icon style={styles.icon} name={item.icon}></Icon>
-                    {item.appName}
-                    <Pressable title='UnFavorite App'onPress={() => {unsaveApp(item.appName)}}/>
-                </Text>}
+                    <Text style={styles.item}>{item.appName}</Text>
+                </TouchableOpacity>}
             />
-            <View>
-
-            {/**<Link href="/profile"> Go to Profile </Link> */}
-
-            <Pressable style={styles.press} onPress={() => router.replace("/Profile")}>
-                <Text style={styles.words}>Go to profile page</Text>
-            </Pressable>
-
-            {/* <Pressable style={styles.press} onPress={() => router.replace("/AllApps")}>
-                <Text style={styles.words}>See All Apps</Text>
-            </Pressable> */}
-
             <Pressable style={styles.press} onPress={() => router.replace("/Questionaire")}>
-                <Text style={styles.words}>Go to Questionaire</Text>
+                <Text style={styles.words}>Go To Settings</Text>
             </Pressable>
-
-            </View>
         </View>
     )
 }
@@ -83,49 +60,56 @@ export default Homescreen;
 
 const styles = StyleSheet.create({
     savedAppsContainer: {
-      margin: 20,
       backgroundColor: '#1f0160',
       flex: 1,
-      alignItems: 'center',
     },
-    appItem: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      padding: 10,
-      marginVertical: 5,
-      borderColor: 'gray',
-      borderWidth: 1,
-      borderRadius: 5,
+    inLine: {
+        margin: 10,
+        flexDirection:'row',
+        padding: 10,
+        alignItems: 'center',
+        borderColor: 'white',
+        borderWidth: 2,
+        borderRadius: 20, 
+        width: '90%',
+    },
+    Header: {
+        fontSize: 40,
+        fontWeight: 'bold',
+        fontFamily: 'monospace',
+        color: '#1f0160',
+        width: '100%',
+        marginBottom: 30,
+        borderWidth: 3,
+        backgroundColor: 'white',
+        textAlign: 'center'
     },
     item: {
-        fontSize: 40,
+        flex: 1,
+        padding: 10,
+        margin: 10, 
+        fontSize: 30,
         color: 'white',
     },
     icon: {
-        padding: '2px',
-        marginLeft: 20,
+        padding: 5,
+        fontSize: 50,
         color: 'white',
-        fontSize: 40,
         borderColor: 'white',
         borderWidth: 2,
+        borderRadius: 10,
     },
     press:{
-        borderColor: 'blue',
-        borderWidth: 1,
-        borderRadius: 1,
+        width: '100%',
+        borderColor: 'black',
+        borderWidth: 2,
+        borderRadius: 10,
         backgroundColor: "white",
-    },
-    Header: {
-        fontSize: 35,
-        fontWeight: 'bold',
-        fontFamily: 'monospace',
-        color: 'white',
     },
     words: {
         color: '#1f0160',
-        alignItems: 'center',
-        fontSize: 40,
+        textAlign: 'center',
+        fontSize: 30,
         fontWeight: 'bold',
     }
     });

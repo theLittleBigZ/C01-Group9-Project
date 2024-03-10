@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Switch, TextInput, Button, ScrollView, Pressable, Modal, FlatList} from 'react-native';
 import { Divider } from 'react-native-paper'; 
+import {colours} from "./Colours";
 import styles from "./Styles";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Slider from '@react-native-community/slider';
@@ -140,8 +141,8 @@ const Questionnaire = () => {
             value={brightness}
             onValueChange={setBrightness}
             minimumTrackTintColor="#FFFFFF"
-            maximumTrackTintColor="#28264C"
-            thumbTintColor="#28264C"
+            maximumTrackTintColor={colours.primary}
+            thumbTintColor={colours.primary}
             orientation="vertical" // Only supported on Android
           />
         </View>

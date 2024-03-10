@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { View, Text, Pressable, FlatList, TouchableOpacity} from 'react-native';
 import { Divider } from 'react-native-paper'; 
 import styles from "./Styles";
+import {colours} from "./Colours";
 import { sample } from '../sample-apps.js';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { router } from 'expo-router';
@@ -52,16 +53,16 @@ const Homescreen = () => {
                     <Text style={styles.item}>{item.appName}</Text>
                 </TouchableOpacity>}
             />
-            <View style={{backgroundColor: '#BCB4D2', width: '100%'}}>
+            <View style={{backgroundColor: colours.secondary, width: '100%'}}>
                 <Divider/>
-                <Text style={[styles.words, {color: 'black'}]}>Navigation To:</Text>
+                <Text style={[styles.words, {color: colours.headertext}]}>Navigation To:</Text>
                 <Pressable style={styles.button} onPress={() => router.replace("/Questionaire")}>
                     <Text style={styles.words}>Settings</Text>
                 </Pressable>
                 <Pressable style={styles.button} onPress={() => router.replace("/Questionaire")}>
                     <Text style={styles.words}>Contacts</Text>
                 </Pressable>
-                <Pressable style={styles.button} onPress={() => router.replace("/Questionaire")}>
+                <Pressable style={styles.button} onPress={() => router.replace("/Profile")}>
                     <Text style={styles.words}>Profile</Text>
                 </Pressable>
             </View>

@@ -1,8 +1,9 @@
 import { StyleSheet } from "react-native";
+import {colours} from "./Colours"
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#8c80ab',
+    backgroundColor: colours.background,
     padding: 20,
     justifyContent: 'center',
     flex: 1,
@@ -13,7 +14,7 @@ const styles = StyleSheet.create({
     padding: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#28264C',
+    backgroundColor: colours.primary,
     borderColor: 'black',
     borderWidth: 2,
     borderRadius: 20, 
@@ -23,14 +24,14 @@ const styles = StyleSheet.create({
     fontSize: 40,
     fontWeight: 'bold',
     fontFamily: 'monospace',
-    color: 'black',
+    color: colours.headertext,
     width: '100%',
     textAlign: 'center'
   },
   icon: {
     padding: 5,
     fontSize: 50,
-    color: 'white',
+    color: colours.buttontext,
     borderColor: 'white',
     borderWidth: 2,
     borderRadius: 10,
@@ -45,7 +46,7 @@ const styles = StyleSheet.create({
     flex: 1,
     margin: 10, 
     fontSize: 30,
-    color: 'white',
+    color: colours.buttontext,
   },
   modalView: {
     margin: 20,
@@ -77,7 +78,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   words: {
-    color: 'white',
+    color: colours.buttontext,
     textAlign: 'center',
     fontSize: 30,
     fontWeight: 'bold',

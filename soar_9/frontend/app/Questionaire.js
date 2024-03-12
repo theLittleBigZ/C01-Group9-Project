@@ -96,8 +96,8 @@ const Questionnaire = () => {
         <View style={styles.question}>
           <Text style={styles.questionfont}>Enable Speech to Text:</Text>
           <Switch
-            // trackColor={{ false: "#767577", true: "#49476b" }}
-            // thumbColor={speechToTextEnabled ? "white" : "#f4f3f4"}
+            trackColor={{ false: "gray", true: "green" }}
+            thumbColor={speechToTextEnabled ? "green" : "gray"}
             onValueChange={setSpeechToTextEnabled}
             value={speechToTextEnabled}
           />

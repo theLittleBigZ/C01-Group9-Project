@@ -65,6 +65,9 @@ const Homescreen = () => {
                 <Pressable style={styles.button} onPress={() => router.replace("/Profile")}>
                     <Text style={styles.words}>Profile</Text>
                 </Pressable>
+                <Pressable style={styles.button} onPress={() => router.replace("/LoginPage")}>
+                    <Text style={styles.words}>Sign In</Text>
+                </Pressable>
             </View>
         </View>
     )

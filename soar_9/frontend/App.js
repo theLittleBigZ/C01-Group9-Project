@@ -5,7 +5,6 @@ import ContactScreen from './components/ContactScreen';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>text</Text>
       <ContactScreen/>
       <StatusBar style="auto" />
     </View>

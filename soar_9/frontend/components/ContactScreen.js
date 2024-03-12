@@ -5,6 +5,7 @@ import * as Linking from 'expo-linking';
 
 const ContactScreen = () => {
   const [contactsData, setContactsData] = useState([]);
+  //const [favouriteContacts, setFavouriteContacts] = useState([]);
 
   useEffect(() => {
       const fetchData = async () => {
@@ -32,13 +33,6 @@ const ContactScreen = () => {
       fields: [Contacts.Fields.ID, Contacts.Fields.FirstName, Contacts.Fields.LastName, Contacts.Fields.PhoneNumbers],
     });
       //console.log('Contacts:', data);
-      /*data.forEach(contact => {
-        if (contact.phoneNumbers && contact.phoneNumbers.length > 0) {
-          contact.phoneNumbers.forEach(phone => {
-            console.log(`Contact: ${contact.displayName}, Phone: ${phone.number}`);
-          });
-        }
-      });*/
       return data || []; // Ensure that data is an array or provide a default empty array
   };
 
@@ -53,21 +47,32 @@ const ContactScreen = () => {
     }
   }
 
+  /*function addFavourite(contact) {
+    setFavouriteContacts(contact);
+  }*/
+
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scrollViewContainer}>
         {contactsData.map((contact) => (
-          <Pressable key={contact.id} onPress={() => callContact(contact)}>
-           <Text style={styles.text}>
-              {contact.firstName} 
+          <View key={contact.id} style={styles.container}>
+            <Text  style={styles.text}>
+              {contact.firstName}
               {contact.lastName ? `${contact.lastName}` : ""}
-             </Text>
-          </Pressable>
-       ))}
+            </Text>
+            <Pressable onPress={() => callContact(contact)}>
+              <Text>Call</Text>
+            </Pressable> 
+          </View>
+        ))}
       </ScrollView>
     </View>
   );
 };
+/*
+<Pressable onPress={() => addFavourite(contact)}>
+              <Text>Add Favourite</Text>
+            </Pressable>*/
 
 const styles = StyleSheet.create({
   container: {

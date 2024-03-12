@@ -2,8 +2,8 @@ import React, {useEffect, useState} from 'react';
 import { View, Text, Pressable, StyleSheet, FlatList} from 'react-native';
 import { sample } from '../sample-apps.js';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { Link, router } from 'expo-router';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { router } from 'expo-router';
+import { load } from '../services/apiServices.js';
 
 
 const Homescreen = () => {
@@ -15,10 +15,9 @@ const Homescreen = () => {
 
     const getCacheAndUpdateSampleData = async () => {
         try {
-            let value = await AsyncStorage.getItem('@UserPreferences');
+            let value = await load();
             if (value !== null) {
-                value = JSON.parse(value);
-                const savedAppNames = value.favoritedApps.selectedApps; // Array of app names
+                const savedAppNames = value.selectedApps; // Array of app names
                 setSavedApps(savedAppNames);
 
                 const updatedSampleData = sample.map((app) => ({

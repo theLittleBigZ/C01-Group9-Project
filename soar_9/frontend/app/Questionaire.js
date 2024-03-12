@@ -2,15 +2,16 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Switch, TextInput, Button, ScrollView, Pressable, Modal} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { load, saveToCache } from '../services/apiServices';
 import Slider from '@react-native-community/slider';
 import {sample} from '../sample-apps';
 import { router } from 'expo-router';
 
 const Questionnaire = () => {
   // State for each setting
-  const [speechToTextEnabled, setSpeechToTextEnabled] = useState(false);
+  const [speechToText, setSpeechToText] = useState(false);
   const [fontSize, setFontSize] = useState('Medium'); // Default to 'Medium'
-  const [primaryLanguage, setPrimaryLanguage] = useState('');
+  const [language, setLanguage] = useState('');
   const [brightness, setBrightness] = useState(50); // Assuming brightness ranges from 0 to 100
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedApps, setSelectedApps] = useState([]);
@@ -28,23 +29,16 @@ const Questionnaire = () => {
   // Function to save all settings to AsyncStorage
   const savePreferences = async () => {
     const userPreferences = {
-      accessibilitySettings: {
-        speechToTextEnabled,
-        fontSize,
-        brightness,
-      },
-      languagePreferences: {
-        primaryLanguage,
-      },
-      favoritedApps:{
-        selectedApps,
-      }
+      speechToText,
+      fontSize,
+      language,
+      brightness,
+      selectedApps,
     };
 
     try {
-      await AsyncStorage.setItem('@UserPreferences', JSON.stringify(userPreferences));
-      console.log('Preferences saved');
-      console.log(userPreferences);
+      console.log('Saving preferences:', userPreferences);
+      saveToCache(userPreferences);
       // Navigate to home screen or show a confirmation message
       router.replace("/")
     } catch (error) {
@@ -55,34 +49,20 @@ const Questionnaire = () => {
   // get apps from user preferences
   const getCacheAndUpdateSampleData = async () => {
     try {
-      let value = await AsyncStorage.getItem('@UserPreferences');
+      let value = await load();
       if (value !== null) {
-          value = JSON.parse(value);
-          const savedAppNames = value.favoritedApps.selectedApps; // Array of app names
+          const savedAppNames = value.selectedApps; // Array of app names
           setSelectedApps(savedAppNames);
       }
-  } catch (error) {
-      console.error('Error getting preferences:', error);
-  }
+    } catch (error) {
+        console.error('Error getting preferences:', error);
+    }
   };
 
   // Load user preferences from AsyncStorage
   useEffect(() => {
     getCacheAndUpdateSampleData();
   }, []);
-
-  useEffect(() => {
-    const saveSelectedAppsToCache = async () => {
-      try {
-        const value = JSON.stringify({ favoritedApps: { selectedApps } });
-        await AsyncStorage.setItem('@UserPreferences', value);
-      } catch (error) {
-        console.error('Error saving preferences:', error);
-      }
-    };
-  
-    saveSelectedAppsToCache();
-  }, [selectedApps]);
 
   return (
     <ScrollView style={styles.container}>
@@ -91,9 +71,9 @@ const Questionnaire = () => {
       <Text>Enable Speech to Text:</Text>
       <Switch
         trackColor={{ false: "#767577", true: "#81b0ff" }}
-        thumbColor={speechToTextEnabled ? "#f5dd4b" : "#f4f3f4"}
-        onValueChange={setSpeechToTextEnabled}
-        value={speechToTextEnabled}
+        thumbColor={speechToText ? "#f5dd4b" : "#f4f3f4"}
+        onValueChange={setSpeechToText}
+        value={speechToText}
       />
 
     <Text>Font Size:</Text>
@@ -114,8 +94,8 @@ const Questionnaire = () => {
       <Text>Primary Language:</Text>
       <TextInput
         style={styles.input}
-        onChangeText={setPrimaryLanguage}
-        value={primaryLanguage}
+        onChangeText={setLanguage}
+        value={language}
         placeholder="Enter Primary Language"
       />
 

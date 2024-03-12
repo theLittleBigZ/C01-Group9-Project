@@ -1,16 +1,30 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Text, Pressable } from 'react-native';
 import * as Brightness from 'expo-brightness';
+import { Platform } from 'react-native';
 
 const SetBrightness = () => {
+
     useEffect(() => {
         (async () => {
           const { status } = await Brightness.requestPermissionsAsync();
-          //display brightness control if status is granted, don't display if not
-        })})
+          console.log(status);
+          if (status === "granted"){
+            //const brightnessLevel = fetch brightness level from server
+            setBrightness(brightnessLevel);
+          }
+        })}, []);
  
     function setBrightness(level) {
-        Brightness.setSystemBrightnessAsync(level);
+        //want to store the brightness level choice so that the brightness is set to that next time they open the app
+        if (Platform.OS === "android") {
+            Brightness.setSystemBrightnessAsync(level); 
+            //expo docs said "warning: this method is experimental"
+        }
+        else{ //ios
+            Brightness.setBrightnessAsync(level); //only sets the brightness until they lock the phone
+            //possible workaround - store which button they had pressed and set the brightness again everytime they open the app
+        }
     }
 
     return (
@@ -24,7 +38,6 @@ const SetBrightness = () => {
             <Pressable title="high" onPress={()=>setBrightness(1)}>
                 <Text>high</Text>
             </Pressable>
-
         </View>
     )
 }

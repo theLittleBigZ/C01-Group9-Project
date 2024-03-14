@@ -7,6 +7,7 @@ import { sample } from '../sample-apps.js';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { router } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import i18n from 'react-native-i18n';
 
 
 const Homescreen = () => {
@@ -42,7 +43,7 @@ const Homescreen = () => {
     
     return (
         <View style={styles.container}>
-            <Text style={styles.Header}> Home Page </Text>
+            <Text style={styles.Header}>{i18n.t('home')}</Text>
             <Divider/>
 
             <FlatList style={styles.appList}

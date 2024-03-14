@@ -1,6 +1,6 @@
 // Import necessary components and hooks
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, Switch, TextInput, Button, ScrollView, Pressable, Modal, FlatList} from 'react-native';
+import { StyleSheet, View, Text, Switch, TextInput, ScrollView, Pressable, Modal} from 'react-native';
 import { Divider } from 'react-native-paper'; 
 import {colours} from "./Colours";
 import styles from "./Styles";

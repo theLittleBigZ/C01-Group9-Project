@@ -1,12 +1,13 @@
 // Translations.js
-import * as Localization from 'expo-localization';
-import I18n from 'react-native-i18n';
-import translations from './Languages.json'
+import {I18n} from 'i18n-js';
+import translations from './Languages';
+
 // Define translations
-I18n.translations = translations;
+const i18n = new I18n(translations)
+// i18n.translations = translations
 
 // Set default locale and fallbacks
-I18n.locale = ''
-I18n.fallbacks = true;
+i18n.locale = 'fr';
+i18n.fallbacks = true;
 
-export default I18n;
+export default i18n;

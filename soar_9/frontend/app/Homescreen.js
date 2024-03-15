@@ -7,7 +7,7 @@ import { sample } from '../sample-apps.js';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { router } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import i18n from './Translations/Languages/PrimaryLanguage.js';
+import I18n from './Translations/PrimaryLanguage.js';
 
 const Homescreen = () => {
     const [sampleData, setSampleData] = useState(sample);
@@ -42,7 +42,7 @@ const Homescreen = () => {
     
     return (
         <View style={styles.container}>
-            <Text style={styles.Header}>{i18n.t('home')}</Text>
+            <Text style={styles.Header}>{I18n.t('home')}</Text>
             <Divider/>
 
             <FlatList style={styles.appList}
@@ -55,18 +55,18 @@ const Homescreen = () => {
             />
             <View style={{backgroundColor: colours.secondary, width: '100%'}}>
                 <Divider/>
-                <Text style={[styles.words, {color: colours.headertext}]}>{i18n.t('navigateto')}:</Text>
+                <Text style={[styles.words, {color: colours.headertext}]}>{I18n.t('navigateto')}:</Text>
                 <Pressable style={styles.button} onPress={() => router.replace("/Questionaire")}>
-                    <Text style={styles.words}>{i18n.t('settings')}</Text>
+                    <Text style={styles.words}>{I18n.t('settings')}</Text>
                 </Pressable>
                 <Pressable style={styles.button} onPress={() => router.replace("/Questionaire")}>
-                    <Text style={styles.words}>{i18n.t('contacts')}</Text>
+                    <Text style={styles.words}>{I18n.t('contacts')}</Text>
                 </Pressable>
                 {/* <Pressable style={styles.button} onPress={() => router.replace("/Profile")}>
                     <Text style={styles.words}>Profile</Text>
                 </Pressable> */}
                 <Pressable style={styles.button} onPress={() => router.replace("/LoginPage")}>
-                    <Text style={styles.words}>{i18n.t('signin')}</Text>
+                    <Text style={styles.words}>{I18n.t('signin')}</Text>
                 </Pressable>
             </View>
         </View>

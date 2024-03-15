@@ -1,0 +1,16 @@
+export const zh = {
+  home: "主页",
+  contacts: "联系人",
+  settings: "设置",
+  signin: "登录",
+  small: "小",
+  medium: "中",
+  large: "大",
+  enablespeechtotext: "启用语音转文字",
+  fontsize: "字体大小",
+  brightness: "亮度",
+  language: "语言",
+  select: "选择",
+  frequentlyused: "常用",
+  apps: "应用",
+}

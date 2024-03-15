@@ -1,5 +1,5 @@
-export default{
-  home: "enHome",
+export const en ={
+  home: "Home",
   contacts: "Contacts",
   settings: "Settings",
   signin: "SignIn",
@@ -14,5 +14,6 @@ export default{
   frequentlyused: "frequently used",
   apps: "apps",
   navigateto: "Navigate To",
-  signup: "Sign Up"
+  signup: "Sign Up",
+  close: "Close"
 };

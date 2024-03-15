@@ -9,9 +9,8 @@ import RNPickerSelect from 'react-native-picker-select';
 import Slider from '@react-native-community/slider';
 import {sample} from '../sample-apps';
 import { router } from 'expo-router';
-import options from './Languages/LanguageList';
-import i18n from './Translations';
-
+import options from './Translations/Languages/LanguageMap';
+import i18n from './Translations/Languages/PrimaryLanguage';
 const Questionnaire = () => {
   // State for each setting
   const [speechToTextEnabled, setSpeechToTextEnabled] = useState(false);
@@ -97,7 +96,7 @@ const Questionnaire = () => {
 
       <ScrollView>
         <View style={styles.question}>
-          <Text style={styles.questionfont}>Enable Speech to Text:</Text>
+          <Text style={styles.questionfont}>{i18n.t('enablespeechtotext')}:</Text>
           <Switch
             trackColor={{ false: "gray", true: "green" }}
             thumbColor={speechToTextEnabled ? "green" : "gray"}
@@ -108,7 +107,7 @@ const Questionnaire = () => {
         <Divider/>
 
         <View style={styles.question}>
-          <Text style={styles.questionfont}>Font Size:</Text>
+          <Text style={styles.questionfont}>{i18n.t('fontsize')}:</Text>
           <View style={styles.words}>
             {['Small', 'Medium', 'Large'].map((size) => (
               <Pressable
@@ -140,7 +139,7 @@ const Questionnaire = () => {
         <Divider/>
 
         <View style={styles.question}>
-          <Text style={styles.questionfont}>Brightness: {brightness}%</Text>
+          <Text style={styles.questionfont}>{i18n.t('brightness')}: {brightness}%</Text>
           <Slider
             style={styles.slider}
             minimumValue={0}
@@ -156,10 +155,10 @@ const Questionnaire = () => {
         </View>
 
         <View style={styles.question}>
-          <Text style={styles.questionfont}>Select Your Favourite Apps:</Text>
+          <Text style={styles.questionfont}>{i18n.t('select') +" "+ i18n.t('frequentlyused') +" "+ i18n.t('apps')}:</Text>
 
           <Pressable style={styles.button} onPress={() => setModalVisible(true)}>
-            <Text style={[styles.words, {fontSize: 20}]}>Choose Apps</Text>
+            <Text style={[styles.words, {fontSize: 20}]}>{i18n.t('select') +" "+ i18n.t('apps')}</Text>
           </Pressable>
 
           <Modal
@@ -186,7 +185,7 @@ const Questionnaire = () => {
                 style={styles.button}
                 onPress={() => setModalVisible(!modalVisible)}
               >
-                <Text style={[styles.words, {fontSize:20}]}>Close</Text>
+                <Text style={[styles.words, {fontSize:20}]}>{i18n.t('close')}</Text>
               </Pressable>
             </View>
           </Modal>

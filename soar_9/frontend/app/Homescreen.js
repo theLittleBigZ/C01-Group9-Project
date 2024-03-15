@@ -7,8 +7,7 @@ import { sample } from '../sample-apps.js';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { router } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import i18n from 'react-native-i18n';
-
+import i18n from './Translations/Languages/PrimaryLanguage.js';
 
 const Homescreen = () => {
     const [sampleData, setSampleData] = useState(sample);
@@ -56,18 +55,18 @@ const Homescreen = () => {
             />
             <View style={{backgroundColor: colours.secondary, width: '100%'}}>
                 <Divider/>
-                <Text style={[styles.words, {color: colours.headertext}]}>Navigation To:</Text>
+                <Text style={[styles.words, {color: colours.headertext}]}>{i18n.t('navigateto')}:</Text>
                 <Pressable style={styles.button} onPress={() => router.replace("/Questionaire")}>
-                    <Text style={styles.words}>Settings</Text>
+                    <Text style={styles.words}>{i18n.t('settings')}</Text>
                 </Pressable>
                 <Pressable style={styles.button} onPress={() => router.replace("/Questionaire")}>
-                    <Text style={styles.words}>Contacts</Text>
+                    <Text style={styles.words}>{i18n.t('contacts')}</Text>
                 </Pressable>
                 {/* <Pressable style={styles.button} onPress={() => router.replace("/Profile")}>
                     <Text style={styles.words}>Profile</Text>
                 </Pressable> */}
                 <Pressable style={styles.button} onPress={() => router.replace("/LoginPage")}>
-                    <Text style={styles.words}>Sign In</Text>
+                    <Text style={styles.words}>{i18n.t('signin')}</Text>
                 </Pressable>
             </View>
         </View>

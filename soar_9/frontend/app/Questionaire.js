@@ -2,15 +2,15 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Switch, ScrollView, Pressable, Modal} from 'react-native';
 import { Divider } from 'react-native-paper'; 
-import {colours} from "./Colours";
-import styles from "./Styles";
+import {colours} from './Styling/Colours.js';
+import styles from './Styling/Styles.js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import RNPickerSelect from 'react-native-picker-select';
 import Slider from '@react-native-community/slider';
 import {sample} from '../sample-apps';
 import { router } from 'expo-router';
 import options from './Translations/LanguageMap';
-import I18n from './Translations/PrimaryLanguage';
+import i18n from './Translations/PrimaryLanguage';
 
 
 const Questionnaire = () => {
@@ -93,12 +93,12 @@ const Questionnaire = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.Header}>{I18n.t('settings')}</Text>
+      <Text style={styles.Header}>{i18n.t('settings')}</Text>
       <Divider/>
 
       <ScrollView>
         <View style={styles.question}>
-          <Text style={styles.questionfont}>{I18n.t('enablespeechtotext')}:</Text>
+          <Text style={styles.questionfont}>{i18n.t('enablespeechtotext')}:</Text>
           <Switch
             trackColor={{ false: "gray", true: "green" }}
             thumbColor={speechToTextEnabled ? "green" : "gray"}
@@ -109,9 +109,9 @@ const Questionnaire = () => {
         <Divider/>
 
         <View style={styles.question}>
-          <Text style={styles.questionfont}>{I18n.t('fontsize')}:</Text>
+          <Text style={styles.questionfont}>{i18n.t('fontsize')}:</Text>
           <View style={styles.words}>
-            {['Small', 'Medium', 'Large'].map((size) => (
+            {[i18n.t('small'), i18n.t('medium'), i18n.t('large')].map((size) => (
               <Pressable
                 key={size}
                 onPress={() => setFontSize(size)}
@@ -125,14 +125,14 @@ const Questionnaire = () => {
         <Divider/>
 
         <View style={styles.question}>
-          <Text style={styles.questionfont}>{I18n.t('language') + ":"}</Text>
+          <Text style={styles.questionfont}>{i18n.t('language') + ":"}</Text>
           <ScrollView>
             <RNPickerSelect
               placeholder={{label: "English", value: 'en'}}
               items={options}
               onValueChange={(value) => {
                 setPrimaryLanguage(value);
-                I18n.locale = value;
+                i18n.locale = value;
               }}
               value={primaryLanguage}
             />
@@ -141,7 +141,7 @@ const Questionnaire = () => {
         <Divider/>
 
         <View style={styles.question}>
-          <Text style={styles.questionfont}>{I18n.t('brightness')}: {brightness}%</Text>
+          <Text style={styles.questionfont}>{i18n.t('brightness')}: {brightness}%</Text>
           <Slider
             style={styles.slider}
             minimumValue={0}
@@ -157,10 +157,10 @@ const Questionnaire = () => {
         </View>
 
         <View style={styles.question}>
-          <Text style={styles.questionfont}>{I18n.t('select') +" "+ I18n.t('frequentlyused') +" "+ I18n.t('apps')}:</Text>
+          <Text style={styles.questionfont}>{i18n.t('select') +" "+ i18n.t('frequentlyused') +" "+ i18n.t('apps')}:</Text>
 
           <Pressable style={styles.button} onPress={() => setModalVisible(true)}>
-            <Text style={[styles.words, {fontSize: 20}]}>{I18n.t('select') +" "+ I18n.t('apps')}</Text>
+            <Text style={[styles.words, {fontSize: 20}]}>{i18n.t('select') +" "+ i18n.t('apps')}</Text>
           </Pressable>
 
           <Modal
@@ -187,7 +187,7 @@ const Questionnaire = () => {
                 style={styles.button}
                 onPress={() => setModalVisible(!modalVisible)}
               >
-                <Text style={[styles.words, {fontSize:20}]}>{I18n.t('close')}</Text>
+                <Text style={[styles.words, {fontSize:20}]}>{i18n.t('close')}</Text>
               </Pressable>
             </View>
           </Modal>
@@ -201,7 +201,7 @@ const Questionnaire = () => {
 
       <Divider/>
       <Pressable style={styles.button} onPress={savePreferences}>
-        <Text style={[styles.words, {fontSize:20}]}>{I18n.t('home')}</Text>
+        <Text style={[styles.words, {fontSize:20}]}>{i18n.t('home')}</Text>
       </Pressable>
     </View>
   );

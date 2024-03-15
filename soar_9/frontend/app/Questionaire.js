@@ -1,13 +1,16 @@
 // Import necessary components and hooks
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, Switch, TextInput, ScrollView, Pressable, Modal} from 'react-native';
+import { StyleSheet, View, Text, Switch, ScrollView, Pressable, Modal} from 'react-native';
 import { Divider } from 'react-native-paper'; 
 import {colours} from "./Colours";
 import styles from "./Styles";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import RNPickerSelect from 'react-native-picker-select';
 import Slider from '@react-native-community/slider';
 import {sample} from '../sample-apps';
 import { router } from 'expo-router';
+import options from './Languages/LanguageList';
+import i18n from './Translations';
 
 const Questionnaire = () => {
   // State for each setting
@@ -89,7 +92,7 @@ const Questionnaire = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.Header}> Settings </Text>
+      <Text style={styles.Header}>{i18n.t('settings')}</Text>
       <Divider/>
 
       <ScrollView>
@@ -121,13 +124,18 @@ const Questionnaire = () => {
         <Divider/>
 
         <View style={styles.question}>
-          <Text style={styles.questionfont}>Primary Language:</Text>
-          <TextInput
-            style={styles.input}
-            onChangeText={setPrimaryLanguage}
-            value={primaryLanguage}
-            placeholder="Enter Primary Language"
-          />
+          <Text style={styles.questionfont}>{i18n.t('language') + ":"}</Text>
+          <ScrollView>
+            <RNPickerSelect
+              placeholder={{label: "English", value: 'en'}}
+              items={options}
+              onValueChange={(value) => {
+                setPrimaryLanguage(value);
+                i18n.locale = value;
+              }}
+              value={primaryLanguage}
+            />
+          </ScrollView>
         </View>
         <Divider/>
 
@@ -192,7 +200,7 @@ const Questionnaire = () => {
 
       <Divider/>
       <Pressable style={styles.button} onPress={savePreferences}>
-        <Text style={[styles.words, {fontSize:20}]}>Go To Home Page</Text>
+        <Text style={[styles.words, {fontSize:20}]}>{i18n.t('home')}</Text>
       </Pressable>
     </View>
   );

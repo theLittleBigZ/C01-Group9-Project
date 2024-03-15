@@ -1,11 +1,18 @@
- export default { 
-  "home": "Home",
-  "contacts": "Contacts",
-  "settings": "Settings",
-  "Signin": "signin",
-  "signup": "Signup",
-  "email": "Email",
-  "password": "Password",
-  "profile": "Profile", 
-  "navigate": "navigate to"
+export default{
+  home: "enHome",
+  contacts: "Contacts",
+  settings: "Settings",
+  signin: "SignIn",
+  small: "Small",
+  medium: "Medium",
+  large: "Large",
+  enablespeechtotext: "Enable Speech to Text",
+  fontsize: "Font Size",
+  brightness: "Brightness",
+  language: "Language",
+  select: "Select",
+  frequentlyused: "frequently used",
+  apps: "apps",
+  navigateto: "Navigate To",
+  signup: "Sign Up"
 };

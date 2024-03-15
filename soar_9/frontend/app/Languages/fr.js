@@ -1,11 +1,18 @@
-export default { 
+export default {
   "home": "frHome",
-  "contacts": "frContacts",
+  "contacts": "Contacts",
   "settings": "frSettings",
-  "Signin": "frsignin",
-  "signup": "frSignup",
-  "email": "frEmail",
-  "password": "frPassword",
-  "profile": "frProfile", 
-  "navigate": "frnavigate to"
+  "signin": "SignIn",
+  "small": "Small",
+  "medium": "Medium",
+  "large": "Large",
+  "enablespeechtotext": "Enable Speech to Text",
+  "fontsize": "Font Size",
+  "brightness": "Brightness",
+  "language": "Language",
+  "select": "Select",
+  "frequentlyused": "frequently used",
+  "apps": "apps",
+  "navigateto": "Navigate To",
+  "signup": "Sign Up"
 };

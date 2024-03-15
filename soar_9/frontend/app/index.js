@@ -6,7 +6,7 @@ import LoginPage from './LoginPage.js';
 
 const index = () => {
     return (
-        < LoginPage/>
+        < Homescreen/>
     )
 }
 

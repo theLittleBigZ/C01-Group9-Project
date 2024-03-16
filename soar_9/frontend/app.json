@@ -26,8 +26,12 @@
         "WRITE_SETTINGS"
       ]
     },
+    "scheme": "frontend",
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      "expo-router"
+    ]
   }
 }

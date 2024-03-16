@@ -1,0 +1,18 @@
+.App-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  /* Additional styles for toggled state */
+  button:active {
+    transform: scale(0.98); /* Slightly shrink the button when clicked */
+  }
+  

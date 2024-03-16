@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, View, FlatList, Button, TextInput } from 'react-native';
+import { Pressable, StyleSheet, SafeAreaView,Text, View, FlatList, Button, TextInput } from 'react-native';
 import React, { useState } from 'react';
 import { sample } from '../sample-apps.js';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';

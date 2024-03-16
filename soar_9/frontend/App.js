@@ -3,6 +3,7 @@
 // import { useEffect } from 'react';
 // import { getOrCreateUUID } from './services/uuidManager';
 // import { PaperProvider } from 'react-native-paper';
+// import SetBrightness from './components/SetBrightness';
 
 // export default function App() {
   

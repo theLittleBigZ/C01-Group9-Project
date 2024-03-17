@@ -6,8 +6,9 @@ import {colours} from "./Styling/Colours.js";
 import { sample } from '../sample-apps.js';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { router } from 'expo-router';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { load } from '../services/apiServices.js';
 import i18n from './Translations/PrimaryLanguage.js';
+
 
 const Homescreen = () => {
     const [sampleData, setSampleData] = useState(sample);
@@ -18,10 +19,9 @@ const Homescreen = () => {
 
     const getCacheAndUpdateSampleData = async () => {
         try {
-            let value = await AsyncStorage.getItem('@UserPreferences');
+            let value = await load();
             if (value !== null) {
-                value = JSON.parse(value);
-                const savedAppNames = value.favoritedApps.selectedApps; // Array of app names
+                const savedAppNames = value.selectedApps; // Array of app names
                 setSavedApps(savedAppNames);
 
                 const updatedSampleData = sample.map((app) => ({

@@ -4,7 +4,6 @@ import { StyleSheet, View, Text, Switch, ScrollView, Pressable, Modal} from 'rea
 import { Divider } from 'react-native-paper'; 
 import {colours} from './Styling/Colours.js';
 import styles from './Styling/Styles.js';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { load, saveToCache } from '../services/apiServices';
 import RNPickerSelect from 'react-native-picker-select';
 import Slider from '@react-native-community/slider';
@@ -16,7 +15,7 @@ import i18n from './Translations/PrimaryLanguage';
 
 const Questionnaire = () => {
   // State for each setting
-  const [speechToText, setSpeechToText] = useState(false);
+  const [speechToText, setSpeechToTextEnabled] = useState(false);
   const [fontSize, setFontSize] = useState('Medium'); // Default to 'Medium'
   const [language, setLanguage] = useState('');
   const [brightness, setBrightness] = useState(50); // Assuming brightness ranges from 0 to 100
@@ -81,9 +80,9 @@ const Questionnaire = () => {
           <Text style={styles.questionfont}>{i18n.t('enablespeechtotext')}:</Text>
           <Switch
             trackColor={{ false: "gray", true: "green" }}
-            thumbColor={speechToTextEnabled ? "green" : "gray"}
+            thumbColor={speechToText ? "green" : "gray"}
             onValueChange={setSpeechToTextEnabled}
-            value={speechToTextEnabled}
+            value={speechToText}
           />
         </View>
         <Divider/>
@@ -111,10 +110,10 @@ const Questionnaire = () => {
               placeholder={{label: "English", value: 'en'}}
               items={options}
               onValueChange={(value) => {
-                setPrimaryLanguage(value);
+                setlanguage(value);
                 i18n.locale = value;
               }}
-              value={primaryLanguage}
+              value={language}
             />
           </ScrollView>
         </View>

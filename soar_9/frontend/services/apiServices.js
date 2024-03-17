@@ -1,6 +1,6 @@
 // Sending data to backend
 import axios from "axios";
-const BACKEND_URL = 'http://localhost:3000';
+const BACKEND_URL = 'http://192.168.1.95:3000';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
@@ -9,9 +9,15 @@ export const register = async (username, email, password) => {
     console.log('Registering user:', username, email, password);
     try{
         await axios.post(`${BACKEND_URL}/register`, {username, email, password});
+        console.log('responses:', response);
+        if (response.status !== 201){
+            console.error('Error registering user:', response);
+            return response;
+        }
     }
     catch(e){
         console.error('Error registering user:', e);
+        return e;
     }
 }
 
@@ -27,6 +33,7 @@ export const login = async (email, password) => {
         }
         // save token to local storage
         await AsyncStorage.setItem('@token', response.data.token);
+        response.data.success = true;
         return response.data;
     }
     catch(e){
@@ -48,7 +55,8 @@ export const logout = async () => {
 
 export const isLoggedIn = async () => {
     // Assuming you're storing the user's login status or token in AsyncStorage
-    const userToken = await AsyncStorage.getItem('@UserToken');
+    const userToken = await AsyncStorage.getItem('@token');
+    console.log('User token:', userToken);
     return !!userToken; // returns true if token exists, false otherwise
 };
 

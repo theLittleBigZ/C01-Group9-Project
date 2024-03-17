@@ -15,7 +15,7 @@ const port = 3000;
 app.use(express.json());
 app.use(cors(
   {
-    origin: 'http://localhost:3000',
+    origin: "*",
     credentials: true
   }
 ));
@@ -24,7 +24,7 @@ app.use(cors(
 const saltrounds = 10;
 
 // MongoDB setup
-const uri = process.env.MONGODB_URI;
+const uri = process.env.MONGO_URI;
 const client = new MongoClient(uri);
 const dbName = "Cluster0";
 const collectionName = "users";
@@ -38,9 +38,9 @@ app.use(session({
 }));
 
 const validator = [
-  body('username').isLength({ min: 3, max: 20 }),
+  body('username').isLength({ min: 3}),
   body('email').isEmail(),
-  body('password').isLength({ min: 3, max: 20 }),
+  body('password').isLength({ min: 3}),
 ];
 
 // Connect to MongoDB
@@ -63,16 +63,12 @@ const checkAuthenticated = (req, res, next) => {
   }
 };
 
-app.post("/register", validator, async (req, res) => {
+app.post("/register", async (req, res) => {
+  console.log('Registering user:', req.body);
   const db = req.app.locals.db;
   const collection = db.collection(collectionName);
   const { username, email, password } = req.body;
   try {
-    // Validate the request
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
 
     // Check if the user already exists
     const userExists = await collection.findOne({ email });
@@ -81,10 +77,11 @@ app.post("/register", validator, async (req, res) => {
     }
     
     // Create a new user
+    console.log('Creating new user:', username);
     const hashedPassword = await bcrypt.hash(password, saltrounds);
     const newUser = new User({ username, email, password: hashedPassword });
     await collection.insertOne(newUser);
-
+    console.log('New user created:', newUser);
     res.status(201).json(newUser);
   } catch (error) {
     res.status(409).json({ message: error.message });
@@ -111,7 +108,7 @@ app.post("/login", async (req, res) => {
     }
 
     req.session.user = {_id: user._id, username: user.username, email: user.email};
-    res.status(200).json({message:"Login Successful", user:req.session.user});
+    res.status(200).json({message:"Login Successful", user:req.session.user, token: req.sessionID});
 
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -134,6 +131,7 @@ app.get("/user", checkAuthenticated, (req, res) => {
 });
 
 app.get("/preferences", checkAuthenticated, async (req, res) => {
+  console.log('Getting preferences for user:', req.session.user);
   const db = req.app.locals.db;
   const collection = db.collection(collectionName);
   const user = await collection.findOne({ _id: new ObjectId(req.session.user._id) });
@@ -145,16 +143,15 @@ app.get("/preferences", checkAuthenticated, async (req, res) => {
 
 
 app.put("/preferences", checkAuthenticated, async (req, res) => {
+  console.log('Updating preferences for user:', req.session.user);
   const db = req.app.locals.db;
   const collection = db.collection(collectionName);
   const { language, fontSize, brightness, speechToText, selectedApps } = req.body;
+  console.log('New preferences:', req.body);
   try {
-    const updatedUser = await collection.findOneAndUpdate(
-      { _id: ObjectId(req.session.user._id) },
-      { $set: { preferences: { language, fontSize, brightness, speechToText, selectedApps, updatedAt: new Date() } } },
-      { returnDocument: 'after' }
-    );
-    res.status(200).json(updatedUser.value.preferences);
+    await collection.updateOne({ _id: new ObjectId(req.session.user._id) },
+      { $set: { language, fontSize, brightness, speechToText, selectedApps } });
+    res.status(200).json('Preferences updated');
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

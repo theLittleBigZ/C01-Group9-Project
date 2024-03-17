@@ -6,7 +6,7 @@ import {colours} from "./Styling/Colours.js";
 import { sample } from '../sample-apps.js';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { router } from 'expo-router';
-import { load } from '../services/apiServices.js';
+import { load, isLoggedIn, logout } from '../services/apiServices.js';
 import i18n from './Translations/PrimaryLanguage.js';
 
 
@@ -15,7 +15,7 @@ const Homescreen = () => {
 
     const [savedApps, setSavedApps] = useState([]); 
 
-
+    const [isUserLoggedIn, setIsUserLoggedIn] = useState(false); // State to track login status
 
     const getCacheAndUpdateSampleData = async () => {
         try {
@@ -35,7 +35,19 @@ const Homescreen = () => {
         }
     };
 
+    const handleLogout = async () => {
+        await logout(); // Call the logout function
+        setIsUserLoggedIn(false); // Update login status
+        // Optionally, navigate to a different screen or show a message
+    };
+
     useEffect(() => {
+        const checkLoginStatus = async () => {
+            const loggedIn = await isLoggedIn(); // Check if user is logged in
+            setIsUserLoggedIn(loggedIn); // Update state based on login status
+        };
+
+        checkLoginStatus();
         getCacheAndUpdateSampleData();
     }, []);
 
@@ -65,9 +77,16 @@ const Homescreen = () => {
                 {/* <Pressable style={styles.button} onPress={() => router.replace("/Profile")}>
                     <Text style={styles.words}>Profile</Text>
                 </Pressable> */}
-                <Pressable style={styles.button} onPress={() => router.replace("/LoginPage")}>
-                    <Text style={styles.words}>{i18n.t('signin')}</Text>
-                </Pressable>
+                {/* Conditional rendering based on login status */}
+                {isUserLoggedIn ? (
+                    <Pressable style={styles.button} onPress={handleLogout}>
+                        <Text style={styles.words}>{i18n.t('signout')}</Text> 
+                    </Pressable>
+                ) : (
+                    <Pressable style={styles.button} onPress={() => router.replace("/LoginPage")}>
+                        <Text style={styles.words}>{i18n.t('signin')}</Text>
+                    </Pressable>
+                )}
             </View>
         </View>
     )

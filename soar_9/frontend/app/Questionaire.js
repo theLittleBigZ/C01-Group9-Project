@@ -1,11 +1,18 @@
 // Import necessary components and hooks
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, Switch, TextInput, Button, ScrollView, Pressable, Modal} from 'react-native';
+import { StyleSheet, View, Text, Switch, ScrollView, Pressable, Modal} from 'react-native';
+import { Divider } from 'react-native-paper'; 
+import {colours} from './Styling/Colours.js';
+import styles from './Styling/Styles.js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { load, saveToCache } from '../services/apiServices';
+import RNPickerSelect from 'react-native-picker-select';
 import Slider from '@react-native-community/slider';
 import {sample} from '../sample-apps';
 import { router } from 'expo-router';
+import options from './Translations/LanguageMap';
+import i18n from './Translations/PrimaryLanguage';
+
 
 const Questionnaire = () => {
   // State for each setting
@@ -65,187 +72,130 @@ const Questionnaire = () => {
   }, []);
 
   return (
-    <ScrollView style={styles.container}>
-        <ScrollView contentContainerStyle={styles.content}>
-      <Text>Accessibility Settings:</Text>
-      <Text>Enable Speech to Text:</Text>
-      <Switch
-        trackColor={{ false: "#767577", true: "#81b0ff" }}
-        thumbColor={speechToText ? "#f5dd4b" : "#f4f3f4"}
-        onValueChange={setSpeechToText}
-        value={speechToText}
-      />
+    <View style={styles.container}>
+      <Text style={styles.Header}>{i18n.t('settings')}</Text>
+      <Divider/>
 
-    <Text>Font Size:</Text>
-    <View style={styles.fontSizeOptions}>
-    {['Small', 'Medium', 'Large'].map((size) => (
-        <Pressable
-        key={size}
-        onPress={() => setFontSize(size)}
-        style={[styles.fontSizeButton, fontSize === size && styles.selectedButton]}
-        >
-        <Text style={styles.buttonText}>{size}</Text>
-        </Pressable>
-    ))}
-    
-    </View>
+      <ScrollView>
+        <View style={styles.question}>
+          <Text style={styles.questionfont}>{i18n.t('enablespeechtotext')}:</Text>
+          <Switch
+            trackColor={{ false: "gray", true: "green" }}
+            thumbColor={speechToTextEnabled ? "green" : "gray"}
+            onValueChange={setSpeechToTextEnabled}
+            value={speechToTextEnabled}
+          />
+        </View>
+        <Divider/>
 
+        <View style={styles.question}>
+          <Text style={styles.questionfont}>{i18n.t('fontsize')}:</Text>
+          <View style={styles.words}>
+            {[i18n.t('small'), i18n.t('medium'), i18n.t('large')].map((size) => (
+              <Pressable
+                key={size}
+                onPress={() => setFontSize(size)}
+                style={[styles.button, fontSize === size && styles1.selectedButton]}
+              >
+                <Text style={[styles.words, {fontSize: 20}]}>{size}</Text>
+              </Pressable>
+            ))}
+          </View>
+        </View>
+        <Divider/>
 
-      <Text>Primary Language:</Text>
-      <TextInput
-        style={styles.input}
-        onChangeText={setLanguage}
-        value={language}
-        placeholder="Enter Primary Language"
-      />
+        <View style={styles.question}>
+          <Text style={styles.questionfont}>{i18n.t('language') + ":"}</Text>
+          <ScrollView>
+            <RNPickerSelect
+              placeholder={{label: "English", value: 'en'}}
+              items={options}
+              onValueChange={(value) => {
+                setPrimaryLanguage(value);
+                i18n.locale = value;
+              }}
+              value={primaryLanguage}
+            />
+          </ScrollView>
+        </View>
+        <Divider/>
 
-      <Text>Brightness:</Text>
-      <Slider
-        style={styles.slider}
-        minimumValue={5}
-        maximumValue={100}
-        step={1}
-        value={brightness}
-        onValueChange={setBrightness}
-        minimumTrackTintColor="#FFFFFF"
-        maximumTrackTintColor="#000000"
-        thumbTintColor="#007AFF"
-        orientation="vertical" // Only supported on Android
-      />
-      <Text>{`Brightness: ${brightness}%`}</Text>
+        <View style={styles.question}>
+          <Text style={styles.questionfont}>{i18n.t('brightness')}: {brightness}%</Text>
+          <Slider
+            style={styles.slider}
+            minimumValue={0}
+            maximumValue={100}
+            step={1}
+            value={brightness}
+            onValueChange={setBrightness}
+            minimumTrackTintColor="#FFFFFF"
+            maximumTrackTintColor={colours.primary}
+            thumbTintColor={colours.primary}
+            orientation="vertical" // Only supported on Android
+          />
+        </View>
 
-      <View style={styles.container}>
-      <Text style={styles.title}>Select Your Favorite Apps:</Text>
-      <Pressable style={styles.button} onPress={() => setModalVisible(true)}>
-        <Text style={styles.buttonText}>Choose Apps</Text>
+        <View style={styles.question}>
+          <Text style={styles.questionfont}>{i18n.t('select') +" "+ i18n.t('frequentlyused') +" "+ i18n.t('apps')}:</Text>
+
+          <Pressable style={styles.button} onPress={() => setModalVisible(true)}>
+            <Text style={[styles.words, {fontSize: 20}]}>{i18n.t('select') +" "+ i18n.t('apps')}</Text>
+          </Pressable>
+
+          <Modal
+            animationType="slide"
+            transparent={true}
+            visible={modalVisible}
+            onRequestClose={() => setModalVisible(!modalVisible)}
+          >
+            <View style={styles.modalView}>
+              <ScrollView>
+                {sample.map((app, index) => (
+                  <Pressable
+                    key={index}
+                    style={styles1.appOption}
+                    onPress={() => toggleAppSelection(app.appName)}
+                  >
+                    <Text style={{ color: selectedApps.includes(app.appName) ? '#FF6347' : '#000' }}>
+                    {selectedApps.includes(app.appName) ? app.appName + ' [remove]': app.appName + ' [add]' }
+                    </Text>
+                  </Pressable>
+                ))}
+              </ScrollView>
+              <Pressable
+                style={styles.button}
+                onPress={() => setModalVisible(!modalVisible)}
+              >
+                <Text style={[styles.words, {fontSize:20}]}>{i18n.t('close')}</Text>
+              </Pressable>
+            </View>
+          </Modal>
+
+          {/* {selectedApps.map((app, index) => (
+            <Text key={index} style={styles1.selectedApp}>{app}</Text>
+          ))} */}
+
+        </View>
+      </ScrollView>
+
+      <Divider/>
+      <Pressable style={styles.button} onPress={savePreferences}>
+        <Text style={[styles.words, {fontSize:20}]}>{i18n.t('home')}</Text>
       </Pressable>
-
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => setModalVisible(!modalVisible)}
-      >
-
-      <View style={styles.modalView}>
-        <ScrollView>
-          {sample.map((app, index) => (
-            <Pressable
-              key={index}
-              style={styles.appOption}
-              onPress={() => toggleAppSelection(app.appName)}
-            >
-              <Text style={{ color: selectedApps.includes(app.appName) ? '#FF6347' : '#000' }}>
-                {app.appName}
-              </Text>
-            </Pressable>
-          ))}
-        </ScrollView>
-        <Pressable
-          style={styles.buttonClose}
-          onPress={() => setModalVisible(!modalVisible)}
-        >
-          <Text style={styles.textStyle}>Close</Text>
-        </Pressable>
-      </View>
-
-    </Modal>
-
-    
-    {selectedApps.map((app, index) => (
-      <Text key={index} style={styles.selectedApp}>{app}</Text>
-    ))}
-  </View>
-  
-  </ScrollView>
-
-    <View style={styles.footer}>
-        <Button title="Save Preferences" onPress={savePreferences} />
-      </View>
-    </ScrollView>
+    </View>
   );
 };
 
 export default Questionnaire;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    margin: 10,
-    minHeight:'80vh',
-  },
-  content: {
-    // Styles for your content container
-    flexGrow: 1, // Allows the container to grow to fill the space
-    justifyContent: 'center', // Centers content vertically in the container
-    paddingHorizontal: 10, // Adds some horizontal padding
-  },
-  input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-  },
-  fontSizeOptions: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    margin: 10,
-  },
-  fontSizeButton: {
-    padding: 10,
-    borderWidth: 1,
-    borderColor: '#007bff',
-    borderRadius: 5,
-    backgroundColor: '#ffffff',
-  },
-  selectedButton: {
-    backgroundColor: 'black',
-  },
-  buttonText: {
-    color: '#007bff',
-  },
-  slider: {
-    height: 50,
-    width: '100%',
-  },
-
-  modalView: {
-    margin: 20,
-    backgroundColor: "white",
-    borderRadius: 20,
-    padding: 35,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5
-  },
+const styles1 = StyleSheet.create({
   appOption: {
     marginBottom: 15,
     alignItems: 'center',
   },
-  buttonClose: {
-    backgroundColor: "#2196F3",
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-    marginTop: 15,
+  selectedButton: {
+    backgroundColor: 'black',
   },
-  textStyle: {
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center"
-  },
-  selectedApp: {
-    marginTop: 10,
-  },
-  footer: {
-    // Styles for the footer area containing the button
-    paddingBottom: 20, // Adds some padding at the bottom
-    paddingHorizontal: 10, // Adds some horizontal padding
-  },
+  
 });

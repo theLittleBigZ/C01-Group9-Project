@@ -22,11 +22,18 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "permissions": ["android.permission.WRITE_CONTACTS"]
+      "permissions":[
+        "WRITE_SETTINGS",
+        "android.permission.WRITE_CONTACTS"
+      ]
     },
+    "scheme": "frontend",
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "plugins": [["./my-plugin", "custom"]]
+    "plugins": [
+      "expo-router",
+      ["./my-plugin", "custom"]
+    ]
   }
 }

@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import * as Contacts from 'expo-contacts';
 import { View, Text, Pressable, StyleSheet, ScrollView } from 'react-native';
 import * as Linking from 'expo-linking';
+import styles from './Styling/Styles.js';
 
 const ContactScreen = () => {
   const [contactsData, setContactsData] = useState([]);
-  //const [favouriteContacts, setFavouriteContacts] = useState([]);
+  const [favouriteContacts, setFavouriteContacts] = useState([]);
 
   useEffect(() => {
       const fetchData = async () => {
@@ -47,45 +48,57 @@ const ContactScreen = () => {
     }
   }
 
-  /*function addFavourite(contact) {
-    setFavouriteContacts(contact);
-  }*/
+  function handleFavourite(contact) {
+    if (favouriteContacts.includes(contact)){
+      console.log("removing favourite " + contact.firstName)
+      setFavouriteContacts((prevFavouriteContacts) => prevFavouriteContacts.filter((favContact) => favContact.id!==contact.id));
+      console.log("after removing: " + favouriteContacts);
+    }
+    else{
+      console.log("adding favourite " + contact.firstName)
+      setFavouriteContacts((prevFavouriteContacts) => [...favouriteContacts, contact]);
+      console.log("after adding: " + favouriteContacts);
+    }
+  }
 
   return (
     <View style={styles.container}>
-      <ScrollView style={styles.scrollViewContainer}>
-        {contactsData.map((contact) => (
+      <ScrollView style={styles.appList}>
+        <View>
+        {favouriteContacts.map((contact) => (
           <View key={contact.id} style={styles.container}>
-            <Text  style={styles.text}>
+            <Text>
               {contact.firstName}
               {contact.lastName ? `${contact.lastName}` : ""}
             </Text>
-            <Pressable onPress={() => callContact(contact)}>
+            <Pressable style={styles.button} onPress={() => callContact(contact)}>
               <Text>Call</Text>
             </Pressable> 
+            <Pressable style={styles.button} onPress={() => handleFavourite(contact)}>
+              <Text>Remove Favourite</Text>
+            </Pressable>
           </View>
         ))}
+        </View>
+        <View>
+        {contactsData.map((contact) => (
+          <View key={contact.id} style={styles.container}>
+            <Text>
+              {contact.firstName}
+              {contact.lastName ? `${contact.lastName}` : ""}
+            </Text>
+            <Pressable style={styles.button} onPress={() => callContact(contact)}>
+              <Text>Call</Text>
+            </Pressable> 
+            <Pressable style={styles.button} onPress={() => handleFavourite(contact)}>
+              <Text>Add Favourite</Text>
+            </Pressable>
+          </View>
+        ))}
+        </View>
       </ScrollView>
     </View>
   );
 };
-/*
-<Pressable onPress={() => addFavourite(contact)}>
-              <Text>Add Favourite</Text>
-            </Pressable>*/
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    marginTop: 50,
-  },
-  text: {
-    fontSize: 20,
-    marginBottom: 20,
-  },
-  scrollViewContainer: {
-    paddingVertical: 20,
-  },
-});
 
 export default ContactScreen;

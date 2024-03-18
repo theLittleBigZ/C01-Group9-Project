@@ -280,5 +280,8 @@
   "language": "语言",
   "select": "选择",
   "frequentlyused": "常用",
-  "apps": "应用"
+  "apps": "应用",
+  "navigateto": "导航到",
+  "signup": "注册",
+  "close": "关闭"
 }}

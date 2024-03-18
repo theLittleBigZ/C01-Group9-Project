@@ -2,7 +2,6 @@
 import {I18n} from 'i18n-js';
 import translations from './Languages';
 import { getLocales } from 'expo-localization';
-import { get } from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
 
 // Define translations
 const i18n = new I18n(translations)

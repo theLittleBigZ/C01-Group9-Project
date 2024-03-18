@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
   questionfont: {
     fontSize: 20,
     marginBottom: 10,
-    fontWeight: '450',
+    fontWeight: '400',
   },
   slider: {
     height: 50,

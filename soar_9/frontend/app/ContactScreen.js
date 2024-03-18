@@ -67,15 +67,15 @@ const ContactScreen = () => {
         <View>
         {favouriteContacts.map((contact) => (
           <View key={contact.id} style={styles.container}>
-            <Text>
+            <Text style={styles.words}>
               {contact.firstName}
               {contact.lastName ? `${contact.lastName}` : ""}
             </Text>
             <Pressable style={styles.button} onPress={() => callContact(contact)}>
-              <Text>Call</Text>
+              <Text style={styles.words}>Call</Text>
             </Pressable> 
             <Pressable style={styles.button} onPress={() => handleFavourite(contact)}>
-              <Text>Remove Favourite</Text>
+              <Text style={styles.words}>Remove Favourite</Text>
             </Pressable>
           </View>
         ))}
@@ -83,15 +83,15 @@ const ContactScreen = () => {
         <View>
         {contactsData.map((contact) => (
           <View key={contact.id} style={styles.container}>
-            <Text>
+            <Text style={styles.words}>
               {contact.firstName}
               {contact.lastName ? `${contact.lastName}` : ""}
             </Text>
             <Pressable style={styles.button} onPress={() => callContact(contact)}>
-              <Text>Call</Text>
+              <Text style={styles.words}>Call</Text>
             </Pressable> 
             <Pressable style={styles.button} onPress={() => handleFavourite(contact)}>
-              <Text>Add Favourite</Text>
+              <Text style={styles.words}>Add Favourite</Text>
             </Pressable>
           </View>
         ))}

@@ -24,7 +24,7 @@ const RegisterPage = () => {
       // Assuming your register function can now accept a username along with email and password
       const response = await register(username, email, password);
       console.log('response:', response);
-      if (response && response.user) {
+      if (response.status === 201) {
         router.replace("/LoginPage"); // Redirect to login page after successful registration
       } else {
         setError(response.message || 'An unknown error occurred');

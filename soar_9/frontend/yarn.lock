@@ -3550,6 +3550,11 @@ expo-constants@*, expo-constants@~15.4.0, expo-constants@~15.4.3, expo-constants
   dependencies:
     "@expo/config" "~8.5.0"
 
+expo-contacts@~12.8.2:
+  version "12.8.2"
+  resolved "https://registry.npmjs.org/expo-contacts/-/expo-contacts-12.8.2.tgz"
+  integrity sha512-pCWldAwMNPA7cObOC8U0FZacGo2hemW++6xByVrVQS/j9T6dU7HwOaR/pEOLp9iXZrVNydGphXDAEVu2t2aSXg==
+
 expo-dev-client@^3.3.9:
   version "3.3.9"
   resolved "https://registry.npmjs.org/expo-dev-client/-/expo-dev-client-3.3.9.tgz"

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Text, Pressable } from 'react-native';
 import * as Brightness from 'expo-brightness';
 import { Platform } from 'react-native';
+import styles from './Styling/Styles.js';
 
 const SetBrightness = () => {
 
@@ -29,14 +30,14 @@ const SetBrightness = () => {
 
     return (
         <View>
-            <Pressable title="low" onPress={()=>setBrightness(0.3)}>
-                <Text>low</Text>
+            <Pressable style={styles.button} title="low" onPress={()=>setBrightness(0.3)}>
+                <Text style={styles.words}>low</Text>
             </Pressable>
-            <Pressable title="medium" onPress={()=>setBrightness(0.7)}>
-                <Text>medium</Text>
+            <Pressable style={styles.button} title="medium" onPress={()=>setBrightness(0.7)}>
+                <Text style={styles.words}>medium</Text>
             </Pressable>
-            <Pressable title="high" onPress={()=>setBrightness(1)}>
-                <Text>high</Text>
+            <Pressable  style={styles.button} title="high" onPress={()=>setBrightness(1)}>
+                <Text style={styles.words}>high</Text>
             </Pressable>
         </View>
     )

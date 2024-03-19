@@ -11,6 +11,7 @@ import {sample} from '../sample-apps';
 import { router } from 'expo-router';
 import options from './Translations/LanguageMap';
 import i18n from './Translations/PrimaryLanguage';
+import SetBrightness from './SetBrightness.js'
 
 
 const Questionnaire = () => {
@@ -18,7 +19,7 @@ const Questionnaire = () => {
   const [speechToText, setSpeechToTextEnabled] = useState(false);
   const [fontSize, setFontSize] = useState('Medium'); // Default to 'Medium'
   const [language, setLanguage] = useState('');
-  const [brightness, setBrightness] = useState(50); // Assuming brightness ranges from 0 to 100
+  const [brightness, setBrightness] = useState(0.5); // Assuming brightness ranges from 0 to 1
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedApps, setSelectedApps] = useState([]);
 
@@ -121,18 +122,7 @@ const Questionnaire = () => {
 
         <View style={styles.question}>
           <Text style={styles.questionfont}>{i18n.t('brightness')}: {brightness}%</Text>
-          <Slider
-            style={styles.slider}
-            minimumValue={0}
-            maximumValue={100}
-            step={1}
-            value={brightness}
-            onValueChange={setBrightness}
-            minimumTrackTintColor="#FFFFFF"
-            maximumTrackTintColor={colours.primary}
-            thumbTintColor={colours.primary}
-            orientation="vertical" // Only supported on Android
-          />
+          <SetBrightness/>
         </View>
 
         <View style={styles.question}>

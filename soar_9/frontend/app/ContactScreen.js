@@ -3,6 +3,9 @@ import * as Contacts from 'expo-contacts';
 import { View, Text, Pressable, StyleSheet, ScrollView } from 'react-native';
 import * as Linking from 'expo-linking';
 import styles from './Styling/Styles.js';
+import { Divider } from 'react-native-paper'; 
+import i18n from './Translations/PrimaryLanguage';
+import { router } from 'expo-router';
 
 const ContactScreen = () => {
   const [contactsData, setContactsData] = useState([]);
@@ -48,16 +51,19 @@ const ContactScreen = () => {
     }
   }
 
-  function handleFavourite(contact) {
-    if (favouriteContacts.includes(contact)){
+  function handleFavourite(contact, op) {
+    if (favouriteContacts.includes(contact) && op == "remove"){
       console.log("removing favourite " + contact.firstName)
       setFavouriteContacts((prevFavouriteContacts) => prevFavouriteContacts.filter((favContact) => favContact.id!==contact.id));
       console.log("after removing: " + favouriteContacts);
     }
-    else{
+    else if (!favouriteContacts.includes(contact) && op == "add"){
       console.log("adding favourite " + contact.firstName)
       setFavouriteContacts((prevFavouriteContacts) => [...favouriteContacts, contact]);
       console.log("after adding: " + favouriteContacts);
+    }
+    else{
+      console.log("Operation has already been performed.")
     }
   }
 
@@ -67,15 +73,15 @@ const ContactScreen = () => {
         <View>
         {favouriteContacts.map((contact) => (
           <View key={contact.id} style={styles.container}>
-            <Text style={styles.words}>
+            <Text>
               {contact.firstName}
               {contact.lastName ? `${contact.lastName}` : ""}
             </Text>
             <Pressable style={styles.button} onPress={() => callContact(contact)}>
-              <Text style={styles.words}>Call</Text>
+              <Text>Call</Text>
             </Pressable> 
-            <Pressable style={styles.button} onPress={() => handleFavourite(contact)}>
-              <Text style={styles.words}>Remove Favourite</Text>
+            <Pressable style={styles.button} onPress={() => handleFavourite(contact, "remove")}>
+              <Text>Remove Favourite</Text>
             </Pressable>
           </View>
         ))}
@@ -83,20 +89,24 @@ const ContactScreen = () => {
         <View>
         {contactsData.map((contact) => (
           <View key={contact.id} style={styles.container}>
-            <Text style={styles.words}>
+            <Text>
               {contact.firstName}
               {contact.lastName ? `${contact.lastName}` : ""}
             </Text>
             <Pressable style={styles.button} onPress={() => callContact(contact)}>
-              <Text style={styles.words}>Call</Text>
+              <Text>Call</Text>
             </Pressable> 
-            <Pressable style={styles.button} onPress={() => handleFavourite(contact)}>
-              <Text style={styles.words}>Add Favourite</Text>
+            <Pressable style={styles.button} onPress={() => handleFavourite(contact, "add")}>
+              <Text>Add Favourite</Text>
             </Pressable>
           </View>
         ))}
         </View>
       </ScrollView>
+      <Divider/>
+      <Pressable style={styles.button} onPress={() => router.replace("/Homescreen")}>
+        <Text style={[styles.words, {fontSize:20}]}>{i18n.t('home')}</Text>
+      </Pressable>
     </View>
   );
 };

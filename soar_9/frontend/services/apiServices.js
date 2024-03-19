@@ -8,10 +8,13 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export const register = async (username, email, password) => {
     console.log('Registering user:', username, email, password);
     try{
-        await axios.post(`${BACKEND_URL}/register`, {username, email, password});
+        const response = await axios.post(`${BACKEND_URL}/register`, {username, email, password});
         console.log('responses:', response);
         if (response.status !== 201){
             console.error('Error registering user:', response);
+        }
+        else{
+            console.log('User registered successfully:', response);
             return response;
         }
     }
@@ -138,4 +141,13 @@ export const load = async () => {
     }
 };
 
+export const saveContacts = async (contacts) => {
+    console.log('Saving contacts', contacts);
+    try {
+        await AsyncStorage.setItem('@UserContacts', JSON.stringify(contacts));
+        console.log('Contacts saved');
+    } catch (e) {
+        console.error('Error saving contacts:', e);
+    }
+};
 

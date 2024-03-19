@@ -111,7 +111,7 @@ const Questionnaire = () => {
               placeholder={{label: "English", value: 'en'}}
               items={options}
               onValueChange={(value) => {
-                setlanguage(value);
+                setLanguage(value);
                 i18n.locale = value;
               }}
               value={language}

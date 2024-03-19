@@ -11,6 +11,7 @@ const ContactScreen = () => {
   const [contactsData, setContactsData] = useState([]);
   const [favouriteContacts, setFavouriteContacts] = useState([]);
 
+
   useEffect(() => {
       const fetchData = async () => {
         const status = await askForContactPermission();
@@ -110,5 +111,6 @@ const ContactScreen = () => {
     </View>
   );
 };
+
 
 export default ContactScreen;

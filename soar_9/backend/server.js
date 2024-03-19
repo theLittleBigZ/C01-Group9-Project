@@ -82,6 +82,7 @@ app.post("/register", async (req, res) => {
     const newUser = new User({ username, email, password: hashedPassword });
     await collection.insertOne(newUser);
     console.log('New user created:', newUser);
+    // add a success message
     res.status(201).json(newUser);
   } catch (error) {
     res.status(409).json({ message: error.message });

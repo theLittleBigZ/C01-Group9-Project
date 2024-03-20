@@ -1,6 +1,6 @@
 // Sending data to backend
 import axios from "axios";
-const BACKEND_URL = 'http://192.168.1.95:3000';
+const BACKEND_URL = 'http://192.168.2.17:3000';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 

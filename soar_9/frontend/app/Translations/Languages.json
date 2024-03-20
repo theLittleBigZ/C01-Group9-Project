@@ -195,7 +195,8 @@
   "signup": "Daftar",
   "close": "Tutup",
   "register": "Daftar",
-  "haveAccount": "Anda memiliki akun?"
+  "haveAccount": "Anda memiliki akun?",
+  "signout": "Keluar"
 },
  "pt" : {
   "home": "Página inicial",
@@ -216,7 +217,8 @@
   "signup": "Registrar",
   "close": "Fechar",
   "register": "Registrar",
-  "haveAccount": "Você tem uma conta?"
+  "haveAccount": "Você tem uma conta?",
+  "signout": "sair"
 },
  "ru" : {
   "home": "Домой",
@@ -237,7 +239,8 @@
   "signup": "Зарегистрироваться",
   "close": "Закрыть",
   "register": "Регистрация",
-  "haveAccount": "У вас есть аккаунт?"
+  "haveAccount": "У вас есть аккаунт?",
+  "signout": "Выход"  
 },
  "th" : {
   "home": "หน้าแรก",
@@ -258,7 +261,8 @@
   "signup": "ลงทะเบียน",
   "close": "ปิด",
   "register": "ลงทะเบียน",
-  "haveAccount": "คุณมีบัญชีหรือไม่?"
+  "haveAccount": "คุณมีบัญชีหรือไม่?",
+  "signout": "ออกจากระบบ"
 },
  "ur" : {
   "home": "ہوم",
@@ -279,7 +283,8 @@
   "signup": "سائن اپ",
   "close": "بند کریں",
   "register": "رجسٹر کریں",
-  "haveAccount": "کیا آپ کا اکاؤنٹ ہے؟"
+  "haveAccount": "کیا آپ کا اکاؤنٹ ہے؟",
+  "signout": "سائن آؤٹ"
 },
  "vi" : {
   "home": "Trang chủ",
@@ -300,7 +305,8 @@
   "signup": "Đăng ký",
   "close": "Đóng",
   "register": "Đăng ký",
-  "haveAccount": "Bạn có tài khoản?"
+  "haveAccount": "Bạn có tài khoản?",
+  "signout": "đăng xuất"
 },
  "zh" : {
   "home": "主页",
@@ -321,5 +327,6 @@
   "signup": "注册",
   "close": "关闭",
   "register": "注册",
-  "haveAccount": "您有帐户吗？"
+  "haveAccount": "您有帐户吗？",
+  "signout": "退出"
 }}

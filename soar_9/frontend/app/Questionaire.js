@@ -18,7 +18,7 @@ const Questionnaire = () => {
   // State for each setting
   const [speechToText, setSpeechToTextEnabled] = useState(false);
   const [fontSize, setFontSize] = useState('Medium'); // Default to 'Medium'
-  const [language, setLanguage] = useState('');
+  const [language, setLanguage] = useState(i18n.locale);
   const [brightness, setBrightness] = useState(0.5); // Assuming brightness ranges from 0 to 1
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedApps, setSelectedApps] = useState([]);
@@ -108,8 +108,8 @@ const Questionnaire = () => {
           <Text style={styles.questionfont}>{i18n.t('language') + ":"}</Text>
           <ScrollView>
             <RNPickerSelect
-              placeholder={{label: "English", value: 'en'}}
-              items={options}
+              placeholder={{ label: options.find(option => option.value === i18n.locale).label,  value: i18n.locale}}
+              items = {options}
               onValueChange={(value) => {
                 setLanguage(value);
                 i18n.locale = value;

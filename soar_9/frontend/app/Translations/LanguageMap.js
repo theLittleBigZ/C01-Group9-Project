@@ -1,4 +1,5 @@
 const options = [
+  { label: 'English', value: 'en'},
   { label: 'Arabic', value: 'ar' },
   { label: 'Bengali', value: 'bn' },
   { label: 'Farsi', value: 'fa' },

@@ -10,6 +10,7 @@ import { router } from 'expo-router';
 const ContactScreen = () => {
   const [contactsData, setContactsData] = useState([]);
   const [favouriteContacts, setFavouriteContacts] = useState([]);
+  const [pageState, setPageState] = useState(1);
 
 
   useEffect(() => {
@@ -27,9 +28,6 @@ const ContactScreen = () => {
   const askForContactPermission = async () => {
     const { status } = await Contacts.requestPermissionsAsync();
     console.log('Contact permission status:', status);
-    /*if (status !== 'granted') {
-      console.log('Contact permission denied');
-    }*/
     return status;
   };
 
@@ -37,7 +35,6 @@ const ContactScreen = () => {
     const { data } = await Contacts.getContactsAsync({
       fields: [Contacts.Fields.ID, Contacts.Fields.FirstName, Contacts.Fields.LastName, Contacts.Fields.PhoneNumbers],
     });
-      //console.log('Contacts:', data);
       return data || []; // Ensure that data is an array or provide a default empty array
   };
 
@@ -53,61 +50,82 @@ const ContactScreen = () => {
   }
 
   function handleFavourite(contact, op) {
-    if (favouriteContacts.includes(contact) && op == "remove"){
+    const isFavourite = favouriteContacts.some(favContact => favContact.id === contact.id);
+
+    if (isFavourite){
       console.log("removing favourite " + contact.firstName)
       setFavouriteContacts((prevFavouriteContacts) => prevFavouriteContacts.filter((favContact) => favContact.id!==contact.id));
       console.log("after removing: " + favouriteContacts);
     }
-    else if (!favouriteContacts.includes(contact) && op == "add"){
+    else{
       console.log("adding favourite " + contact.firstName)
       setFavouriteContacts((prevFavouriteContacts) => [...favouriteContacts, contact]);
       console.log("after adding: " + favouriteContacts);
-    }
-    else{
-      console.log("Operation has already been performed.")
     }
   }
 
   return (
     <View style={styles.container}>
       <ScrollView style={styles.appList}>
-        <View>
-        {favouriteContacts.map((contact) => (
-          <View key={contact.id} style={styles.container}>
-            <Text>
-              {contact.firstName}
-              {contact.lastName ? `${contact.lastName}` : ""}
-            </Text>
-            <Pressable style={styles.button} onPress={() => callContact(contact)}>
-              <Text>Call</Text>
-            </Pressable> 
-            <Pressable style={styles.button} onPress={() => handleFavourite(contact, "remove")}>
-              <Text>Remove Favourite</Text>
-            </Pressable>
-          </View>
-        ))}
-        </View>
-        <View>
-        {contactsData.map((contact) => (
-          <View key={contact.id} style={styles.container}>
-            <Text>
-              {contact.firstName}
-              {contact.lastName ? `${contact.lastName}` : ""}
-            </Text>
-            <Pressable style={styles.button} onPress={() => callContact(contact)}>
-              <Text>Call</Text>
-            </Pressable> 
-            <Pressable style={styles.button} onPress={() => handleFavourite(contact, "add")}>
-              <Text>Add Favourite</Text>
-            </Pressable>
-          </View>
-        ))}
-        </View>
+        {pageState === 1 ? (
+            favouriteContacts && favouriteContacts.length > 0 ? (
+              favouriteContacts.map((contact) => (
+                <View key={contact.id} style={styles.container}>
+                  <Text>
+                    {contact.firstName}
+                    {contact.lastName ? ` ${contact.lastName}` : ""}
+                  </Text>
+                  <Pressable style={styles.button} onPress={() => callContact(contact)}>
+                    <Text>Call</Text>
+                  </Pressable> 
+                  <Pressable style={styles.button} onPress={() => handleFavourite(contact)}>
+                    <Text>Remove Favourite</Text>
+                  </Pressable>
+                </View>
+              ))
+            ) : (
+              <Text>No favourite contacts yet!</Text>
+            )
+        ) : (
+          contactsData.map((contact) => (
+            <View key={contact.id} style={styles.container}>
+              <Text>
+                {contact.firstName}
+                {contact.lastName ? ` ${contact.lastName}` : ""}
+              </Text>
+              <Pressable style={styles.button} onPress={() => callContact(contact)}>
+                <Text>Call</Text>
+              </Pressable> 
+              {favouriteContacts.some(favContact => favContact.id === contact.id) ? (
+                <Pressable style={styles.button} onPress={() => handleFavourite(contact)}>
+                  <Text>Remove Favourite</Text>
+                </Pressable>
+              ):(
+                <Pressable style={styles.button} onPress={() => handleFavourite(contact)}>
+                  <Text>Add Favourite</Text>
+                </Pressable>
+              )}
+              
+            </View>
+          ))
+        )}
       </ScrollView>
-      <Divider/>
-      <Pressable style={styles.button} onPress={() => router.replace("/Homescreen")}>
-        <Text style={[styles.words, {fontSize:20}]}>{i18n.t('home')}</Text>
-      </Pressable>
+      <View >
+        <Divider/>
+        {pageState == 0 ? (
+          <Pressable style={styles.button} onPress={() => setPageState(1)}>
+            <Text style={[styles.words, {fontSize:20}]}>{i18n.t('Favourite Contacts')}</Text>
+          </Pressable>
+        ):(
+          <Pressable style={styles.button} onPress={() => setPageState(0)}>
+          <Text style={[styles.words, {fontSize:20}]}>{i18n.t('All Contacts')}</Text>
+          </Pressable>
+        )}
+        
+        <Pressable style={styles.button} onPress={() => router.replace("/Homescreen")}>
+          <Text style={[styles.words, {fontSize:20}]}>{i18n.t('home')}</Text>
+        </Pressable>
+      </View>
     </View>
   );
 };

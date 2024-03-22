@@ -19,7 +19,8 @@
   "close": "إغلاق",
   "register": "تسجيل",
   "haveAccount": "لديك حساب؟",
-  "signout": "تسجيل الخروج"
+  "signout": "تسجيل الخروج", 
+  "theme": "سمة"
 },
  "bn" : {
   "home": "হোম",
@@ -41,7 +42,8 @@
   "close": "বন্ধ",
   "register": "নিবন্ধন করুন",
   "haveAccount": "আপনার একটি অ্যাকাউন্ট আছে?",
-  "signout": "সাইন আউট"
+  "signout": "সাইন আউট",
+  "theme": "থিম"
 },
 
  "bo" : {
@@ -64,7 +66,8 @@
   "close": "ནང་སྒྲིག",
   "register": "ལོག་སློང་འབད",
   "haveAccount": "ཁྱེད་ཀྱང་ཁྱབ་ཚར་འཛུགས་རྒྱབ་འབད་ཡོད་པ་", 
-  "signout": "འཛུགས་རྒྱབ་འབད"
+  "signout": "འཛུགས་རྒྱབ་འབད",
+  "theme": "སྒྲིག་ཀོགས་"
 },
  "en" : {
   "home": "Home",
@@ -86,7 +89,8 @@
   "close": "Close",
   "register": "Register",
   "haveAccount": "Have an account?",
-  "signout": "Sign Out"
+  "signout": "Sign Out",
+  "theme": "Theme"
 },
  "es" : {
   "home": "Inicio",
@@ -108,7 +112,9 @@
   "close": "Cerrar",
   "register": "Registrarse",
   "haveAccount": "¿Tienes una cuenta?",
-  "signout": "Cerrar sesión"
+  "signout": "Cerrar sesión",
+  "theme": "tema"
+
 },
  "fa" : {
   "home": "خانه",
@@ -130,7 +136,9 @@
   "close": "بستن",
   "register": "ثبت‌نام",
   "haveAccount": "آیا حساب کاربری دارید؟",
-  "signout": "خروج"
+  "signout": "خروج",
+  "theme": "تم"
+
 },
  "fr" :{
   "home": "Accueil",
@@ -152,7 +160,9 @@
   "close": "Fermer",
   "register": "S'inscrire",
   "haveAccount": "Vous avez un compte?",
-  "signout": "Déconnexion"
+  "signout": "Déconnexion",
+  "theme": "thème"
+
 },
  "hi" : {
   "home": "होम",
@@ -174,7 +184,9 @@
   "close": "बंद करें",
   "register": "रजिस्टर करें",
   "haveAccount": "आपका खाता है?",
-  "signout": "साइन आउट"
+  "signout": "साइन आउट",
+  "theme": "थीम"
+
 },
  "id" : {
   "home": "Beranda",
@@ -196,7 +208,8 @@
   "close": "Tutup",
   "register": "Daftar",
   "haveAccount": "Anda memiliki akun?",
-  "signout": "Keluar"
+  "signout": "Keluar",
+  "theme": "tema"
 },
  "pt" : {
   "home": "Página inicial",
@@ -218,7 +231,8 @@
   "close": "Fechar",
   "register": "Registrar",
   "haveAccount": "Você tem uma conta?",
-  "signout": "sair"
+  "signout": "sair",
+  "theme": "tema"
 },
  "ru" : {
   "home": "Домой",
@@ -240,7 +254,8 @@
   "close": "Закрыть",
   "register": "Регистрация",
   "haveAccount": "У вас есть аккаунт?",
-  "signout": "Выход"  
+  "signout": "Выход",
+  "theme": "тема" 
 },
  "th" : {
   "home": "หน้าแรก",
@@ -262,7 +277,8 @@
   "close": "ปิด",
   "register": "ลงทะเบียน",
   "haveAccount": "คุณมีบัญชีหรือไม่?",
-  "signout": "ออกจากระบบ"
+  "signout": "ออกจากระบบ",
+  "theme": "ธีม"
 },
  "ur" : {
   "home": "ہوم",
@@ -284,7 +300,8 @@
   "close": "بند کریں",
   "register": "رجسٹر کریں",
   "haveAccount": "کیا آپ کا اکاؤنٹ ہے؟",
-  "signout": "سائن آؤٹ"
+  "signout": "سائن آؤٹ",
+  "theme": "تھیم"
 },
  "vi" : {
   "home": "Trang chủ",
@@ -306,7 +323,8 @@
   "close": "Đóng",
   "register": "Đăng ký",
   "haveAccount": "Bạn có tài khoản?",
-  "signout": "đăng xuất"
+  "signout": "đăng xuất",
+  "theme": "Chủ đề"
 },
  "zh" : {
   "home": "主页",
@@ -328,5 +346,6 @@
   "close": "关闭",
   "register": "注册",
   "haveAccount": "您有帐户吗？",
-  "signout": "退出"
+  "signout": "退出",
+  "theme": "主题"
 }}

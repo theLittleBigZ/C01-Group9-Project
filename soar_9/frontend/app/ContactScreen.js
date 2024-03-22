@@ -2,15 +2,15 @@ import React, { useEffect, useState } from 'react';
 import * as Contacts from 'expo-contacts';
 import { View, Text, Pressable, StyleSheet, ScrollView } from 'react-native';
 import * as Linking from 'expo-linking';
-import styles from './Styling/Styles.js';
 import { Divider } from 'react-native-paper'; 
-import i18n from './Translations/PrimaryLanguage';
+import i18n from './Translations/PrimaryLanguage.js';
 import { router } from 'expo-router';
+import { useThemeStyles } from './Styling/Styles';
 
 const ContactScreen = () => {
   const [contactsData, setContactsData] = useState([]);
   const [favouriteContacts, setFavouriteContacts] = useState([]);
-
+  const styles = useThemeStyles();
 
   useEffect(() => {
       const fetchData = async () => {
@@ -43,10 +43,10 @@ const ContactScreen = () => {
 
   function callContact(contact) {
     if (contact.phoneNumbers && contact.phoneNumbers.length > 0) {
-      const primaryNumber = contact.phoneNumbers.find((phone) => phone.isPrimary) || contact.phoneNumbers[0];
-      console.log(primaryNumber);
-      console.log('Calling:', primaryNumber.number);
-      Linking.openURL("tel:" + primaryNumber.number);
+      const buttoncolourNumber = contact.phoneNumbers.find((phone) => phone.isbuttoncolour) || contact.phoneNumbers[0];
+      console.log(buttoncolourNumber);
+      console.log('Calling:', buttoncolourNumber.number);
+      Linking.openURL("tel:" + buttoncolourNumber.number);
     } else {
       console.log("This contact does not have a phone number associated with it,");
     }

@@ -1,13 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import { View, Text, Pressable, FlatList, TouchableOpacity} from 'react-native';
-import { Divider } from 'react-native-paper'; 
-import styles from './Styling/Styles.js';
-import {colours} from "./Styling/Colours.js";
+import { Divider, useTheme } from 'react-native-paper'; 
 import { sample } from '../sample-apps.js';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { router } from 'expo-router';
 import { load, isLoggedIn, logout } from '../services/apiServices.js';
 import i18n from './Translations/PrimaryLanguage.js';
+import { useThemeStyles } from './Styling/Styles.js';
 
 
 const Homescreen = () => {
@@ -17,9 +16,12 @@ const Homescreen = () => {
 
     const [isUserLoggedIn, setIsUserLoggedIn] = useState(false); // State to track login status
 
+    const styles = useThemeStyles();
+
     const getCacheAndUpdateSampleData = async () => {
         try {
             let value = await load();
+            console.log(value);
             if (value !== null) {
                 const savedAppNames = value.selectedApps; // Array of app names
                 setSavedApps(savedAppNames);
@@ -65,26 +67,26 @@ const Homescreen = () => {
                     <Text style={styles.item}>{item.appName}</Text>
                 </TouchableOpacity>}
             />
-            <View style={{backgroundColor: colours.secondary, width: '100%'}}>
+            <View style={styles.bottomNav}>
                 <Divider/>
-                <Text style={[styles.words, {color: colours.headertext}]}>{i18n.t('navigateto')}:</Text>
+                <Text style={styles.headerfont}>{i18n.t('navigateto')}:</Text>
                 <Pressable style={styles.button} onPress={() => router.replace("/Questionaire")}>
-                    <Text style={styles.words}>{i18n.t('settings')}</Text>
+                    <Text style={styles.text}>{i18n.t('settings')}</Text>
                 </Pressable>
                 <Pressable style={styles.button} onPress={() => router.replace("/ContactScreen")}>
-                    <Text style={styles.words}>{i18n.t('contacts')}</Text>
+                    <Text style={styles.text}>{i18n.t('contacts')}</Text>
                 </Pressable>
                 {/* <Pressable style={styles.button} onPress={() => router.replace("/Profile")}>
-                    <Text style={styles.words}>Profile</Text>
+                    <Text style={styles.text}>Profile</Text>
                 </Pressable> */}
                 {/* Conditional rendering based on login status */}
                 {isUserLoggedIn ? (
                     <Pressable style={styles.button} onPress={handleLogout}>
-                        <Text style={styles.words}>{i18n.t('signout')}</Text> 
+                        <Text style={styles.text}>{i18n.t('signout')}</Text> 
                     </Pressable>
                 ) : (
                     <Pressable style={styles.button} onPress={() => router.replace("/LoginPage")}>
-                        <Text style={styles.words}>{i18n.t('signin')}</Text>
+                        <Text style={styles.text}>{i18n.t('signin')}</Text>
                     </Pressable>
                 )}
             </View>

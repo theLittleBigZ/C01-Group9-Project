@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, Text, Pressable } from 'react-native';
+import { View, Text, Pressable } from 'react-native';
 import * as Brightness from 'expo-brightness';
 import { Platform } from 'react-native';
-import styles from './Styling/Styles.js';
 
-const SetBrightness = () => {
 
+const SetBrightness = ({styles}) => {
+    
     useEffect(() => {
         (async () => {
           const { status } = await Brightness.requestPermissionsAsync();
@@ -31,13 +31,13 @@ const SetBrightness = () => {
     return (
         <View>
             <Pressable style={styles.button} title="low" onPress={()=>setBrightness(0.3)}>
-                <Text style={styles.words}>low</Text>
+                <Text style={styles.text}>low</Text>
             </Pressable>
             <Pressable style={styles.button} title="medium" onPress={()=>setBrightness(0.7)}>
-                <Text style={styles.words}>medium</Text>
+                <Text style={styles.text}>medium</Text>
             </Pressable>
             <Pressable  style={styles.button} title="high" onPress={()=>setBrightness(1)}>
-                <Text style={styles.words}>high</Text>
+                <Text style={styles.text}>high</Text>
             </Pressable>
         </View>
     )

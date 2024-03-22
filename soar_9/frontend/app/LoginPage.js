@@ -1,15 +1,17 @@
 import { View, Text, TextInput, Pressable } from 'react-native';
 import { Divider } from 'react-native-paper';
-import styles from './Styling/Styles.js';
 import React, { useState } from 'react';
 import { router } from 'expo-router';
 import i18n from './Translations/PrimaryLanguage';
 import { login } from '../services/apiServices.js';
+import { useStyles } from './Styling/Styles.js';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const styles = useStyles();
+
 
   const handleLogin = async () => {
     try {

@@ -51,6 +51,11 @@ const userSchema = new mongoose.Schema({
         required: false,
         default: [],
     },
+    theme: {
+        type: String,
+        required: false,
+        default: 'default',
+    },
     createdAt: {
         type: Date,
         default: Date.now,

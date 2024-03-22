@@ -1,89 +1,161 @@
+// Styles.js
+
 import { StyleSheet } from "react-native";
-import {colours} from "./Colours"
+import { useState, useEffect } from 'react';
+import { getTheme } from './Colours';
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: colours.background,
-    padding: 20,
-    justifyContent: 'center',
-    flex: 1,
+const pickerSelectStyles = StyleSheet.create({
+  inputIOS: {
+  fontSize: 16,
+  paddingVertical: 12,
+   paddingHorizontal: 20,
+  borderWidth: 1,
+   height: 50,
+  borderRadius: 4,
+   borderColor: 'grey',
+   paddingRight: 30, // to ensure the text is never behind the icon
+   },
+    inputAndroid: {
+    fontSize: 16,
+ paddingHorizontal: 10,
+ paddingVertical: 8,
+ borderWidth: 0.5,
+ borderColor: 'green',
+ borderRadius: 8,
+ color: 'black',
+ paddingRight: 30, // to ensure the text is never behind the icon
   },
-  button: {
-    margin: 10,
-    flexDirection:'row',
-    padding: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: colours.primary,
-    borderColor: 'black',
-    borderWidth: 2,
-    borderRadius: 20, 
-    width: '90%',
-  },
-  Header: {
-    fontSize: 40,
-    fontWeight: 'bold',
-    fontFamily: 'monospace',
-    color: colours.headertext,
-    width: '100%',
-    textAlign: 'center'
-  },
-  icon: {
-    padding: 5,
-    fontSize: 50,
-    color: colours.buttontext,
-    borderColor: 'white',
-    borderWidth: 2,
-    borderRadius: 10,
-  },
-  input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-  },
-  item: {
-    flex: 1,
-    margin: 10, 
-    fontSize: 30,
-    color: colours.buttontext,
-  },
-  modalView: {
-    margin: 20,
-    backgroundColor: "white",
-    borderRadius: 20,
-    padding: 35,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2
+})
+
+export const useDynamicStyles = (theme) => {
+  return StyleSheet.create({
+    container: {
+      backgroundColor: theme.background,
+      padding: 20,
+      justifyContent: 'center',
+      flex: 1,
     },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5
-  },
-  question: {
-    margin: 10,
-    flexDirection:'column',
-    padding: 10,
-  },
-  questionfont: {
-    fontSize: 20,
-    marginBottom: 10,
-    fontWeight: '400',
-  },
-  slider: {
-    height: 50,
-    width: '100%',
-  },
-  words: {
-    color: colours.buttontext,
-    textAlign: 'center',
-    fontSize: 30,
-    fontWeight: 'bold',
-    fontFamily: 'monospace',
-  },
-});
+    button: {
+      margin: 10,
+      flexDirection:'row',
+      padding: 10,
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: theme.buttoncolour,
+      borderColor: 'black',
+      borderWidth: 2,
+      borderRadius: 20, 
+      width: '90%',
+    },
+    Header: {
+      fontSize: 40,
+      fontWeight: 'bold',
+      fontFamily: 'monospace',
+      color: theme.headertext,
+      width: '100%',
+      textAlign: 'center'
+    },
+    icon: {
+      padding: 5,
+      fontSize: 50,
+      color: theme.buttontext,
+      borderColor: theme.buttontext,
+      borderWidth: 2,
+      borderRadius: 10,
+    },
+    input: {
+      height: 40,
+      margin: 12,
+      borderWidth: 1,
+      padding: 10,
+    },
+    item: {
+      flex: 1,
+      margin: 10, 
+      fontSize: 30,
+      color: theme.buttontext,
+    },
+    modalView: {
+      margin: 20,
+      backgroundColor: "white",
+      borderRadius: 20,
+      padding: 35,
+      alignItems: "center",
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 2
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 4,
+      elevation: 5
+    },
+    question: {
+      margin: 10,
+      flexDirection:'column',
+      padding: 10,
+    },
+    questionfont: {
+      color: theme.headertext,
+      fontSize: 20,
+      marginBottom: 10,
+      fontWeight: '400',
+    },
+    text: {
+      color: theme.buttontext,
+      textAlign: 'center',
+      fontSize: 30,
+      fontWeight: 'bold',
+      fontFamily: 'monospace',
+    },
+    selectedButton: {
+      backgroundColor: theme.secondary,
+    },
+    bottomNav: {
+      backgroundColor: theme.secondary,
+      width: '100%'
+    },
+    headerfont: {
+      color: theme.headertext,
+      textAlign: 'center',
+      fontSize: 30,
+      fontWeight: 'bold',
+      fontFamily: 'monospace',
+    },
+    toggle: theme.toggle,
+    toggleoff: theme.toggleoff,
+    pickerstyle: {
+      inputIOS: {
+        borderColor: theme.buttontext,
+        borderRadius: 5,
+        backgroundColor: theme.buttoncolour,
+        borderColor: theme.buttontext,
+        borderWidth: 5,
+      },
+      inputAndroid: {
+        backgroundColor: theme.buttoncolour,
+        borderColor: theme.buttontext,
+        color: theme.buttontext,
+        borderRadius: 5,
+        borderColor: theme.buttontext,
+        borderWidth: 5,
+      }
+    },
+  });
+};
 
-export default styles;
+export const useThemeStyles = () => {
+  const [styles, setStyles] = useState(useDynamicStyles(getTheme()));
+
+  useEffect(() => {
+    const fetchAndSetThemeStyles = async () => {
+      const fetchedTheme = await getTheme();
+      const dynamicStyles = useDynamicStyles(fetchedTheme);
+      setStyles(dynamicStyles);
+    };
+
+    fetchAndSetThemeStyles();
+  }, []);
+
+  return styles;
+};

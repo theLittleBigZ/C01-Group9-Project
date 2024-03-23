@@ -13,8 +13,8 @@ export const themes = {
   },
   light: {
     background: 'white',
-    buttoncolour: '#eb4034',
-    secondary: 'teal',
+    buttoncolour: '#34c0eb',
+    secondary: 'gray',
     buttontext: 'black',
     headertext: 'black',
     toggleoff: 'gray',
@@ -22,30 +22,30 @@ export const themes = {
   },
   dark: {
     background: 'black',
-    buttoncolour: 'white',
-    secondary: 'gray',
+    buttoncolour: 'black',
+    secondary: '#292829',
+    buttontext: '#0081a8',
+    headertext: '#0081a8',
+    toggleoff: 'gray',
+    toggleon: '#0081a8',
+  },
+  bluewhite: {
+    background: '#153d7d',
+    buttoncolour: '#c1c9d6',
+    secondary: '#153d7d',
     buttontext: 'black',
     headertext: 'white',
     toggleoff: 'gray',
-    toggleon: 'green',
-  },
-  bluewhite: {
-    background: '#8c80ab',
-    buttoncolour: '#28264C',
-    secondary: '#bcb4d2',
-    buttontext: 'white',
-    headertext: 'black',
-    toggleoff: 'gray',
-    toggleon: 'green',
+    toggleon: 'blue',
   },
   contrast: {
-    background: '#8c80ab',
-    buttoncolour: '#28264C',
-    secondary: '#bcb4d2',
+    background: '#faf68e',
+    buttoncolour: 'blue',
+    secondary: 'orange',
     buttontext: 'white',
     headertext: 'black',
     toggleoff: 'gray',
-    toggleon: 'green',
+    toggleon: 'blue',
   },
 };
 
@@ -82,5 +82,5 @@ export const thememap = [
   { label: 'Light', value: 'light'}, 
   { label: 'Dark', value: 'dark'},
   { label: 'Blue-White', value: 'bluewhite'}, // for red-green blindness
-  { label: 'High Contrast', value: 'contrast'},
+  { label: 'High Contrast', value: 'contrast'}, // for people sensitive to low contrast
 ];

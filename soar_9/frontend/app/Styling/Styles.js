@@ -42,8 +42,8 @@ export const useDynamicStyles = (theme) => {
       alignItems: 'center',
       justifyContent: 'center',
       backgroundColor: theme.buttoncolour,
-      borderColor: 'black',
-      borderWidth: 2,
+      borderColor: theme.buttontext,
+      borderWidth: 1,
       borderRadius: 20, 
       width: '90%',
     },
@@ -113,7 +113,8 @@ export const useDynamicStyles = (theme) => {
     },
     bottomNav: {
       backgroundColor: theme.secondary,
-      width: '100%'
+      width: '100%',
+      justifyContent: 'flex-end',
     },
     headerfont: {
       color: theme.headertext,

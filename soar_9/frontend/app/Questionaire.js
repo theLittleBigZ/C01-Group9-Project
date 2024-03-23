@@ -120,7 +120,7 @@ const Questionnaire = () => {
 
         <View style={styles.question}>
           <Text style={styles.questionfont}>{i18n.t('language') + ":"}</Text>
-          <ScrollView style={{borderWidth:2}}>
+          <ScrollView style={{borderWidth:2,  borderColor: styles.icon.borderColor}}>
             <RNPickerSelect
               items = {options}
               onValueChange={(value) => {
@@ -138,7 +138,7 @@ const Questionnaire = () => {
 
         <View style={styles.question}>
           <Text style={styles.questionfont}>{i18n.t('theme') + ":"}</Text>
-          <ScrollView style={{borderWidth:2}}>
+          <ScrollView style={{borderWidth:2, borderColor: styles.icon.borderColor}}>
             <RNPickerSelect
               items={thememap}
               onValueChange={(value) => {

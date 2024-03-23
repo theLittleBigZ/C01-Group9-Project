@@ -74,15 +74,15 @@ const ContactScreen = () => {
         <View>
         {favouriteContacts.map((contact) => (
           <View key={contact.id} style={styles.container}>
-            <Text>
+            <Text style={styles.questionfont}>
               {contact.firstName}
               {contact.lastName ? `${contact.lastName}` : ""}
             </Text>
             <Pressable style={styles.button} onPress={() => callContact(contact)}>
-              <Text>Call</Text>
+              <Text style={styles.text}>Call</Text>
             </Pressable> 
             <Pressable style={styles.button} onPress={() => handleFavourite(contact, "remove")}>
-              <Text>Remove Favourite</Text>
+              <Text style={styles.text}>Remove Favourite</Text>
             </Pressable>
           </View>
         ))}
@@ -90,15 +90,15 @@ const ContactScreen = () => {
         <View>
         {contactsData.map((contact) => (
           <View key={contact.id} style={styles.container}>
-            <Text>
+            <Text style={styles.questionfont}>
               {contact.firstName}
               {contact.lastName ? `${contact.lastName}` : ""}
             </Text>
             <Pressable style={styles.button} onPress={() => callContact(contact)}>
-              <Text>Call</Text>
+              <Text style={[styles.text, {fontSize: 20}]}>Call</Text>
             </Pressable> 
             <Pressable style={styles.button} onPress={() => handleFavourite(contact, "add")}>
-              <Text>Add Favourite</Text>
+              <Text style={[styles.text, {fontSize: 20}]}>Add Favourite</Text>
             </Pressable>
           </View>
         ))}
@@ -106,7 +106,7 @@ const ContactScreen = () => {
       </ScrollView>
       <Divider/>
       <Pressable style={styles.button} onPress={() => router.replace("/Homescreen")}>
-        <Text style={[styles.words, {fontSize:20}]}>{i18n.t('home')}</Text>
+        <Text style={[styles.text, {fontSize:20}]}>{i18n.t('home')}</Text>
       </Pressable>
     </View>
   );

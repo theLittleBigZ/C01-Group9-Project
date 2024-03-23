@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { View, Text, Pressable, FlatList, TouchableOpacity} from 'react-native';
+import { View, Text, Pressable, FlatList, TouchableOpacity, Modal, Button} from 'react-native';
 import { Divider, useTheme } from 'react-native-paper'; 
 import { sample } from '../sample-apps.js';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -17,6 +17,12 @@ const Homescreen = () => {
     const [isUserLoggedIn, setIsUserLoggedIn] = useState(false); // State to track login status
 
     const styles = useThemeStyles();
+
+    const [modalVisible, setModalVisible] = useState(false);
+
+    const handleModalButtonPress = () => {
+        setModalVisible(true);
+    };
 
     const getCacheAndUpdateSampleData = async () => {
         try {
@@ -67,29 +73,38 @@ const Homescreen = () => {
                     <Text style={styles.item}>{item.appName}</Text>
                 </TouchableOpacity>}
             />
-            <View style={styles.bottomNav}>
-                <Divider/>
-                <Text style={styles.headerfont}>{i18n.t('navigateto')}:</Text>
-                <Pressable style={styles.button} onPress={() => router.replace("/Questionaire")}>
-                    <Text style={styles.text}>{i18n.t('settings')}</Text>
+            <View>
+                <Pressable styles={styles.button} onPress={handleModalButtonPress}>
+                    <Text style={styles.headerfont}>{i18n.t('navigateto') + "    ▲"}</Text>
                 </Pressable>
-                <Pressable style={styles.button} onPress={() => router.replace("/ContactScreen")}>
-                    <Text style={styles.text}>{i18n.t('contacts')}</Text>
-                </Pressable>
-                {/* <Pressable style={styles.button} onPress={() => router.replace("/Profile")}>
-                    <Text style={styles.text}>Profile</Text>
-                </Pressable> */}
-                {/* Conditional rendering based on login status */}
-                {isUserLoggedIn ? (
+
+                <Modal
+                    animationType="slide"
+                    transparent={true}
+                    visible={modalVisible}
+                    onRequestClose={() => setModalVisible(false)}
+                    style={styles.container}
+                >
+                    <View style={styles.container}>
+                    <Pressable style={styles.button} onPress={() => router.replace("/Questionaire")}>
+                        <Text style={styles.text}>{i18n.t('settings')}</Text>
+                    </Pressable>
+                    <Pressable style={styles.button} onPress={() => router.replace("/ContactScreen")}>
+                        <Text style={styles.text}>{i18n.t('contacts')}</Text>
+                    </Pressable>
+                    {isUserLoggedIn ? (
                     <Pressable style={styles.button} onPress={handleLogout}>
                         <Text style={styles.text}>{i18n.t('signout')}</Text> 
-                    </Pressable>
-                ) : (
+                    </Pressable>) : (
                     <Pressable style={styles.button} onPress={() => router.replace("/LoginPage")}>
                         <Text style={styles.text}>{i18n.t('signin')}</Text>
+                    </Pressable>)}
+                    <Pressable style={styles.button} onPress={() => setModalVisible(false)}>
+                        <Text style={styles.text}>{i18n.t('close')}</Text>
                     </Pressable>
-                )}
-            </View>
+                    </View>
+                </Modal>
+             </View>
         </View>
     )
 }

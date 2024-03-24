@@ -45,6 +45,7 @@ const LoginPage = () => {
           onChangeText={setEmail}
           value={email}
           placeholder="Email"
+          placeholderTextColor={styles.input.color}
           cursorColor={styles.input.borderColor}
         />
       </View>
@@ -56,6 +57,7 @@ const LoginPage = () => {
           onChangeText={setPassword}
           value={password}
           placeholder="Password"
+          placeholderTextColor={styles.input.color}
           cursorColor={styles.input.borderColor}
         />
       </View>
@@ -68,6 +70,7 @@ const LoginPage = () => {
       <Pressable style={styles.button} onPress={() => router.replace("/RegisterPage")}>
         <Text style={[styles.text, { fontSize: 20 }]}>{i18n.t('register')}</Text>
       </Pressable>
+
     </View>
   );
 }

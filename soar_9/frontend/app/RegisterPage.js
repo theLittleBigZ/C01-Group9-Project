@@ -53,6 +53,7 @@ const RegisterPage = () => {
           onChangeText={setUsername}
           value={username}
           placeholder="Username"
+          placeholderTextColor={styles.input.color}
           cursorColor={styles.input.borderColor}
         />
       </View>
@@ -64,6 +65,7 @@ const RegisterPage = () => {
           onChangeText={setEmail}
           value={email}
           placeholder="Email"
+          placeholderTextColor={styles.input.color}
           cursorColor={styles.input.borderColor}
         />
       </View>
@@ -76,6 +78,7 @@ const RegisterPage = () => {
           value={password}
           secureTextEntry
           placeholder="Password"
+          placeholderTextColor={styles.input.color}
           cursorColor={styles.input.borderColor}
         />
       </View>
@@ -88,6 +91,7 @@ const RegisterPage = () => {
           value={confirmPassword}
           secureTextEntry
           placeholder="Confirm Password"
+          placeholderTextColor={styles.input.color}
           cursorColor={styles.input.borderColor}
         />
       </View>

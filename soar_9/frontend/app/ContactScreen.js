@@ -5,12 +5,12 @@ import * as Linking from 'expo-linking';
 import { Divider } from 'react-native-paper'; 
 import i18n from './Translations/PrimaryLanguage.js';
 import { router } from 'expo-router';
-import { useThemeStyles } from './Styling/Styles';
+import { getStyles } from './Styling/Styles';
 
 const ContactScreen = () => {
   const [contactsData, setContactsData] = useState([]);
   const [favouriteContacts, setFavouriteContacts] = useState([]);
-  const styles = useThemeStyles();
+  const styles = getStyles();
 
   useEffect(() => {
       const fetchData = async () => {

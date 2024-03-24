@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { router } from 'expo-router';
 import i18n from './Translations/PrimaryLanguage';
 import { register } from '../services/apiServices.js'; // Assuming you have a similar function for registration
-import { useThemeStyles } from './Styling/Styles.js';
+import { getStyles } from './Styling/Styles.js';
 
 const RegisterPage = () => {
   const [username, setUsername] = useState('');
@@ -12,7 +12,7 @@ const RegisterPage = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
-  const styles = useThemeStyles();
+  const styles = getStyles();
 
   const handleRegister = async () => {
     // Simple validation for example purposes
@@ -53,6 +53,7 @@ const RegisterPage = () => {
           onChangeText={setUsername}
           value={username}
           placeholder="Username"
+          cursorColor={styles.input.borderColor}
         />
       </View>
       <Divider />
@@ -63,6 +64,7 @@ const RegisterPage = () => {
           onChangeText={setEmail}
           value={email}
           placeholder="Email"
+          cursorColor={styles.input.borderColor}
         />
       </View>
       <Divider />
@@ -74,6 +76,7 @@ const RegisterPage = () => {
           value={password}
           secureTextEntry
           placeholder="Password"
+          cursorColor={styles.input.borderColor}
         />
       </View>
       <Divider />
@@ -85,6 +88,7 @@ const RegisterPage = () => {
           value={confirmPassword}
           secureTextEntry
           placeholder="Confirm Password"
+          cursorColor={styles.input.borderColor}
         />
       </View>
       <Divider />

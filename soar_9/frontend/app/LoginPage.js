@@ -4,13 +4,13 @@ import React, { useState } from 'react';
 import { router } from 'expo-router';
 import i18n from './Translations/PrimaryLanguage';
 import { login } from '../services/apiServices.js';
-import { useThemeStyles } from './Styling/Styles.js';
+import { getStyles } from './Styling/Styles.js';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const styles = useThemeStyles();
+  const styles = getStyles();
 
 
   const handleLogin = async () => {
@@ -45,6 +45,7 @@ const LoginPage = () => {
           onChangeText={setEmail}
           value={email}
           placeholder="Email"
+          cursorColor={styles.input.borderColor}
         />
       </View>
       <Divider />
@@ -55,6 +56,7 @@ const LoginPage = () => {
           onChangeText={setPassword}
           value={password}
           placeholder="Password"
+          cursorColor={styles.input.borderColor}
         />
       </View>
       <Divider />

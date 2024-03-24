@@ -6,7 +6,7 @@ import { load, saveToCache } from '../services/apiServices';
 import RNPickerSelect from 'react-native-picker-select';
 import {sample} from '../sample-apps';
 import { router } from 'expo-router';
-import options from './Translations/LanguageMap';
+import languageMap from './Translations/LanguageMap';
 import i18n from './Translations/PrimaryLanguage';
 import SetBrightness from './SetBrightness.js'
 import {getTheme, themes, themeMap } from './Styling/Colours.js';
@@ -25,13 +25,13 @@ const Questionnaire = () => {
 
   
   useEffect(() => {
-    const fetchAndSetThemeStyles = async () => {
+    const fetchAndSetStyles = async () => {
       const fetchedTheme = await getTheme();
       const dynamicStyles = useDynamicStyles(fetchedTheme);
       setStyles(dynamicStyles);
     };
 
-    fetchAndSetThemeStyles();
+    fetchAndSetStyles();
   }, []);
 
   const toggleAppSelection = (appName) => {
@@ -93,8 +93,6 @@ const Questionnaire = () => {
         <View style={styles.question}>
           <Text style={styles.questionfont}>{i18n.t('enablespeechtotext')}:</Text>
           <Switch
-            trackColor={{ false: styles.toggleoff, true: styles.toggle }}
-            thumbColor={speechToText ? styles.toggle : styles.toggleoff}
             onValueChange={setSpeechToTextEnabled}
             value={speechToText}
           />
@@ -121,7 +119,7 @@ const Questionnaire = () => {
           <Text style={styles.questionfont}>{i18n.t('language') + ":"}</Text>
           <ScrollView style={{borderWidth:2,  borderColor: styles.icon.borderColor}}>
             <RNPickerSelect
-              items = {options}
+              items = {languageMap}
               onValueChange={(value) => {
                 setLanguage(value);
                 i18n.locale = value;

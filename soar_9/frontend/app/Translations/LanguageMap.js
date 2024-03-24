@@ -1,4 +1,4 @@
-const options = [
+const LanguageMap = [
   { label: 'English', value: 'en'},
   { label: 'Arabic', value: 'ar' },
   { label: 'Bengali', value: 'bn' },

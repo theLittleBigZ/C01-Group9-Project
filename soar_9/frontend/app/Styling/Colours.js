@@ -8,8 +8,6 @@ export const themes = {
     secondary: '#bcb4d2',
     buttontext: 'white',
     headertext: 'black',
-    toggleoff: 'gray',
-    toggleon: 'pink',
   },
   light: {
     background: 'white',
@@ -17,8 +15,6 @@ export const themes = {
     secondary: 'gray',
     buttontext: 'black',
     headertext: 'black',
-    toggleoff: 'gray',
-    toggleon: 'green',
   },
   dark: {
     background: 'black',
@@ -26,8 +22,6 @@ export const themes = {
     secondary: '#292829',
     buttontext: '#0081a8',
     headertext: '#0081a8',
-    toggleoff: 'gray',
-    toggleon: '#0081a8',
   },
   bluewhite: {
     background: '#153d7d',
@@ -35,8 +29,6 @@ export const themes = {
     secondary: '#153d7d',
     buttontext: 'black',
     headertext: 'white',
-    toggleoff: 'gray',
-    toggleon: 'blue',
   },
   contrast: {
     background: '#faf68e',
@@ -44,8 +36,6 @@ export const themes = {
     secondary: 'orange',
     buttontext: 'white',
     headertext: 'black',
-    toggleoff: 'gray',
-    toggleon: 'blue',
   },
 };
 

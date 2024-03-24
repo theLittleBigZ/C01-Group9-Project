@@ -43,6 +43,7 @@ export const useDynamicStyles = (theme) => {
     },
     input: {
       borderColor: theme.buttontext,
+      backgroundColor: theme.buttoncolour,
       height: 40,
       margin: 12,
       borderWidth: 1,
@@ -103,8 +104,6 @@ export const useDynamicStyles = (theme) => {
       fontWeight: 'bold',
       fontFamily: 'monospace',
     },
-    toggle: theme.toggle,
-    toggleoff: theme.toggleoff,
     pickerstyle: {
       inputIOS: {
         borderColor: theme.buttontext,
@@ -125,7 +124,7 @@ export const useDynamicStyles = (theme) => {
   });
 };
 
-export const useThemeStyles = () => {
+export const getStyles = () => {
   const [styles, setStyles] = useState(useDynamicStyles(getTheme()));
 
   useEffect(() => {

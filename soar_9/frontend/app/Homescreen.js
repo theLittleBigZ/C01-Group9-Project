@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { router } from 'expo-router';
 import { load, isLoggedIn, logout } from '../services/apiServices.js';
 import i18n from './Translations/PrimaryLanguage.js';
-import { useThemeStyles } from './Styling/Styles.js';
+import { getStyles } from './Styling/Styles.js';
 
 
 const Homescreen = () => {
@@ -16,7 +16,7 @@ const Homescreen = () => {
 
     const [isUserLoggedIn, setIsUserLoggedIn] = useState(false); // State to track login status
 
-    const styles = useThemeStyles();
+    const styles = getStyles();
 
     const [modalVisible, setModalVisible] = useState(false);
 

@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { router } from 'expo-router';
 import i18n from './Translations/PrimaryLanguage';
 import { register } from '../services/apiServices.js'; // Assuming you have a similar function for registration
-import { useStyles } from './Styling/Styles.js';
+import { useThemeStyles } from './Styling/Styles.js';
 
 const RegisterPage = () => {
   const [username, setUsername] = useState('');
@@ -12,7 +12,7 @@ const RegisterPage = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
-  const styles = useStyles();
+  const styles = useThemeStyles();
 
   const handleRegister = async () => {
     // Simple validation for example purposes
@@ -90,11 +90,11 @@ const RegisterPage = () => {
       <Divider />
 
       <Pressable style={styles.button} onPress={handleRegister}>
-        <Text style={[styles.words, { fontSize: 20 }]}>{i18n.t('register')}</Text>
+        <Text style={[styles.text, { fontSize: 20 }]}>{i18n.t('register')}</Text>
       </Pressable>
 
       <Pressable style={styles.button} onPress={() => router.replace("/LoginPage")}>
-        <Text style={[styles.words, { fontSize: 20 }]}>{i18n.t('haveAccount')}</Text>
+        <Text style={[styles.text, { fontSize: 20 }]}>{i18n.t('haveAccount')}</Text>
       </Pressable>
     </View>
   );

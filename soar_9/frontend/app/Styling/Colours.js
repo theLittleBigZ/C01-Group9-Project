@@ -1,5 +1,5 @@
-import { load, isLoggedIn } from '../../services/apiServices.js';
-
+import { load } from '../../services/apiServices.js';
+import {Appearance} from 'react-native';
 
 export const themes = {
   default: {
@@ -49,35 +49,26 @@ export const themes = {
   },
 };
 
-export const getThemeName = async () => {
-  try {
-    let value = await load();
-    // let loggedin = await isLoggedIn();
-    console.log(value);
-    if (value !== null) {
-      return value.theme;
-    }
-    return 'default';
-  }catch (error) {
-    console.error('Error getting theme:', error);
-  }
-}
-
 export const getTheme = async () => {
   try {
     let value = await load();
-    // let loggedin = await isLoggedIn();
-    console.log(value);
     if (value !== null) {
       return themes[value.theme];
     }
-    return themes.default;
+    else{
+      const colorScheme = Appearance.getColorScheme();
+      if(themeMap.find(colorScheme) == undefined){
+        return themes.default;
+      }
+      return themes[colorScheme];
+    }
   }catch (error) {
     console.error('Error getting theme:', error);
+    return themes.default;
   }
 }
 
-export const thememap = [
+export const themeMap = [
   { label: 'Default', value: 'default'},
   { label: 'Light', value: 'light'}, 
   { label: 'Dark', value: 'dark'},

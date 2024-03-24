@@ -4,28 +4,6 @@ import { StyleSheet } from "react-native";
 import { useState, useEffect } from 'react';
 import { getTheme } from './Colours';
 
-const pickerSelectStyles = StyleSheet.create({
-  inputIOS: {
-  fontSize: 16,
-  paddingVertical: 12,
-   paddingHorizontal: 20,
-  borderWidth: 1,
-   height: 50,
-  borderRadius: 4,
-   borderColor: 'grey',
-   paddingRight: 30, // to ensure the text is never behind the icon
-   },
-    inputAndroid: {
-    fontSize: 16,
- paddingHorizontal: 10,
- paddingVertical: 8,
- borderWidth: 0.5,
- borderColor: 'green',
- borderRadius: 8,
- color: 'black',
- paddingRight: 30, // to ensure the text is never behind the icon
-  },
-})
 
 export const useDynamicStyles = (theme) => {
   return StyleSheet.create({
@@ -64,10 +42,12 @@ export const useDynamicStyles = (theme) => {
       borderRadius: 10,
     },
     input: {
+      borderColor: theme.buttontext,
       height: 40,
       margin: 12,
       borderWidth: 1,
       padding: 10,
+      color: theme.buttontext,
     },
     item: {
       flex: 1,
@@ -149,13 +129,13 @@ export const useThemeStyles = () => {
   const [styles, setStyles] = useState(useDynamicStyles(getTheme()));
 
   useEffect(() => {
-    const fetchAndSetThemeStyles = async () => {
+    const fetchAndSetStyle = async () => {
       const fetchedTheme = await getTheme();
       const dynamicStyles = useDynamicStyles(fetchedTheme);
       setStyles(dynamicStyles);
     };
 
-    fetchAndSetThemeStyles();
+    fetchAndSetStyle();
   }, []);
 
   return styles;

@@ -4,13 +4,13 @@ import React, { useState } from 'react';
 import { router } from 'expo-router';
 import i18n from './Translations/PrimaryLanguage';
 import { login } from '../services/apiServices.js';
-import { useStyles } from './Styling/Styles.js';
+import { useThemeStyles } from './Styling/Styles.js';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const styles = useStyles();
+  const styles = useThemeStyles();
 
 
   const handleLogin = async () => {
@@ -60,11 +60,11 @@ const LoginPage = () => {
       <Divider />
 
       <Pressable style={styles.button} onPress={handleLogin}>
-        <Text style={[styles.words, { fontSize: 20 }]}>{i18n.t('signin')}</Text>
+        <Text style={[styles.text, { fontSize: 20 }]}>{i18n.t('signin')}</Text>
       </Pressable>
 
       <Pressable style={styles.button} onPress={() => router.replace("/RegisterPage")}>
-        <Text style={[styles.words, { fontSize: 20 }]}>{i18n.t('register')}</Text>
+        <Text style={[styles.text, { fontSize: 20 }]}>{i18n.t('register')}</Text>
       </Pressable>
     </View>
   );

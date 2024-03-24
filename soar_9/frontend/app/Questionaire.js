@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Switch, ScrollView, Pressable, Modal} from 'react-native';
 import { Divider } from 'react-native-paper'; 
-import {thememap} from './Styling/Colours.js';
 import { load, saveToCache } from '../services/apiServices';
 import RNPickerSelect from 'react-native-picker-select';
 import {sample} from '../sample-apps';
@@ -10,14 +9,14 @@ import { router } from 'expo-router';
 import options from './Translations/LanguageMap';
 import i18n from './Translations/PrimaryLanguage';
 import SetBrightness from './SetBrightness.js'
-import {getTheme, getThemeName, themes } from './Styling/Colours.js';
-import { useDynamicStyles, useThemeStyles } from './Styling/Styles.js';
+import {getTheme, themes, themeMap } from './Styling/Colours.js';
+import { useDynamicStyles } from './Styling/Styles.js';
 
 const Questionnaire = () => {
   // State for each setting
   const [speechToText, setSpeechToTextEnabled] = useState(false);
   const [fontSize, setFontSize] = useState('Medium'); // Default to 'Medium'
-  const [theme, setTheme] = useState(getThemeName());
+  const [theme, setTheme] = useState('default');
   const [language, setLanguage] = useState(i18n.locale);
   const [brightness, setBrightness] = useState(0.5); // Assuming brightness ranges from 0 to 1
   const [modalVisible, setModalVisible] = useState(false);
@@ -140,7 +139,7 @@ const Questionnaire = () => {
           <Text style={styles.questionfont}>{i18n.t('theme') + ":"}</Text>
           <ScrollView style={{borderWidth:2, borderColor: styles.icon.borderColor}}>
             <RNPickerSelect
-              items={thememap}
+              items={themeMap}
               onValueChange={(value) => {
                 setTheme(value);
                 setStyles(useDynamicStyles(themes[value]))

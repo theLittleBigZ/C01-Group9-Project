@@ -49,6 +49,7 @@ export const useDynamicStyles = (theme) => {
       borderWidth: 1,
       padding: 10,
       color: theme.buttontext,
+      fontSize: 20,
     },
     item: {
       flex: 1,

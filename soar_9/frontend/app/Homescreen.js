@@ -74,8 +74,9 @@ const Homescreen = () => {
                 </TouchableOpacity>}
             />
             <View>
+                <Divider/>
                 <Pressable styles={styles.button} onPress={handleModalButtonPress}>
-                    <Text style={styles.headerfont}>{i18n.t('navigateto') + "    ▲"}</Text>
+                    <Text style={styles.text}>{i18n.t('navigateto') + "    ▲"}</Text>
                 </Pressable>
 
                 <Modal
@@ -95,8 +96,8 @@ const Homescreen = () => {
                     {isUserLoggedIn ? (
                     <Pressable style={styles.button} onPress={handleLogout}>
                         <Text style={styles.text}>{i18n.t('signout')}</Text> 
-                    </Pressable>) : (
-                    <Pressable style={styles.button} onPress={() => router.replace("/LoginPage")}>
+                    </Pressable>) : 
+                    (<Pressable style={styles.button} onPress={() => router.replace("/LoginPage")}>
                         <Text style={styles.text}>{i18n.t('signin')}</Text>
                     </Pressable>)}
                     <Pressable style={styles.button} onPress={() => setModalVisible(false)}>

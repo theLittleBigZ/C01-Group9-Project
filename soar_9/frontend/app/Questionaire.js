@@ -58,6 +58,7 @@ const Questionnaire = () => {
     try {
       console.log('Saving preferences:', userPreferences);
       saveToCache(userPreferences);
+      router.replace("/");
     } catch (error) {
       console.error('Error saving preferences:', error);
     }
@@ -152,7 +153,7 @@ const Questionnaire = () => {
         <Divider/>
         <View style={styles.question}>
           <Text style={styles.questionfont}>{i18n.t('brightness')}: {brightness}%</Text>
-          <SetBrightness styles={styles}/>
+            <SetBrightness styles={styles}/>
         </View>
 
         <Divider/>
@@ -197,7 +198,6 @@ const Questionnaire = () => {
       <Divider/>
       <Pressable style={styles.button} onPress={() => {
         savePreferences();
-        router.replace("/")
       }}>
         <Text style={[styles.text, {fontSize:20}]}>{i18n.t('home')}</Text>
       </Pressable>

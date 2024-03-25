@@ -76,7 +76,7 @@ const Homescreen = () => {
             <View>
                 <Divider/>
                 <Pressable styles={styles.button} onPress={handleModalButtonPress}>
-                    <Text style={styles.text}>{i18n.t('navigateto') + "    ▲"}</Text>
+                    <Text style={[styles.Header, {fontSize: 30}]}>{i18n.t('navigateto') + "  ▲"}</Text>
                 </Pressable>
 
                 <Modal

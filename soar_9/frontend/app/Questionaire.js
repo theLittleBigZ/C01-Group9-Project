@@ -199,7 +199,7 @@ const Questionnaire = () => {
       <Pressable style={styles.button} onPress={() => {
         savePreferences();
       }}>
-        <Text style={[styles.text, {fontSize:20}]}>{i18n.t('home')}</Text>
+        <Text style={[styles.text]}>{i18n.t('home')}</Text>
       </Pressable>
     </View>
   );

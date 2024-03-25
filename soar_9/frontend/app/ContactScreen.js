@@ -106,7 +106,7 @@ const ContactScreen = () => {
       </ScrollView>
       <Divider/>
       <Pressable style={styles.button} onPress={() => router.replace("/Homescreen")}>
-        <Text style={[styles.text, {fontSize:20}]}>{i18n.t('home')}</Text>
+        <Text style={[styles.text]}>{i18n.t('home')}</Text>
       </Pressable>
     </View>
   );

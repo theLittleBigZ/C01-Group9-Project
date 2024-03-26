@@ -83,6 +83,20 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: 'bold',
   },
+  keypadNumber: {
+    color: colours.buttontext,
+    padding: 10,
+    flex: 1,
+    borderRadius: 50,
+    margin: 10,
+    flexDirection:'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colours.primary,
+    borderColor: 'black',
+    borderWidth: 2,
+    width: '10%',
+  }
 });
 
 export default styles;

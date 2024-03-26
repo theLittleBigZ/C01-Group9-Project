@@ -71,6 +71,9 @@ const Homescreen = () => {
                 <Pressable style={styles.button} onPress={() => router.replace("/Questionaire")}>
                     <Text style={styles.words}>{i18n.t('settings')}</Text>
                 </Pressable>
+                <Pressable style={styles.button} onPress={() => router.replace("/Dialer")}>
+                    <Text style={styles.words}>{i18n.t('dialer')}</Text>
+                </Pressable>
                 <Pressable style={styles.button} onPress={() => router.replace("/ContactScreen")}>
                     <Text style={styles.words}>{i18n.t('contacts')}</Text>
                 </Pressable>

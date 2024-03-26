@@ -17,7 +17,7 @@ const Questionnaire = () => {
   const [speechToText, setSpeechToTextEnabled] = useState(false);
   const [fontSize, setFontSize] = useState('Medium'); // Default to 'Medium'
   const [theme, setTheme] = useState('default');
-  const [language, setLanguage] = useState(i18n.locale);
+  const [language, setLanguage] = useState('en');
   const [brightness, setBrightness] = useState(0.5); // Assuming brightness ranges from 0 to 1
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedApps, setSelectedApps] = useState([]);
@@ -72,6 +72,7 @@ const Questionnaire = () => {
         setSelectedApps(savedAppNames);
         setTheme(value.theme);
         setSpeechToTextEnabled(value.speechToText);
+        setLanguage(value.language);
       }
     } catch (error) {
         console.error('Error getting preferences:', error);

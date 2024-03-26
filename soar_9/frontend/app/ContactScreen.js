@@ -75,20 +75,20 @@ const ContactScreen = () => {
   const Contact = ({contact}) => (
     <View style={[styles.container, {borderColor: 'black',  borderWidth: 2,
         borderRadius: 10}]}>
-          <Text style={styles.words}>
+          <Text style={styles.text}>
             {contact.firstName}
             {contact.lastName ? ` ${contact.lastName}` : ""}
           </Text>
           <Pressable style={styles.button} onPress={() => callContact(contact)}>
-            <Text style={styles.words}>Call</Text>
+            <Text style={styles.text}>Call</Text>
           </Pressable> 
           {favouriteContacts.some(favContact => favContact.id === contact.id) ? (
             <Pressable style={styles.button} onPress={() => handleFavourite(contact)}>
-              <Text style={styles.words}>Remove Favourite</Text>
+              <Text style={styles.text}>Remove Favourite</Text>
             </Pressable>
           ):(
             <Pressable style={styles.button} onPress={() => handleFavourite(contact)}>
-              <Text style={styles.words}>Add Favourite</Text>
+              <Text style={styles.text}>Add Favourite</Text>
             </Pressable>
           )} 
         </View>);
@@ -97,7 +97,7 @@ const ContactScreen = () => {
     <View style={styles.container}>
       {pageState === 1 ? (
         favouriteContacts && favouriteContacts.length > 0 ? (
-          <FlatList style={styles.words} data={favouriteContacts} 
+          <FlatList style={styles.text} data={favouriteContacts} 
             renderItem={({item}) => (
               //only show contacts that are still available in the device
               contactsData.some(availableContact => availableContact.id === item.id) ? (
@@ -113,10 +113,10 @@ const ContactScreen = () => {
             ItemSeparatorComponent={() => <View style={{ height: 10 }} />}/>
             
             ):(
-              <Text style={styles.words}>No favourite contacts yet!</Text>
+              <Text style={styles.text}>No favourite contacts yet!</Text>
             )
         ):(
-        <FlatList style={styles.words} data={contactsData} 
+        <FlatList style={styles.text} data={contactsData} 
           renderItem={({item}) => (<Contact contact={item}/>)}
           keyExtractor={(item) => item.id}
           ItemSeparatorComponent={() => <View style={{ height: 10 }} />}/>
@@ -124,18 +124,18 @@ const ContactScreen = () => {
       
     <View style={{backgroundColor: colours.secondary, width: '100%'}}>
     <Divider/>
-    <Text style={[styles.words, {color: colours.headertext}]}>{i18n.t('navigateto')}:</Text>
+    <Text style={[styles.text, {color: colours.headertext}]}>{i18n.t('navigateto')}:</Text>
     {pageState == 0 ? (
       <Pressable style={styles.button} onPress={() => setPageState(1)}>
-        <Text style={[styles.words, {fontSize:20}]}>{i18n.t('Favourite Contacts')}</Text>
+        <Text style={[styles.text, {fontSize:20}]}>{i18n.t('Favourite Contacts')}</Text>
       </Pressable>
     ):(
       <Pressable style={styles.button} onPress={() => setPageState(0)}>
-      <Text style={[styles.words, {fontSize:20}]}>{i18n.t('All Contacts')}</Text>
+      <Text style={[styles.text, {fontSize:20}]}>{i18n.t('All Contacts')}</Text>
       </Pressable>
     )}
     <Pressable style={styles.button} onPress={() => router.replace("/Homescreen")}>
-                <Text style={[styles.words, {fontSize:20}]}>{i18n.t('home')}</Text>
+                <Text style={[styles.text, {fontSize:20}]}>{i18n.t('home')}</Text>
             </Pressable>
     </View>
   </View>

@@ -1,6 +1,6 @@
 // Sending data to backend
 import axios from "axios";
-const BACKEND_URL = 'http://192.168.2.17:3000';
+const BACKEND_URL = 'http://192.168.178.76:3000';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
@@ -87,7 +87,7 @@ export const loadFromBackend = async () => {
             console.log('Data loaded from backend');
             return JSON.stringify(response.data);
         } catch (e) {
-            console.error('Error loading from backend:', e);
+            // console.error('Error loading from backend:', e);
         }
     } else {
         console.log('User not logged in, skipping backend load');

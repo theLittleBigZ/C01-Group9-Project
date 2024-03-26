@@ -3,7 +3,7 @@ import * as Contacts from 'expo-contacts';
 import { View, Text, Pressable, StyleSheet, ScrollView } from 'react-native';
 import * as Linking from 'expo-linking';
 import styles from './Styling/Styles.js';
-import { Divider } from 'react-native-paper'; 
+import { Divider, TextInput } from 'react-native-paper'; 
 import i18n from './Translations/PrimaryLanguage';
 import { router } from 'expo-router';
 
@@ -11,6 +11,7 @@ const ContactScreen = () => {
   const [contactsData, setContactsData] = useState([]);
   const [favouriteContacts, setFavouriteContacts] = useState([]);
   const [pageState, setPageState] = useState(1);
+  const [searchResult, setSearchResult] = useState([]);
 
 
   useEffect(() => {
@@ -35,7 +36,7 @@ const ContactScreen = () => {
     const { data } = await Contacts.getContactsAsync({
       fields: [Contacts.Fields.ID, Contacts.Fields.FirstName, Contacts.Fields.LastName, Contacts.Fields.PhoneNumbers],
     });
-      return data || []; // Ensure that data is an array or provide a default empty array
+      return data || [];
   };
 
   function callContact(contact) {
@@ -64,8 +65,15 @@ const ContactScreen = () => {
     }
   }
 
+  function search(query) {
+    setSearchResult(contactsData.filter(
+      (contact) => (contact.firstName.startsWith(query) || contact.lastName.startsWith(query))));
+      //and then just change it so it displays search results instead of contacts data
+  }
+
   return (
     <View style={styles.container}>
+      <TextInput style={styles.input} onChangeText={query => search(query)}/>
       <ScrollView style={styles.appList}>
         {pageState === 1 ? (
             favouriteContacts && favouriteContacts.length > 0 ? (
@@ -114,11 +122,11 @@ const ContactScreen = () => {
         <Divider/>
         {pageState == 0 ? (
           <Pressable style={styles.button} onPress={() => setPageState(1)}>
-            <Text style={[styles.words, {fontSize:20}]}>{i18n.t('Favourite Contacts')}</Text>
+            <Text style={[styles.words, {fontSize:20}]}>{i18n.t('favouriteContacts')}</Text>
           </Pressable>
         ):(
           <Pressable style={styles.button} onPress={() => setPageState(0)}>
-          <Text style={[styles.words, {fontSize:20}]}>{i18n.t('All Contacts')}</Text>
+          <Text style={[styles.words, {fontSize:20}]}>{i18n.t('allContacts')}</Text>
           </Pressable>
         )}
         

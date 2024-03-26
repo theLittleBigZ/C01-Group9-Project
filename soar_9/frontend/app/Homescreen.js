@@ -77,6 +77,7 @@ const Homescreen = () => {
                 <Divider/>
                 <Pressable styles={styles.button} onPress={handleModalButtonPress}>
                     <Text style={[styles.Header, {fontSize: 30}]}>{i18n.t('navigateto') + "  ▲"}</Text>
+
                 </Pressable>
 
                 <Modal
@@ -92,6 +93,9 @@ const Homescreen = () => {
                     </Pressable>
                     <Pressable style={styles.button} onPress={() => router.replace("/ContactScreen")}>
                         <Text style={styles.text}>{i18n.t('contacts')}</Text>
+                    </Pressable>
+                    <Pressable style={styles.button} onPress={() => router.replace("/Dialer")}>
+                      <Text style={styles.words}>{i18n.t('dialer')}</Text>
                     </Pressable>
                     {isUserLoggedIn ? (
                     <Pressable style={styles.button} onPress={handleLogout}>

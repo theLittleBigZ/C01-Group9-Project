@@ -22,9 +22,10 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "permissions":[
+      "permissions": [
         "WRITE_SETTINGS",
-        "android.permission.WRITE_CONTACTS"
+        "android.permission.WRITE_CONTACTS",
+        "android.permission.RECORD_AUDIO"
       ]
     },
     "scheme": "frontend",
@@ -33,7 +34,25 @@
     },
     "plugins": [
       "expo-router",
-      ["./my-plugin", "custom"]
-    ]
+      [
+        "./my-plugin",
+        "custom"
+      ],
+      [
+        "@react-native-voice/voice",
+        {
+          "microphonePermission": "Allow soar_9 to access the microphone",
+          "speechRecognitionPermission": "Allow soar_9 to securely recognize user speech"
+        }
+      ]
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "c461926a-916c-40d3-933b-08fcc8b49675"
+      }
+    }
   }
 }

@@ -81,7 +81,7 @@ const Homescreen = () => {
 
                 <Modal
                     animationType="slide"
-                    transparent={true}
+                    transparent={false}
                     visible={modalVisible}
                     onRequestClose={() => setModalVisible(false)}
                     style={styles.container}

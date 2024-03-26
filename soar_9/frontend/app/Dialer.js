@@ -24,7 +24,7 @@ const Dialer = () => {
 
     return(
         <View style={styles.container}>
-            <Text style={styles.words}>{number}</Text>
+            <Text style={styles.text}>{number}</Text>
             {numbers.map((numberRow) =>
                 <View key={numberRow[0]} style={{ flexDirection: 'row', justifyContent: "space-evenly"}}>
                     {numberRow.map((number) =>(
@@ -32,22 +32,22 @@ const Dialer = () => {
                             style={styles.keypadNumber}
                             key={number}
                             onPress={() => handleKeypadPress(number.toString())}>
-                            <Text style={styles.words}>{number}</Text>
+                            <Text style={styles.text}>{number}</Text>
                         </TouchableOpacity>
                     ))}
                 </View>
             )}
             <Pressable style={styles.button} onPress={() => callNumber()}>
-                <Text style={styles.words}>Call</Text>
+                <Text style={styles.text}>Call</Text>
             </Pressable>
             <Pressable style={styles.button} onPress={() => setNumber("")}>
-                <Text style={styles.words}>Clear Number</Text>
+                <Text style={styles.text}>Clear Number</Text>
             </Pressable>
             <View style={{backgroundColor: colours.secondary, width: '100%'}}>
                 <Divider/>
-                <Text style={[styles.words, {color: colours.headertext}]}>{i18n.t('navigateto')}:</Text>
+                <Text style={[styles.text, {color: colours.headertext}]}>{i18n.t('navigateto')}:</Text>
                 <Pressable style={styles.button} onPress={() => router.replace("/Homescreen")}>
-                    <Text style={[styles.words, {fontSize:20}]}>{i18n.t('home')}</Text>
+                    <Text style={[styles.text, {fontSize:20}]}>{i18n.t('home')}</Text>
                 </Pressable>
             </View>
         </View>

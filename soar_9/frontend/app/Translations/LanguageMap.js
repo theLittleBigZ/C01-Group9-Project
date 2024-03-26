@@ -1,4 +1,4 @@
-const options = [
+const languageMap = [
   { label: 'English', value: 'en'},
   { label: 'Arabic', value: 'ar' },
   { label: 'Bengali', value: 'bn' },
@@ -16,4 +16,4 @@ const options = [
   { label: 'Vietnamese', value: 'vi' }
 ];
 
-export default options;
+export default languageMap;

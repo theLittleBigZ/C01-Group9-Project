@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import * as Contacts from 'expo-contacts';
 import { View, Text, Pressable, StyleSheet, ScrollView, FlatList } from 'react-native';
-import * as Linking from 'expo-linking';
-import styles from './Styling/Styles.js';
+import * as Linking from 'expo-linking'
 import { Divider, TextInput } from 'react-native-paper'; 
 import i18n from './Translations/PrimaryLanguage';
 import { router } from 'expo-router';
 import {colours} from "./Styling/Colours.js";
+import { getStyles } from './Styling/Styles';
 
 const ContactScreen = () => {
   const [contactsData, setContactsData] = useState([]);
   const [favouriteContacts, setFavouriteContacts] = useState([]);
   const [pageState, setPageState] = useState(1);
   const [searchResult, setSearchResult] = useState([]);
+
+  const styles = getStyles();
 
 
   useEffect(() => {
@@ -42,10 +44,10 @@ const ContactScreen = () => {
 
   function callContact(contact) {
     if (contact.phoneNumbers && contact.phoneNumbers.length > 0) {
-      const primaryNumber = contact.phoneNumbers.find((phone) => phone.isPrimary) || contact.phoneNumbers[0];
-      console.log(primaryNumber);
-      console.log('Calling:', primaryNumber.number);
-      Linking.openURL("tel:" + primaryNumber.number);
+      const buttoncolourNumber = contact.phoneNumbers.find((phone) => phone.isbuttoncolour) || contact.phoneNumbers[0];
+      console.log(buttoncolourNumber);
+      console.log('Calling:', buttoncolourNumber.number);
+      Linking.openURL("tel:" + buttoncolourNumber.number);
     } else {
       console.log("This contact does not have a phone number associated with it,");
     }
@@ -89,8 +91,7 @@ const ContactScreen = () => {
               <Text style={styles.words}>Add Favourite</Text>
             </Pressable>
           )} 
-        </View>
-  );
+        </View>);
 
   return (
     <View style={styles.container}>
@@ -139,82 +140,6 @@ const ContactScreen = () => {
     </View>
   </View>
   );
-/*
-  
-
-  return (
-    <View style={styles.container}>
-      <TextInput style={styles.input} onChangeText={query => search(query)}/>
-      <ScrollView style={styles.appList}>
-        {pageState === 1 ? (
-            favouriteContacts && favouriteContacts.length > 0 ? (
-              favouriteContacts.map((contact) => (
-                //only show contacts that are still available in the device
-                contactsData.some(availableContact => availableContact.id === contact.id) ? (
-                  //render contact if available
-                  <View key={contact.id} style={[styles.container, {borderColor: 'black',  borderWidth: 2, borderRadius: 10}]}>
-                  <Text style={styles.words}>
-                    {contact.firstName}
-                    {contact.lastName ? ` ${contact.lastName}` : ""}
-                  </Text>
-                  <Pressable style={styles.button} onPress={() => callContact(contact)}>
-                    <Text style={styles.words}>Call</Text>
-                  </Pressable> 
-                  <Pressable style={styles.button} onPress={() => handleFavourite(contact)}>
-                    <Text style={styles.words}>Remove Favourite</Text>
-                  </Pressable>
-                </View>
-                ) : (
-                  //if not available remove from favourites
-                  handleFavourite(contact)
-                )
-              ))
-            ) : (
-              <Text style={styles.words}>No favourite contacts yet!</Text>
-            )
-        ) : (
-          contactsData.map((contact) => (
-            <View key={contact.id} style={[styles.container, {borderColor: 'black',  borderWidth: 2,
-            borderRadius: 10}]}>
-              <Text style={styles.words}>
-                {contact.firstName}
-                {contact.lastName ? ` ${contact.lastName}` : ""}
-              </Text>
-              <Pressable style={styles.button} onPress={() => callContact(contact)}>
-                <Text style={styles.words}>Call</Text>
-              </Pressable> 
-              {favouriteContacts.some(favContact => favContact.id === contact.id) ? (
-                <Pressable style={styles.button} onPress={() => handleFavourite(contact)}>
-                  <Text style={styles.words}>Remove Favourite</Text>
-                </Pressable>
-              ):(
-                <Pressable style={styles.button} onPress={() => handleFavourite(contact)}>
-                  <Text style={styles.words}>Add Favourite</Text>
-                </Pressable>
-              )}
-              
-            </View>
-          ))
-        )}
-      </ScrollView>
-      <View style={{backgroundColor: colours.secondary, width: '100%'}}>
-        <Divider/>
-        <Text style={[styles.words, {color: colours.headertext}]}>{i18n.t('navigateto')}:</Text>
-        {pageState == 0 ? (
-          <Pressable style={styles.button} onPress={() => setPageState(1)}>
-            <Text style={[styles.words, {fontSize:20}]}>{i18n.t('favouriteContacts')}</Text>
-          </Pressable>
-        ):(
-          <Pressable style={styles.button} onPress={() => setPageState(0)}>
-          <Text style={[styles.words, {fontSize:20}]}>{i18n.t('allContacts')}</Text>
-          </Pressable>
-        )}
-        <Pressable style={styles.button} onPress={() => router.replace("/Homescreen")}>
-                    <Text style={[styles.words, {fontSize:20}]}>{i18n.t('home')}</Text>
-                </Pressable>
-      </View>
-    </View>
-  );*/
 };
 
 

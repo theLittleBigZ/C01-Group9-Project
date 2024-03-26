@@ -1,15 +1,17 @@
 import { View, Text, TextInput, Pressable } from 'react-native';
 import { Divider } from 'react-native-paper';
-import styles from './Styling/Styles.js';
 import React, { useState } from 'react';
 import { router } from 'expo-router';
 import i18n from './Translations/PrimaryLanguage';
 import { login } from '../services/apiServices.js';
+import { getStyles } from './Styling/Styles.js';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const styles = getStyles();
+
 
   const handleLogin = async () => {
     try {
@@ -43,6 +45,8 @@ const LoginPage = () => {
           onChangeText={setEmail}
           value={email}
           placeholder="Email"
+          placeholderTextColor={styles.input.color}
+          cursorColor={styles.input.borderColor}
         />
       </View>
       <Divider />
@@ -53,17 +57,20 @@ const LoginPage = () => {
           onChangeText={setPassword}
           value={password}
           placeholder="Password"
+          placeholderTextColor={styles.input.color}
+          cursorColor={styles.input.borderColor}
         />
       </View>
       <Divider />
 
       <Pressable style={styles.button} onPress={handleLogin}>
-        <Text style={[styles.words, { fontSize: 20 }]}>{i18n.t('signin')}</Text>
+        <Text style={[styles.text, { fontSize: 20 }]}>{i18n.t('signin')}</Text>
       </Pressable>
 
       <Pressable style={styles.button} onPress={() => router.replace("/RegisterPage")}>
-        <Text style={[styles.words, { fontSize: 20 }]}>{i18n.t('register')}</Text>
+        <Text style={[styles.text, { fontSize: 20 }]}>{i18n.t('register')}</Text>
       </Pressable>
+
     </View>
   );
 }

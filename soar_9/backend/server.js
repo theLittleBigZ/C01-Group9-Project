@@ -138,7 +138,7 @@ app.get("/preferences", checkAuthenticated, async (req, res) => {
   const user = await collection.findOne({ _id: new ObjectId(req.session.user._id) });
   const preferences = { language: user.language, fontSize: user.fontSize,
                           brightness: user.brightness, speechToText: user.speechToText,
-                                  selectedApps: user.selectedApps};
+                                  selectedApps: user.selectedApps, theme: user.theme};
   res.status(200).json(preferences);
 });
 
@@ -147,15 +147,39 @@ app.put("/preferences", checkAuthenticated, async (req, res) => {
   console.log('Updating preferences for user:', req.session.user);
   const db = req.app.locals.db;
   const collection = db.collection(collectionName);
-  const { language, fontSize, brightness, speechToText, selectedApps } = req.body;
+  const { language, fontSize, brightness, speechToText, selectedApps, theme} = req.body;
   console.log('New preferences:', req.body);
   try {
     await collection.updateOne({ _id: new ObjectId(req.session.user._id) },
-      { $set: { language, fontSize, brightness, speechToText, selectedApps } });
+      { $set: { language, fontSize, brightness, speechToText, selectedApps, theme } });
     res.status(200).json('Preferences updated');
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
+});
+
+app.put("/contacts", checkAuthenticated, async (req, res) => {
+  console.log('Updating contacts for user:', req.session.user);
+  const db = req.app.locals.db;
+  const collection = db.collection(collectionName);
+  const { favoriteContacts } = req.body;
+  console.log('New contacts:', req.body);
+  try {
+    await collection.updateOne({ _id: new ObjectId(req.session.user._id) },
+      { $set: { favoriteContacts } });
+    res.status(200).json('Contacts updated');
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+app.get("/contacts", checkAuthenticated, async (req, res) => {
+  console.log('Getting contacts for user:', req.session.user);
+  const db = req.app.locals.db;
+  const collection = db.collection(collectionName);
+  const user = await collection.findOne({ _id: new ObjectId(req.session.user._id) });
+  const contacts = user.favoriteContacts;
+  res.status(200).json(contacts);
 });
 
 app.delete("/deleteAll", async (req, res) => {

@@ -1,10 +1,10 @@
 import { View, Text, TextInput, Pressable } from 'react-native';
 import { Divider } from 'react-native-paper';
-import styles from './Styling/Styles.js';
 import React, { useState } from 'react';
 import { router } from 'expo-router';
 import i18n from './Translations/PrimaryLanguage';
 import { register } from '../services/apiServices.js'; // Assuming you have a similar function for registration
+import { getStyles } from './Styling/Styles.js';
 
 const RegisterPage = () => {
   const [username, setUsername] = useState('');
@@ -12,6 +12,7 @@ const RegisterPage = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
+  const styles = getStyles();
 
   const handleRegister = async () => {
     // Simple validation for example purposes
@@ -52,6 +53,8 @@ const RegisterPage = () => {
           onChangeText={setUsername}
           value={username}
           placeholder="Username"
+          placeholderTextColor={styles.input.color}
+          cursorColor={styles.input.borderColor}
         />
       </View>
       <Divider />
@@ -62,6 +65,8 @@ const RegisterPage = () => {
           onChangeText={setEmail}
           value={email}
           placeholder="Email"
+          placeholderTextColor={styles.input.color}
+          cursorColor={styles.input.borderColor}
         />
       </View>
       <Divider />
@@ -73,6 +78,8 @@ const RegisterPage = () => {
           value={password}
           secureTextEntry
           placeholder="Password"
+          placeholderTextColor={styles.input.color}
+          cursorColor={styles.input.borderColor}
         />
       </View>
       <Divider />
@@ -84,16 +91,18 @@ const RegisterPage = () => {
           value={confirmPassword}
           secureTextEntry
           placeholder="Confirm Password"
+          placeholderTextColor={styles.input.color}
+          cursorColor={styles.input.borderColor}
         />
       </View>
       <Divider />
 
       <Pressable style={styles.button} onPress={handleRegister}>
-        <Text style={[styles.words, { fontSize: 20 }]}>{i18n.t('register')}</Text>
+        <Text style={[styles.text, { fontSize: 20 }]}>{i18n.t('register')}</Text>
       </Pressable>
 
       <Pressable style={styles.button} onPress={() => router.replace("/LoginPage")}>
-        <Text style={[styles.words, { fontSize: 20 }]}>{i18n.t('haveAccount')}</Text>
+        <Text style={[styles.text, { fontSize: 20 }]}>{i18n.t('haveAccount')}</Text>
       </Pressable>
     </View>
   );

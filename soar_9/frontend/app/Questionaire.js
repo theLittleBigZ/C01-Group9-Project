@@ -72,6 +72,7 @@ const Questionnaire = () => {
         const savedAppNames = value.selectedApps; // Array of app names
         setSelectedApps(savedAppNames);
         setTheme(value.theme);
+        setSpeechToTextEnabled(value.speechToText);
       }
     } catch (error) {
         console.error('Error getting preferences:', error);

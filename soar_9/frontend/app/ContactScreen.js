@@ -95,10 +95,10 @@ const ContactScreen = () => {
               {contact.lastName ? `${contact.lastName}` : ""}
             </Text>
             <Pressable style={styles.button} onPress={() => callContact(contact)}>
-              <Text style={[styles.text, {fontSize: 20}]}>Call</Text>
+              <Text style={styles.text}>Call</Text>
             </Pressable> 
             <Pressable style={styles.button} onPress={() => handleFavourite(contact, "add")}>
-              <Text style={[styles.text, {fontSize: 20}]}>Add Favourite</Text>
+              <Text style={styles.text}>Add Favourite</Text>
             </Pressable>
           </View>
         ))}

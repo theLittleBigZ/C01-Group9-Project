@@ -98,12 +98,12 @@ const Homescreen = () => {
             <View>
                 <Divider/>
                 <Pressable styles={styles.button} onPress={handleModalButtonPress}>
-                    <Text style={[styles.Header, {fontSize: 30}]}>{i18n.t('navigateto') + "  ▲"}</Text>
+                    <Text style={styles.Header}>{i18n.t('navigateto') + "  ▲"}</Text>
                 </Pressable>
 
                 <Modal
                     animationType="slide"
-                    transparent={true}
+                    transparent={false}
                     visible={modalVisible}
                     onRequestClose={() => setModalVisible(false)}
                     style={styles.container}

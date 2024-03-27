@@ -60,6 +60,11 @@ const userSchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
+    favoriteContacts: {
+        type: [String],
+        required: false,
+        default: [],
+    },
     updatedAt: {
         type: Date,
         default: Date.now,

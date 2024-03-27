@@ -1,11 +1,9 @@
-// Styles.js
-
 import { StyleSheet } from "react-native";
 import { useState, useEffect } from 'react';
 import { getTheme } from './Colours';
+import { getFontSize } from "./FontSize";
 
-
-export const useDynamicStyles = (theme) => {
+export const useDynamicStyles = (theme, fontsize) => {
   return StyleSheet.create({
     container: {
       backgroundColor: theme.background,
@@ -26,7 +24,7 @@ export const useDynamicStyles = (theme) => {
       width: '90%',
     },
     Header: {
-      fontSize: 40,
+      fontSize: fontsize.header,
       fontWeight: 'bold',
       fontFamily: 'monospace',
       color: theme.headertext,
@@ -35,7 +33,7 @@ export const useDynamicStyles = (theme) => {
     },
     icon: {
       padding: 5,
-      fontSize: 50,
+      fontSize: fontsize.icon,
       color: theme.buttontext,
       borderColor: theme.buttontext,
       borderWidth: 2,
@@ -49,17 +47,17 @@ export const useDynamicStyles = (theme) => {
       borderWidth: 1,
       padding: 10,
       color: theme.buttontext,
-      fontSize: 20,
+      fontSize: fontsize.input,
     },
     item: {
       flex: 1,
       margin: 10, 
-      fontSize: 30,
+      fontSize: fontsize.text,
       color: theme.buttontext,
     },
     modalView: {
       margin: 20,
-      backgroundColor: "white",
+      backgroundColor: theme.backgroundColor,
       borderRadius: 20,
       padding: 35,
       alignItems: "center",
@@ -79,14 +77,14 @@ export const useDynamicStyles = (theme) => {
     },
     questionfont: {
       color: theme.headertext,
-      fontSize: 20,
+      fontSize: fontsize.question,
       marginBottom: 10,
       fontWeight: '400',
     },
     text: {
       color: theme.buttontext,
       textAlign: 'center',
-      fontSize: 30,
+      fontSize: fontsize.text,
       fontWeight: 'bold',
       fontFamily: 'monospace',
     },
@@ -101,10 +99,12 @@ export const useDynamicStyles = (theme) => {
     headerfont: {
       color: theme.headertext,
       textAlign: 'center',
-      fontSize: 30,
+      fontSize: fontsize.header,
       fontWeight: 'bold',
       fontFamily: 'monospace',
     },
+    positive: theme.positive,
+    negative: theme.negative,
     pickerstyle: {
       inputIOS: {
         borderColor: theme.buttontext,
@@ -120,21 +120,19 @@ export const useDynamicStyles = (theme) => {
         borderRadius: 5,
         borderColor: theme.buttontext,
         borderWidth: 5,
-      }
+      },
     },
   });
 };
-
 export const getStyles = () => {
-  const [styles, setStyles] = useState(useDynamicStyles(getTheme()));
-
+  const [styles, setStyles] = useState(useDynamicStyles(getTheme(), getFontSize()));
   useEffect(() => {
     const fetchAndSetStyle = async () => {
       const fetchedTheme = await getTheme();
-      const dynamicStyles = useDynamicStyles(fetchedTheme);
+      const fetchedFontSize = await getFontSize();
+      const dynamicStyles = useDynamicStyles(fetchedTheme, fetchedFontSize);
       setStyles(dynamicStyles);
     };
-
     fetchAndSetStyle();
   }, []);
 

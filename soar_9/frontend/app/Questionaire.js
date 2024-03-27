@@ -10,24 +10,25 @@ import languageMap from './Translations/LanguageMap';
 import i18n from './Translations/PrimaryLanguage';
 import SetBrightness from './SetBrightness.js'
 import {getTheme, themes, themeMap } from './Styling/Colours.js';
+import { getFontSize, fontsizes } from './Styling/FontSize.js';
 import { useDynamicStyles } from './Styling/Styles.js';
 
 const Questionnaire = () => {
   // State for each setting
   const [speechToText, setSpeechToTextEnabled] = useState(false);
-  const [fontSize, setFontSize] = useState('Medium'); // Default to 'Medium'
+  const [fontSize, setFontSize] = useState('medium'); // Default to 'Medium'
   const [theme, setTheme] = useState('default');
-  const [language, setLanguage] = useState(i18n.locale);
+  const [language, setLanguage] = useState('en');
   const [brightness, setBrightness] = useState(0.5); // Assuming brightness ranges from 0 to 1
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedApps, setSelectedApps] = useState([]);
-  const [styles, setStyles] = useState(useDynamicStyles(getTheme()));
-
+  const [styles, setStyles] = useState(useDynamicStyles(getTheme(), getFontSize()));
 
   useEffect(() => {
     const fetchAndSetStyles = async () => {
       const fetchedTheme = await getTheme();
-      const dynamicStyles = useDynamicStyles(fetchedTheme);
+      const fetchedFontSize = await getFontSize();
+      const dynamicStyles = useDynamicStyles(fetchedTheme, fetchedFontSize);
       setStyles(dynamicStyles);
     };
 
@@ -73,6 +74,8 @@ const Questionnaire = () => {
         setSelectedApps(savedAppNames);
         setTheme(value.theme);
         setSpeechToTextEnabled(value.speechToText);
+        setLanguage(value.language);
+        setFontSize(fontSize);
       }
     } catch (error) {
         console.error('Error getting preferences:', error);
@@ -83,8 +86,12 @@ const Questionnaire = () => {
   useEffect(() => {
     getCacheAndUpdateSampleData();
   }, []);
-
-
+  
+  const sizeMapping = {
+    [i18n.t('small')]: 'small',
+    [i18n.t('medium')]: 'medium',
+    [i18n.t('large')]: 'large',
+  };
 
   return (
     <View style={styles.container}>
@@ -95,6 +102,8 @@ const Questionnaire = () => {
         <View style={styles.question}>
           <Text style={styles.questionfont}>{i18n.t('enablespeechtotext')}:</Text>
           <Switch
+            trackColor={{ false: styles.negative, true: styles.positive }}
+            thumbColor={speechToText ? styles.positive : styles.negative}
             onValueChange={setSpeechToTextEnabled}
             value={speechToText}
           />
@@ -107,10 +116,14 @@ const Questionnaire = () => {
             {[i18n.t('small'), i18n.t('medium'), i18n.t('large')].map((size) => (
               <Pressable
                 key={size}
-                onPress={() => setFontSize(size)}
-                style={[styles.button, fontSize === size && styles1.selectedButton]}
+                onPress={() => {
+                  setFontSize(sizeMapping[size]);
+                  setStyles(useDynamicStyles(themes[theme], fontsizes[sizeMapping[size]]))
+
+                }}
+                style={[styles.button, fontSize === size && styles.selectedButton]}
               >
-                <Text style={[styles.text, {fontSize: 20}]}>{size}</Text>
+                <Text style={styles.text}>{size}</Text>
               </Pressable>
             ))}
           </View>
@@ -142,7 +155,7 @@ const Questionnaire = () => {
               items={themeMap}
               onValueChange={(value) => {
                 setTheme(value);
-                setStyles(useDynamicStyles(themes[value]))
+                setStyles(useDynamicStyles(themes[value], fontsizes[fontSize]))
               }}
               style={styles.pickerstyle}
               value={theme}
@@ -162,16 +175,17 @@ const Questionnaire = () => {
           <Text style={styles.questionfont}>{i18n.t('select') +" "+ i18n.t('frequentlyused') +" "+ i18n.t('apps')}:</Text>
 
           <Pressable style={styles.button} onPress={() => setModalVisible(true)}>
-            <Text style={[styles.text, {fontSize: 20}]}>{i18n.t('select') +" "+ i18n.t('apps')}</Text>
+            <Text style={styles.text}>{i18n.t('select') +" "+ i18n.t('apps')}</Text>
           </Pressable>
 
           <Modal
             animationType="slide"
-            transparent={true}
+            transparent={false}
             visible={modalVisible}
+            style={styles.container}
             onRequestClose={() => setModalVisible(!modalVisible)}
           >
-            <View style={styles.modalView}>
+            <View style={styles.container}>
               <ScrollView>
                 {sample.map((app, index) => (
                   <Pressable
@@ -179,7 +193,7 @@ const Questionnaire = () => {
                     style={styles1.appOption}
                     onPress={() => toggleAppSelection(app.appName)}
                   >
-                    <Text style={{ color: selectedApps.includes(app.appName) ? '#FF6347' : '#000' }}>
+                    <Text style={[styles.text , { color: selectedApps.includes(app.appName) ? styles.negative : styles.positive }]}>
                     {selectedApps.includes(app.appName) ? app.appName + ' [remove]': app.appName + ' [add]' }
                     </Text>
                   </Pressable>
@@ -189,7 +203,7 @@ const Questionnaire = () => {
                 style={styles.button}
                 onPress={() => setModalVisible(!modalVisible)}
               >
-                <Text style={[styles.text, {fontSize:20}]}>{i18n.t('close')}</Text>
+                <Text style={styles.text}>{i18n.t('close')}</Text>
               </Pressable>
             </View>
           </Modal>

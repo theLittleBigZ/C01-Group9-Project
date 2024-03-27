@@ -86,7 +86,7 @@ export const useDynamicStyles = (theme) => {
     flexDirection:'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: theme.buttontext,
+    backgroundColor: theme.button,
     borderColor: 'black',
     borderWidth: 2,
     width: '10%',

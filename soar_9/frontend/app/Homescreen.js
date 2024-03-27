@@ -95,7 +95,7 @@ const Homescreen = () => {
                         <Text style={styles.text}>{i18n.t('contacts')}</Text>
                     </Pressable>
                     <Pressable style={styles.button} onPress={() => router.replace("/Dialer")}>
-                      <Text style={styles.words}>{i18n.t('dialer')}</Text>
+                      <Text style={styles.text}>{i18n.t('dialer')}</Text>
                     </Pressable>
                     {isUserLoggedIn ? (
                     <Pressable style={styles.button} onPress={handleLogout}>

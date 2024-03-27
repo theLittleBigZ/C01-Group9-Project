@@ -22,6 +22,7 @@ const ContactScreen = () => {
         if (status === "granted"){
           const data = await getAllContacts();
           setContactsData(data);
+          setSearchResult(data);
         }
       };
   
@@ -43,16 +44,16 @@ const ContactScreen = () => {
 
   function callContact(contact) {
     if (contact.phoneNumbers && contact.phoneNumbers.length > 0) {
-      const buttoncolourNumber = contact.phoneNumbers.find((phone) => phone.isbuttoncolour) || contact.phoneNumbers[0];
-      console.log(buttoncolourNumber);
-      console.log('Calling:', buttoncolourNumber.number);
-      Linking.openURL("tel:" + buttoncolourNumber.number);
+      const primaryNumber = contact.phoneNumbers.find((phone) => phone.isPrimary) || contact.phoneNumbers[0];
+      console.log(primaryNumber);
+      console.log('Calling:', primaryNumber.number);
+      Linking.openURL("tel:" + primaryNumber.number);
     } else {
       console.log("This contact does not have a phone number associated with it,");
     }
   }
 
-  function handleFavourite(contact, op) {
+  function handleFavourite(contact) {
     const isFavourite = favouriteContacts.some(favContact => favContact.id === contact.id);
 
     if (isFavourite){
@@ -66,77 +67,94 @@ const ContactScreen = () => {
   }
   
   function search(query) {
-    setSearchResult(contactsData.filter(
-      (contact) => (contact.firstName.startsWith(query) || contact.lastName.startsWith(query))));
-      //and then just change it so it displays search results instead of contacts data
+    const result = contactsData.filter(
+      (contact) => ((contact.firstName !== undefined && contact.firstName.toLowerCase().startsWith(query.toLowerCase())) 
+        || (contact.lastName !== undefined && contact.lastName.toLowerCase().startsWith(query.toLowerCase()))));
+    //if no contacts start with the string, return any contacts that contain it
+    if (result.length === 0){
+      console.log("no such contacts")
+      const regex = new RegExp(query, 'i');
+      setSearchResult(contactsData.filter((contact) => (regex.test(contact.firstName) || regex.test(contact.lastName))));
+      return
+    } 
+    setSearchResult(result);
+    console.log("searching for: " + query);
   }
 
   const Contact = ({contact}) => (
     <View style={[styles.container, {borderColor: 'black',  borderWidth: 2,
         borderRadius: 10}]}>
           <Text style={styles.text}>
-            {contact.firstName}
-            {contact.lastName ? ` ${contact.lastName}` : ""}
+            {contact.firstName ? `${contact.firstName.trim()}` : ""}
+            {contact.lastName ? ` ${contact.lastName.trim()}` : ""}
           </Text>
           <Pressable style={styles.button} onPress={() => callContact(contact)}>
-            <Text style={styles.text}>Call</Text>
+            <Text style={styles.text}>{i18n.t('call')}</Text>
           </Pressable> 
           {favouriteContacts.some(favContact => favContact.id === contact.id) ? (
             <Pressable style={styles.button} onPress={() => handleFavourite(contact)}>
-              <Text style={styles.text}>Remove Favourite</Text>
+              <Text style={styles.text}>{i18n.t('removeFavourite')}</Text>
             </Pressable>
           ):(
             <Pressable style={styles.button} onPress={() => handleFavourite(contact)}>
-              <Text style={styles.text}>Add Favourite</Text>
+              <Text style={styles.text}>{i18n.t('addFavourite')}</Text>
             </Pressable>
           )} 
-        </View>);
+        </View>
+  );
 
   return (
     <View style={styles.container}>
       {pageState === 1 ? (
-        favouriteContacts && favouriteContacts.length > 0 ? (
-          <FlatList style={styles.text} data={favouriteContacts} 
-            renderItem={({item}) => (
-              //only show contacts that are still available in the device
-              contactsData.some(availableContact => availableContact.id === item.id) ? (
-                //render contact if available
-                <Contact contact={item}/>
-              ) : (
-                //if not available remove from favourites
-                <Text>No contact</Text>
-                //handleFavourite(item)
-              )
-        )}
+        <View style={styles.container}>
+          <Text style={styles.Header}>{i18n.t('favouriteContacts')}</Text>
+          <Divider/>
+          {favouriteContacts && favouriteContacts.length > 0 ? (
+            <FlatList style={styles.text} data={favouriteContacts} 
+              renderItem={({item}) => (
+                //only show contacts that are still available in the device
+                contactsData.some(availableContact => availableContact.id === item.id) ? (
+                  //render contact if available
+                  <Contact contact={item}/>
+                ) : (
+                  //if not available remove from favourites
+                  handleFavourite(item)))}
+              keyExtractor={(item) => item.id}
+              ItemSeparatorComponent={() => <View style={{ height: 10 }} />}/>
+              ):(
+                <View style={[styles.container, {justifyContent: 'center'}]}>
+                  <Text style={styles.text}>{i18n.t('noFavouriteContacts')}</Text>
+                </View>
+              )}
+        </View>
+        ):(
+        <View style={styles.container}>
+          <TextInput ref={input => { this.textInput = input }} style={styles.input} onChangeText={query => search(query)} placeholder={i18n.t('searchContacts')}/>
+          <Pressable style={styles.button} onPress={() => {setSearchResult(""); this.textInput.clear(); search("")}}>
+            <Text style={[styles.text, {fontSize:20}]}>{i18n.t('clearSearch')}</Text>
+            </Pressable>
+          <FlatList style={styles.text} data={searchResult} 
+            renderItem={({item}) => (<Contact contact={item}/>)}
             keyExtractor={(item) => item.id}
             ItemSeparatorComponent={() => <View style={{ height: 10 }} />}/>
-            
-            ):(
-              <Text style={styles.text}>No favourite contacts yet!</Text>
-            )
-        ):(
-        <FlatList style={styles.text} data={contactsData} 
-          renderItem={({item}) => (<Contact contact={item}/>)}
-          keyExtractor={(item) => item.id}
-          ItemSeparatorComponent={() => <View style={{ height: 10 }} />}/>
-        )}
-      
-    <View style={styles.container}>
-    <Divider/>
-    <Text style={[styles.text]}>{i18n.t('navigateto')}:</Text>
-    {pageState == 0 ? (
-      <Pressable style={styles.button} onPress={() => setPageState(1)}>
-        <Text style={[styles.text, {fontSize:20}]}>{i18n.t('Favourite Contacts')}</Text>
-      </Pressable>
-    ):(
-      <Pressable style={styles.button} onPress={() => setPageState(0)}>
-      <Text style={[styles.text, {fontSize:20}]}>{i18n.t('All Contacts')}</Text>
-      </Pressable>
-    )}
-    <Pressable style={styles.button} onPress={() => router.replace("/Homescreen")}>
-                <Text style={[styles.text, {fontSize:20}]}>{i18n.t('home')}</Text>
-            </Pressable>
-    </View>
+        </View>
+        )
+      }
+  
+      <Divider/>
+      <Text style={[styles.text]}>{i18n.t('navigateto')}:</Text>
+      {pageState == 0 ? (
+        <Pressable style={styles.button} onPress={() => setPageState(1)}>
+          <Text style={[styles.text, {fontSize:20}]}>{i18n.t('favouriteContacts')}</Text>
+        </Pressable>
+      ):(
+        <Pressable style={styles.button} onPress={() => setPageState(0)}>
+        <Text style={[styles.text, {fontSize:20}]}>{i18n.t('allContacts')}</Text>
+        </Pressable>
+      )}
+      <Pressable style={styles.button} onPress={() => router.replace("/Homescreen")}>
+                  <Text style={[styles.text, {fontSize:20}]}>{i18n.t('home')}</Text>
+              </Pressable>
   </View>
   );
 };

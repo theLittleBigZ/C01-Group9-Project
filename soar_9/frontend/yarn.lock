@@ -5913,6 +5913,11 @@ react-native-i18n@^2.0.15:
   dependencies:
     i18n-js "3.0.11"
 
+react-native-intent-launcher@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.npmjs.org/react-native-intent-launcher/-/react-native-intent-launcher-0.2.1.tgz"
+  integrity sha512-V1rzMQrMsvvLA8mJqw2lrHwMseeo8XEbzNI9c2YsR2oUTF2tzw4mHzV/mKuBxL2cJEksPekpA53vJeM8YtjwYA==
+
 react-native-localize@^3.0.6:
   version "3.0.6"
   resolved "https://registry.npmjs.org/react-native-localize/-/react-native-localize-3.0.6.tgz"

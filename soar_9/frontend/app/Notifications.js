@@ -1,35 +1,44 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList } from 'react-native';
-import { registerForPushNotificationsAsync } from '../services/notificationsService.js';
+import { View, Text } from 'react-native';
+import { registerForPushNotificationsAsync, fetchNotifications } from '../services/notificationsService.js';
+import { notify } from '../services/apiServices.js';
+import { Button } from 'react-native-paper';
+
 
 const Notifications = () => {
-
     const [notifications, setNotifications] = useState([]);
+    const [token, setToken] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
             const token = await registerForPushNotificationsAsync();
-            console.log(token);
-            console.log('Fetching notifications for token:', token);
-            // Fetch notifications using the token
-            // const notifications = await fetchNotifications(token);
-            // setNotifications(notifications);
+            setToken(token);
+            const notifications = await fetchNotifications(token);
+            setNotifications(notifications);
         };
 
         fetchData();
     }, []);
 
-  return (
-    <View>
-      {/* <Text>Notifications:</Text>
-      <FlatList
-        data={notifications}
-        keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item }) => <Text>{item.message}</Text>}
-      /> */}
-      <Text>Notifications</Text>
-    </View>
-  );
+    const handleNotify = async () => {
+        if (!token) {
+            console.error('No token found');
+            return;
+        }
+        try {
+            await notify('Test notification', 'This is a test notification', token);
+            console.log('Notification Done');
+        } catch (e) {
+            console.error('Error sending notification:', e);
+        }
+    };
+
+    return (
+        <View>
+            <Text>Notifications</Text>
+            <Button onPress={handleNotify}>Send test notification</Button>
+        </View>
+    );
 };
 
 export default Notifications;

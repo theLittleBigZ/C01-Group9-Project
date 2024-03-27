@@ -194,6 +194,33 @@ app.delete("/deleteAll", async (req, res) => {
 });
 
 
+// Send notifications
+app.post("/sendNotification", async (req, res) => {
+  console.log('Sending notification to token:', req.body.token);
+  const {title, body, token} = req.body;
+  console.log('Notification:', title, body, token);
+
+  if (!title || !body || !token) {
+    return res.status(400).json({ message: 'Missing required fields' });
+  }
+
+  const response = await fetch('https://exp.host/--/api/v2/push/send', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      to: token,
+      title,
+      body,
+    }),
+  });
+
+  const data = await response.json();
+  console.log(data);
+  res.status(200).json(data);
+});
+
 app.listen(port, () => {
     console.log(`Server listening at http://localhost:${port}`);
 });

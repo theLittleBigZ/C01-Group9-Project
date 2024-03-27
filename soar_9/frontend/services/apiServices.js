@@ -1,6 +1,6 @@
 // Sending data to backend
 import axios from "axios";
-const BACKEND_URL = 'http://192.168.178.76:3000';
+const BACKEND_URL = 'http://192.168.1.137:3000';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
@@ -178,3 +178,12 @@ export const sendContactsToBackend = async (contacts) => {
     }
 }
 
+export const notify = async (title, message, token) => {
+    console.log('Sending notification to token:', token);
+    try {
+        await axios.post(`${BACKEND_URL}/sendNotification`, { title, body: message, token });
+        console.log('Notification sent');
+    } catch (e) {
+        console.error('Error sending notification:', e);
+    }
+}

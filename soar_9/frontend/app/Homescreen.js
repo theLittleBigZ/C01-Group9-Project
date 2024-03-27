@@ -68,7 +68,6 @@ const Homescreen = () => {
                 if (value !== null) {
                     const check = value.speechToText;
                     setIsTTS(check);
-                    console.log('++++++++++++++++++++++++++++++++++++++++');
                     console.log(isTTS)
                 }
             }

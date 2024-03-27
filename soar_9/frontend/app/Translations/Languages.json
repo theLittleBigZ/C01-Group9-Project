@@ -19,8 +19,10 @@
   "close": "إغلاق",
   "register": "تسجيل",
   "haveAccount": "لديك حساب؟",
-  "signout": "تسجيل الخروج", 
-  "theme": "سمة"
+  "signout": "تسجيل الخروج",
+  "theme": "سمة",
+  "clearinput": "مسح المدخلات",
+  "presstohear": "اضغط للسماع"
 },
  "bn" : {
   "home": "হোম",
@@ -43,7 +45,9 @@
   "register": "নিবন্ধন করুন",
   "haveAccount": "আপনার একটি অ্যাকাউন্ট আছে?",
   "signout": "সাইন আউট",
-  "theme": "থিম"
+  "theme": "থিম",
+  "clearinput": "ইনপুট পরিষ্কার করুন",
+  "presstohear": "শুনতে চাপ দিন"
 },
 
  "bo" : {
@@ -65,9 +69,11 @@
   "signup": "ལོག་སློང་འབད",
   "close": "ནང་སྒྲིག",
   "register": "ལོག་སློང་འབད",
-  "haveAccount": "ཁྱེད་ཀྱང་ཁྱབ་ཚར་འཛུགས་རྒྱབ་འབད་ཡོད་པ་", 
+  "haveAccount": "ཁྱེད་ཀྱང་ཁྱབ་ཚར་འཛུགས་རྒྱབ་འབད་ཡོད་པ་",
   "signout": "འཛུགས་རྒྱབ་འབད",
-  "theme": "སྒྲིག་ཀོགས་"
+  "theme": "སྒྲིག་ཀོགས་",
+  "clearinput": "དྲན་གཞིའི་སྒྲིག་འཛུགས།",
+  "presstohear": "བཀྲ་ཤུལ་གྱི་དུས་བཟང་པར།"
 },
  "en" : {
   "home": "Home",
@@ -90,7 +96,9 @@
   "register": "Register",
   "haveAccount": "Have an account?",
   "signout": "Sign Out",
-  "theme": "Theme"
+  "theme": "Theme",
+  "clearinput": "Clear Input",
+  "presstohear": "Press to Hear"
 },
  "es" : {
   "home": "Inicio",
@@ -113,7 +121,9 @@
   "register": "Registrarse",
   "haveAccount": "¿Tienes una cuenta?",
   "signout": "Cerrar sesión",
-  "theme": "tema"
+  "theme": "tema",
+  "clearinput": "Borrar entrada",
+  "presstohear": "Presione para escuchar"
 
 },
  "fa" : {
@@ -137,7 +147,9 @@
   "register": "ثبت‌نام",
   "haveAccount": "آیا حساب کاربری دارید؟",
   "signout": "خروج",
-  "theme": "تم"
+  "theme": "تم",
+  "clearinput": "پاک کردن ورودی",
+  "presstohear": "فشار برای شنیدن"
 
 },
  "fr" :{
@@ -161,7 +173,9 @@
   "register": "S'inscrire",
   "haveAccount": "Vous avez un compte?",
   "signout": "Déconnexion",
-  "theme": "thème"
+  "theme": "thème",
+  "clearinput": "Effacer l'entrée",
+  "presstohear": "Appuyez pour écouter"
 
 },
  "hi" : {
@@ -185,7 +199,9 @@
   "register": "रजिस्टर करें",
   "haveAccount": "आपका खाता है?",
   "signout": "साइन आउट",
-  "theme": "थीम"
+  "theme": "थीम",
+  "clearinput": " इनपुट साफ़ करें",
+  "presstohear": "सुनने के लिए दबाएं"
 
 },
  "id" : {
@@ -209,7 +225,9 @@
   "register": "Daftar",
   "haveAccount": "Anda memiliki akun?",
   "signout": "Keluar",
-  "theme": "tema"
+  "theme": "tema",
+  "clearinput": "Bersihkan input",
+  "presstohear": "Tekan untuk mendengar"
 },
  "pt" : {
   "home": "Página inicial",
@@ -232,7 +250,9 @@
   "register": "Registrar",
   "haveAccount": "Você tem uma conta?",
   "signout": "sair",
-  "theme": "tema"
+  "theme": "tema",
+  "clearinput": "Limpar entrada",
+  "presstohear": "Pressione para ouvir"
 },
  "ru" : {
   "home": "Домой",
@@ -255,7 +275,9 @@
   "register": "Регистрация",
   "haveAccount": "У вас есть аккаунт?",
   "signout": "Выход",
-  "theme": "тема" 
+  "theme": "тема",
+  "clearinput": "Очистить ввод",
+  "presstohear": "Нажмите, чтобы услышать"
 },
  "th" : {
   "home": "หน้าแรก",
@@ -278,7 +300,9 @@
   "register": "ลงทะเบียน",
   "haveAccount": "คุณมีบัญชีหรือไม่?",
   "signout": "ออกจากระบบ",
-  "theme": "ธีม"
+  "theme": "ธีม",
+  "clearinput": "เคลียร์ข้อมูลที่ป้อนเข้า",
+  "presstohear": "กดเพื่อได้ยิน"
 },
  "ur" : {
   "home": "ہوم",
@@ -301,7 +325,9 @@
   "register": "رجسٹر کریں",
   "haveAccount": "کیا آپ کا اکاؤنٹ ہے؟",
   "signout": "سائن آؤٹ",
-  "theme": "تھیم"
+  "theme": "تھیم",
+  "clearinput": "ان پٹ ستاکر کریں",
+  "presstohear": "سننے کے لیے دبائیں"
 },
  "vi" : {
   "home": "Trang chủ",
@@ -324,7 +350,9 @@
   "register": "Đăng ký",
   "haveAccount": "Bạn có tài khoản?",
   "signout": "đăng xuất",
-  "theme": "Chủ đề"
+  "theme": "Chủ đề",
+  "clearinput": "Xóa đầu vào",
+  "presstohear": "Nhấn để nghe"
 },
  "zh" : {
   "home": "主页",
@@ -347,5 +375,7 @@
   "register": "注册",
   "haveAccount": "您有帐户吗？",
   "signout": "退出",
-  "theme": "主题"
+  "theme": "主题",
+  "clearinput": "清除输入",
+  "presstohear": "按下以听见"
 }}

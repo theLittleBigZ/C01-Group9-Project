@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, Button, TextInput } from 'react-native';
+import { View, StyleSheet, Pressable, TextInput, Text } from 'react-native';
 import * as Speech from 'expo-speech';
+import i18n from '../Translations/PrimaryLanguage';
 import { getLanguage } from './LanguageTTS';
-import { load } from '../../services/apiServices.js';
 
 
 function TTS() {
@@ -26,11 +26,15 @@ function TTS() {
         <View style={styles.container}>
             <View>
                 <TextInput style={styles.inputBox} multiline={true} value={toSpeak} onChangeText={(e) => setToSpeak(e)} />
-                <Button title='Clear input' onPress={() => setToSpeak('')}/>
+                <Pressable onPress={() => setToSpeak('')}>
+                    <Text>{i18n.t('clearinput')}</Text>
+                </Pressable>
             </View>
 
 
-        <Button title="Press to hear the text input" onPress={speak} />
+        <Pressable onPress={speak}>
+            <Text>{i18n.t('presstohear')}</Text>
+        </Pressable>
         </View>
     );
 }

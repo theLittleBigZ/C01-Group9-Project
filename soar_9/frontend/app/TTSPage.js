@@ -3,6 +3,7 @@ import { View, Text, Pressable } from 'react-native';
 import TTS from './text-to-speech/TTS';
 import { Divider } from 'react-native-paper';
 import { router } from 'expo-router';
+import i18n from './Translations/PrimaryLanguage';
 
 function TTSPage () {
     return (
@@ -10,7 +11,7 @@ function TTSPage () {
             <TTS />
             <Divider />
             <Pressable onPress={() => router.replace("/")}>
-                <Text>Return to Home Page</Text>
+                <Text>{(i18n.t('home'))}</Text>
             </Pressable>
         </View>
     )

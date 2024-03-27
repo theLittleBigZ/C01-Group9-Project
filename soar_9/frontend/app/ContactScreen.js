@@ -12,6 +12,8 @@ const ContactScreen = () => {
   const [favouriteContacts, setFavouriteContacts] = useState([]);
   const styles = getStyles();
 
+
+
   useEffect(() => {
       const fetchData = async () => {
         const status = await askForContactPermission();

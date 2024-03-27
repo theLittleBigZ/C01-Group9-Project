@@ -117,7 +117,7 @@ const Homescreen = () => {
                     </Pressable>
                     {isTTS ? (
                         <Pressable style={styles.button} onPress={() => router.replace("/TTSPage")}>
-                            <Text style={styles.text}>Text-To-Speech</Text>
+                            <Text style={styles.text}>{i18n.t('texttospeech')}</Text>
                         </Pressable>
                     ): undefined}
                     {isUserLoggedIn ? (

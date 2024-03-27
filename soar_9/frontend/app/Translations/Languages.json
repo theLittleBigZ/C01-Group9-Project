@@ -22,7 +22,8 @@
   "signout": "تسجيل الخروج",
   "theme": "سمة",
   "clearinput": "مسح المدخلات",
-  "presstohear": "اضغط للسماع"
+  "presstohear": "اضغط للسماع",
+  "texttospeech": "النص إلى الكلام"
 },
  "bn" : {
   "home": "হোম",
@@ -47,7 +48,8 @@
   "signout": "সাইন আউট",
   "theme": "থিম",
   "clearinput": "ইনপুট পরিষ্কার করুন",
-  "presstohear": "শুনতে চাপ দিন"
+  "presstohear": "শুনতে চাপ দিন",
+  "texttospeech": "টেক্সট থেকে স্পীচ"
 },
 
  "bo" : {
@@ -73,7 +75,8 @@
   "signout": "འཛུགས་རྒྱབ་འབད",
   "theme": "སྒྲིག་ཀོགས་",
   "clearinput": "དྲན་གཞིའི་སྒྲིག་འཛུགས།",
-  "presstohear": "བཀྲ་ཤུལ་གྱི་དུས་བཟང་པར།"
+  "presstohear": "བཀྲ་ཤུལ་གྱི་དུས་བཟང་པར།",
+  "texttospeech": "ཚིག་ཡིག་འདིར་བོའི་སྡེ།"
 },
  "en" : {
   "home": "Home",
@@ -98,7 +101,8 @@
   "signout": "Sign Out",
   "theme": "Theme",
   "clearinput": "Clear Input",
-  "presstohear": "Press to Hear"
+  "presstohear": "Press to Hear",
+  "texttospeech": "Text-To-Speech"
 },
  "es" : {
   "home": "Inicio",
@@ -123,7 +127,8 @@
   "signout": "Cerrar sesión",
   "theme": "tema",
   "clearinput": "Borrar entrada",
-  "presstohear": "Presione para escuchar"
+  "presstohear": "Presione para escuchar",
+  "texttospeech": "Texto a Voz"
 
 },
  "fa" : {
@@ -149,7 +154,8 @@
   "signout": "خروج",
   "theme": "تم",
   "clearinput": "پاک کردن ورودی",
-  "presstohear": "فشار برای شنیدن"
+  "presstohear": "فشار برای شنیدن",
+  "texttospeech": "متن به گفتار"
 
 },
  "fr" :{
@@ -175,7 +181,8 @@
   "signout": "Déconnexion",
   "theme": "thème",
   "clearinput": "Effacer l'entrée",
-  "presstohear": "Appuyez pour écouter"
+  "presstohear": "Appuyez pour écouter",
+  "texttospeech": "Texte-à-voix"
 
 },
  "hi" : {
@@ -201,7 +208,8 @@
   "signout": "साइन आउट",
   "theme": "थीम",
   "clearinput": " इनपुट साफ़ करें",
-  "presstohear": "सुनने के लिए दबाएं"
+  "presstohear": "सुनने के लिए दबाएं",
+  "texttospeech": "पाठ-से-बोलाई "
 
 },
  "id" : {
@@ -227,7 +235,8 @@
   "signout": "Keluar",
   "theme": "tema",
   "clearinput": "Bersihkan input",
-  "presstohear": "Tekan untuk mendengar"
+  "presstohear": "Tekan untuk mendengar",
+  "texttospeech": "Teks-ke-Suara"
 },
  "pt" : {
   "home": "Página inicial",
@@ -252,7 +261,8 @@
   "signout": "sair",
   "theme": "tema",
   "clearinput": "Limpar entrada",
-  "presstohear": "Pressione para ouvir"
+  "presstohear": "Pressione para ouvir",
+  "texttospeech": "Texto-para-Fala"
 },
  "ru" : {
   "home": "Домой",
@@ -277,7 +287,8 @@
   "signout": "Выход",
   "theme": "тема",
   "clearinput": "Очистить ввод",
-  "presstohear": "Нажмите, чтобы услышать"
+  "presstohear": "Нажмите, чтобы услышать",
+  "texttospeech": "Текст в речь"
 },
  "th" : {
   "home": "หน้าแรก",
@@ -302,7 +313,8 @@
   "signout": "ออกจากระบบ",
   "theme": "ธีม",
   "clearinput": "เคลียร์ข้อมูลที่ป้อนเข้า",
-  "presstohear": "กดเพื่อได้ยิน"
+  "presstohear": "กดเพื่อได้ยิน",
+  "texttospeech": "ข้อความเป็นเสียง"
 },
  "ur" : {
   "home": "ہوم",
@@ -327,7 +339,8 @@
   "signout": "سائن آؤٹ",
   "theme": "تھیم",
   "clearinput": "ان پٹ ستاکر کریں",
-  "presstohear": "سننے کے لیے دبائیں"
+  "presstohear": "سننے کے لیے دبائیں",
+  "texttospeech": "متن سے بولنا"
 },
  "vi" : {
   "home": "Trang chủ",
@@ -352,7 +365,8 @@
   "signout": "đăng xuất",
   "theme": "Chủ đề",
   "clearinput": "Xóa đầu vào",
-  "presstohear": "Nhấn để nghe"
+  "presstohear": "Nhấn để nghe",
+  "texttospeech": "Văn bản thành giọng nói"
 },
  "zh" : {
   "home": "主页",
@@ -377,5 +391,6 @@
   "signout": "退出",
   "theme": "主题",
   "clearinput": "清除输入",
-  "presstohear": "按下以听见"
+  "presstohear": "按下以听见",
+  "texttospeech": "文字转语音 "
 }}

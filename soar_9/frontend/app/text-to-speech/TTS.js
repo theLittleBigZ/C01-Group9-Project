@@ -24,24 +24,22 @@ function TTS() {
 
 
     return (
-        <View style={styles.container}>
-            <View>
-                <TextInput 
-                style={styles.input} 
-                multiline={true} 
-                placeholderTextColor={styles.input.color}
-                cursorColor={styles.input.borderColor}
-                value={toSpeak} 
-                onChangeText={(e) => setToSpeak(e)} />
-                <Pressable style={styles.button} onPress={() => setToSpeak('')}>
+        <View style={[styles.container, {alignItems: 'center'}]}>
+            <Text style={styles.Header}>{i18n.t('texttospeech')}</Text>
+            <TextInput 
+            style={[styles.input, {height: '50%', width: '100%'}]} 
+            multiline={true} 
+            placeholderTextColor={styles.input.color}
+            cursorColor={styles.input.borderColor}
+            value={toSpeak} 
+            onChangeText={(e) => setToSpeak(e)} />   
+
+            <Pressable style={styles.button} onPress={() => setToSpeak('')}>
                     <Text style={styles.text}>{i18n.t('clearinput')}</Text>
-                </Pressable>
-            </View>
-
-
-        <Pressable style={styles.button} onPress={speak}>
-            <Text style={styles.text}>{i18n.t('presstohear')}</Text>
-        </Pressable>
+            </Pressable>
+            <Pressable style={styles.button} onPress={speak}>
+                <Text style={styles.text}>{i18n.t('presstohear')}</Text>
+            </Pressable>
         </View>
     );
 }

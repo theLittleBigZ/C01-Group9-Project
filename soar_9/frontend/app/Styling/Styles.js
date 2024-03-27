@@ -55,21 +55,21 @@ export const useDynamicStyles = (theme, fontsize) => {
       fontSize: fontsize.text,
       color: theme.buttontext,
     },
-    modalView: {
-      margin: 20,
-      backgroundColor: theme.backgroundColor,
-      borderRadius: 20,
-      padding: 35,
-      alignItems: "center",
-      shadowColor: "#000",
-      shadowOffset: {
-        width: 0,
-        height: 2
-      },
-      shadowOpacity: 0.25,
-      shadowRadius: 4,
-      elevation: 5
-    },
+    // modalView: {
+    //   margin: 20,
+    //   backgroundColor: theme.backgroundColor,
+    //   borderRadius: 20,
+    //   padding: 35,
+    //   alignItems: "center",
+    //   shadowColor: "#000",
+    //   shadowOffset: {
+    //     width: 0,
+    //     height: 2
+    //   },
+    //   shadowOpacity: 0.25,
+    //   shadowRadius: 4,
+    //   elevation: 5
+    // },
     question: {
       margin: 10,
       flexDirection:'column',
@@ -91,18 +91,18 @@ export const useDynamicStyles = (theme, fontsize) => {
     selectedButton: {
       backgroundColor: theme.secondary,
     },
-    bottomNav: {
-      backgroundColor: theme.secondary,
-      width: '100%',
-      justifyContent: 'flex-end',
-    },
-    headerfont: {
-      color: theme.headertext,
-      textAlign: 'center',
-      fontSize: fontsize.header,
-      fontWeight: 'bold',
-      fontFamily: 'monospace',
-    },
+    // bottomNav: {
+    //   backgroundColor: theme.secondary,
+    //   width: '100%',
+    //   justifyContent: 'flex-end',
+    // },
+    // headerfont: {
+    //   color: theme.headertext,
+    //   textAlign: 'center',
+    //   fontSize: fontsize.header,
+    //   fontWeight: 'bold',
+    //   fontFamily: 'monospace',
+    // },
     positive: theme.positive,
     negative: theme.negative,
     pickerstyle: {

@@ -1,7 +1,7 @@
 // Import necessary components and hooks
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Switch, ScrollView, Pressable, Modal} from 'react-native';
-import { Divider } from 'react-native-paper'; 
+import { Divider } from 'react-native-paper';
 import { load, saveToCache } from '../services/apiServices';
 import RNPickerSelect from 'react-native-picker-select';
 import {sample} from '../sample-apps';
@@ -23,7 +23,7 @@ const Questionnaire = () => {
   const [selectedApps, setSelectedApps] = useState([]);
   const [styles, setStyles] = useState(useDynamicStyles(getTheme()));
 
-  
+
   useEffect(() => {
     const fetchAndSetStyles = async () => {
       const fetchedTheme = await getTheme();
@@ -43,13 +43,13 @@ const Questionnaire = () => {
       setSelectedApps([...selectedApps, appName]);
     }
   };
-  
+
   // Function to save all settings to AsyncStorage
   const savePreferences = async () => {
     const userPreferences = {
       speechToText,
       fontSize,
-      theme, 
+      theme,
       language,
       brightness,
       selectedApps,
@@ -82,7 +82,7 @@ const Questionnaire = () => {
   useEffect(() => {
     getCacheAndUpdateSampleData();
   }, []);
-  
+
 
 
   return (
@@ -212,5 +212,5 @@ const styles1 = StyleSheet.create({
     marginBottom: 15,
     alignItems: 'center',
   },
-  
+
 });

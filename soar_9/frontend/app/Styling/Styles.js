@@ -78,7 +78,7 @@ export const useDynamicStyles = (theme) => {
       padding: 10,
     },
   keypadNumber: {
-    color: colours.buttontext,
+    color: theme.buttontext,
     padding: 10,
     flex: 1,
     borderRadius: 50,
@@ -86,7 +86,7 @@ export const useDynamicStyles = (theme) => {
     flexDirection:'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: colours.primary,
+    backgroundColor: theme.buttontext,
     borderColor: 'black',
     borderWidth: 2,
     width: '10%',

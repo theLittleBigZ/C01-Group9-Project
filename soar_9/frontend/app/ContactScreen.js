@@ -5,7 +5,6 @@ import * as Linking from 'expo-linking'
 import { Divider, TextInput } from 'react-native-paper'; 
 import i18n from './Translations/PrimaryLanguage';
 import { router } from 'expo-router';
-import {colours} from "./Styling/Colours.js";
 import { getStyles } from './Styling/Styles';
 
 const ContactScreen = () => {
@@ -122,9 +121,9 @@ const ContactScreen = () => {
           ItemSeparatorComponent={() => <View style={{ height: 10 }} />}/>
         )}
       
-    <View style={{backgroundColor: colours.secondary, width: '100%'}}>
+    <View style={styles.container}>
     <Divider/>
-    <Text style={[styles.text, {color: colours.headertext}]}>{i18n.t('navigateto')}:</Text>
+    <Text style={[styles.text]}>{i18n.t('navigateto')}:</Text>
     {pageState == 0 ? (
       <Pressable style={styles.button} onPress={() => setPageState(1)}>
         <Text style={[styles.text, {fontSize:20}]}>{i18n.t('Favourite Contacts')}</Text>

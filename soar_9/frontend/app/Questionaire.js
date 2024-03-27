@@ -16,7 +16,7 @@ import { useDynamicStyles } from './Styling/Styles.js';
 const Questionnaire = () => {
   // State for each setting
   const [speechToText, setSpeechToTextEnabled] = useState(false);
-  const [fontSize, setFontSize] = useState('medium'); // Default to 'Medium'
+  const [fontSize, setFontSize] = useState('Medium'); // Default to 'Medium'
   const [theme, setTheme] = useState('default');
   const [language, setLanguage] = useState('en');
   const [brightness, setBrightness] = useState(0.5); // Assuming brightness ranges from 0 to 1
@@ -75,7 +75,7 @@ const Questionnaire = () => {
         setTheme(value.theme);
         setSpeechToTextEnabled(value.speechToText);
         setLanguage(value.language);
-        setFontSize(fontSize);
+        setFontSize(value.fontSize);
       }
     } catch (error) {
         console.error('Error getting preferences:', error);
@@ -88,9 +88,9 @@ const Questionnaire = () => {
   }, []);
   
   const sizeMapping = {
-    [i18n.t('small')]: 'small',
-    [i18n.t('medium')]: 'medium',
-    [i18n.t('large')]: 'large',
+    [i18n.t('small')]: 'Small',
+    [i18n.t('medium')]: 'Medium',
+    [i18n.t('large')]: 'Large',
   };
 
   return (
@@ -121,7 +121,7 @@ const Questionnaire = () => {
                   setStyles(useDynamicStyles(themes[theme], fontsizes[sizeMapping[size]]))
 
                 }}
-                style={[styles.button, fontSize === size && styles.selectedButton]}
+                style={[styles.button, fontSize === sizeMapping[size] && styles.selectedButton]}
               >
                 <Text style={styles.text}>{size}</Text>
               </Pressable>

@@ -8,7 +8,7 @@ const initialize = async() => {
     try {
       let value = await load();
       if (value !== null) {
-          language = value.language;
+        language = value.language;
       }
     }catch (error) {
       console.error('Error getting language:', error);
@@ -68,7 +68,7 @@ export const getLanguage = async () => {
 
     }
 
-    console.log(language)
+    console.log("Your Language is: " + language);
 
     return language;
 

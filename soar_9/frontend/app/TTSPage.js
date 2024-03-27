@@ -4,14 +4,17 @@ import TTS from './text-to-speech/TTS';
 import { Divider } from 'react-native-paper';
 import { router } from 'expo-router';
 import i18n from './Translations/PrimaryLanguage';
+import { getStyles } from './Styling/Styles';
 
 function TTSPage () {
+    const styles = getStyles();
+
     return (
-        <View>
+        <View style={styles.container}>
             <TTS />
             <Divider />
-            <Pressable onPress={() => router.replace("/")}>
-                <Text>{(i18n.t('home'))}</Text>
+            <Pressable style={styles.button} onPress={() => router.replace("/")}>
+                <Text style={styles.text}>{(i18n.t('home'))}</Text>
             </Pressable>
         </View>
     )

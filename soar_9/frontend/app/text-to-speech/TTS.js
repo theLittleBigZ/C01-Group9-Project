@@ -3,7 +3,7 @@ import { View, StyleSheet, Pressable, TextInput, Text } from 'react-native';
 import * as Speech from 'expo-speech';
 import i18n from '../Translations/PrimaryLanguage';
 import { getLanguage } from './LanguageTTS';
-
+import { getStyles } from '../Styling/Styles';
 
 function TTS() {
 
@@ -11,6 +11,7 @@ function TTS() {
 
     const language = async () => {return await getLanguage()}
 
+    const styles = getStyles();
 
     const speak = async () => {
         const getLang = await language();
@@ -25,15 +26,21 @@ function TTS() {
     return (
         <View style={styles.container}>
             <View>
-                <TextInput style={styles.inputBox} multiline={true} value={toSpeak} onChangeText={(e) => setToSpeak(e)} />
-                <Pressable onPress={() => setToSpeak('')}>
-                    <Text>{i18n.t('clearinput')}</Text>
+                <TextInput 
+                style={styles.input} 
+                multiline={true} 
+                placeholderTextColor={styles.input.color}
+                cursorColor={styles.input.borderColor}
+                value={toSpeak} 
+                onChangeText={(e) => setToSpeak(e)} />
+                <Pressable style={styles.button} onPress={() => setToSpeak('')}>
+                    <Text style={styles.text}>{i18n.t('clearinput')}</Text>
                 </Pressable>
             </View>
 
 
-        <Pressable onPress={speak}>
-            <Text>{i18n.t('presstohear')}</Text>
+        <Pressable style={styles.button} onPress={speak}>
+            <Text style={styles.text}>{i18n.t('presstohear')}</Text>
         </Pressable>
         </View>
     );

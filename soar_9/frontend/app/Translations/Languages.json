@@ -19,18 +19,11 @@
   "close": "إغلاق",
   "register": "تسجيل",
   "haveAccount": "لديك حساب؟",
-  "signout": "تسجيل الخروج", 
+  "signout": "تسجيل الخروج",
   "theme": "سمة",
-  "favouriteContacts": "جهات الاتصال المفضلة",
-    "allContacts": "جميع جهات الاتصال",
-    "searchContacts": "البحث عن جهات الاتصال",
-    "noFavouriteContacts": "انتقل إلى جميع جهات الاتصال لحفظ جهات الاتصال المفضلة الخاصة بك!",
-    "clearSearch": "مسح البحث",
-    "removeFavourite": "إزالة المفضلة",
-    "addFavourite": "إضافة المفضلة",
-    "call": "اتصال",
-    "dialer": "الاتصال",
-    "clearNumber": "مسح الرقم"
+  "clearinput": "مسح المدخلات",
+  "presstohear": "اضغط للسماع",
+  "texttospeech": "النص إلى الكلام"
 },
  "bn" : {
   "home": "হোম",
@@ -54,16 +47,9 @@
   "haveAccount": "আপনার একটি অ্যাকাউন্ট আছে?",
   "signout": "সাইন আউট",
   "theme": "থিম",
-  "favouriteContacts": "প্রিয় যোগাযোগ",
-    "allContacts": "সমস্ত যোগাযোগ",
-    "searchContacts": "যোগাযোগ অনুসন্ধান",
-    "noFavouriteContacts": "পছন্দের যোগাযোগগুলি সংরক্ষণ করতে সব যোগাযোগে যান!",
-    "clearSearch": "অনুসন্ধান পরিষ্কার করুন",
-    "removeFavourite": "পছন্দ সরান",
-    "addFavourite": "পছন্দ যোগ করুন",
-    "call": "কল",
-    "dialer": "ডায়ালার",
-    "clearNumber": "নম্বর মুছে ফেলুন"
+  "clearinput": "ইনপুট পরিষ্কার করুন",
+  "presstohear": "শুনতে চাপ দিন",
+  "texttospeech": "টেক্সট থেকে স্পীচ"
 },
 
  "bo" : {
@@ -85,19 +71,12 @@
   "signup": "ལོག་སློང་འབད",
   "close": "ནང་སྒྲིག",
   "register": "ལོག་སློང་འབད",
-  "haveAccount": "ཁྱེད་ཀྱང་ཁྱབ་ཚར་འཛུགས་རྒྱབ་འབད་ཡོད་པ་", 
+  "haveAccount": "ཁྱེད་ཀྱང་ཁྱབ་ཚར་འཛུགས་རྒྱབ་འབད་ཡོད་པ་",
   "signout": "འཛུགས་རྒྱབ་འབད",
   "theme": "སྒྲིག་ཀོགས་",
-  "favouriteContacts": "བསྐྱར་ཞུ་ཆས་དང་ཁྱབ་ཚར་བསྐུལ",
-    "allContacts": "ཁྱབ་ཚར་ཆོག",
-    "searchContacts": "ཁྱབ་ཚར་འཚོལ",
-    "noFavouriteContacts": "བསྐྱར་ཞུ་ཆས་དང་ཁྱབ་ཚར་འཚོལ་བའི་ཁྱབ་ཚར་ཆེ་བ་འོང་!",
-    "clearSearch": "འཚོལ་བའི་ཁྱབ་ཚར་སོང་",
-    "removeFavourite": "བསྐྱར་ཞུ་ཆས་ཆོག",
-    "addFavourite": "བསྐྱར་ཞུ་ཆས་གཅིག",
-    "call": "འབྲི་བ་",
-    "dialer": "འཛུལ་གཏོང་ཀ",
-    "clearNumber": "ཨེསི་ཨང་མ་གཏོང་བ་"
+  "clearinput": "དྲན་གཞིའི་སྒྲིག་འཛུགས།",
+  "presstohear": "བཀྲ་ཤུལ་གྱི་དུས་བཟང་པར།",
+  "texttospeech": "ཚིག་ཡིག་འདིར་བོའི་སྡེ།"
 },
  "en" : {
   "home": "Home",
@@ -121,16 +100,9 @@
   "haveAccount": "Have an account?",
   "signout": "Sign Out",
   "theme": "Theme",
-  "favouriteContacts": "Favourite Contacts",
-  "allContacts": "All Contacts",
-  "searchContacts": "Search Contacts",
-  "noFavouriteContacts": "Go to All Contacts to save your favourite contacts!",
-  "clearSearch": "Clear Search", 
-  "removeFavourite": "Remove Favourite",
-  "addFavourite": "Add Favorite",
-  "call": "Call",
-  "dialer": "Dialer",
-  "clearNumber": "Clear Number"
+  "clearinput": "Clear Input",
+  "presstohear": "Press to Hear",
+  "texttospeech": "Text-To-Speech"
 },
  "es" : {
   "home": "Inicio",
@@ -154,16 +126,9 @@
   "haveAccount": "¿Tienes una cuenta?",
   "signout": "Cerrar sesión",
   "theme": "tema",
-  "favouriteContacts": "Contactos Favoritos",
-    "allContacts": "Todos los Contactos",
-    "searchContacts": "Buscar Contactos",
-    "noFavouriteContacts": "¡Ve a Todos los Contactos para guardar tus contactos favoritos!",
-    "clearSearch": "Limpiar búsqueda",
-    "removeFavourite": "Eliminar favorito",
-    "addFavourite": "Agregar Favorito",
-    "call": "Llamar",
-    "dialer": "Marcador",
-    "clearNumber": "Borrar número"
+  "clearinput": "Borrar entrada",
+  "presstohear": "Presione para escuchar",
+  "texttospeech": "Texto a Voz"
 
 },
  "fa" : {
@@ -188,16 +153,9 @@
   "haveAccount": "آیا حساب کاربری دارید؟",
   "signout": "خروج",
   "theme": "تم",
-  "favouriteContacts": "مخاطبین مورد علاقه",
-    "allContacts": "همه مخاطبین",
-    "searchContacts": "جستجوی مخاطبین",
-    "noFavouriteContacts": "برای ذخیره مخاطبین مورد علاقه خود به همه مخاطبین بروید!",
-    "clearSearch": "پاک کردن جستجو",
-    "removeFavourite": "حذف مورد علاقه",
-    "addFavourite": "افزودن به مورد علاقه",
-    "call": "تماس",
-    "dialer": "شماره گیر",
-    "clearNumber": "پاک کردن شماره"
+  "clearinput": "پاک کردن ورودی",
+  "presstohear": "فشار برای شنیدن",
+  "texttospeech": "متن به گفتار"
 
 },
  "fr" :{
@@ -222,16 +180,9 @@
   "haveAccount": "Vous avez un compte?",
   "signout": "Déconnexion",
   "theme": "thème",
-  "favouriteContacts": "Contacts Favoris",
-    "allContacts": "Tous les Contacts",
-    "searchContacts": "Rechercher des Contacts",
-    "noFavouriteContacts": "Allez à Tous les Contacts pour enregistrer vos contacts favoris !",
-    "clearSearch": "Effacer la recherche",
-    "removeFavourite": "Supprimer Favori",
-    "addFavourite": "Ajouter Favori",
-    "call": "Appel",
-    "dialer": "Composeur",
-    "clearNumber": "Effacer le numéro"
+  "clearinput": "Effacer l'entrée",
+  "presstohear": "Appuyez pour écouter",
+  "texttospeech": "Texte-à-voix"
 
 },
  "hi" : {
@@ -256,16 +207,9 @@
   "haveAccount": "आपका खाता है?",
   "signout": "साइन आउट",
   "theme": "थीम",
-  "favouriteContacts": "पसंदीदा संपर्क",
-    "allContacts": "सभी संपर्क",
-    "searchContacts": "संपर्क खोजें",
-    "noFavouriteContacts": "पसंदीदा संपर्क सहेजने के लिए सभी संपर्कों पर जाएं!",
-    "clearSearch": "साफ़ सर्च",
-    "removeFavourite": "पसंदीदा हटाएं",
-    "addFavourite": "पसंदीदा जोड़ें",
-    "call": "कॉल",
-    "dialer": "डायलर",
-    "clearNumber": "स्पष्ट संख्या"
+  "clearinput": " इनपुट साफ़ करें",
+  "presstohear": "सुनने के लिए दबाएं",
+  "texttospeech": "पाठ-से-बोलाई "
 
 },
  "id" : {
@@ -290,16 +234,9 @@
   "haveAccount": "Anda memiliki akun?",
   "signout": "Keluar",
   "theme": "tema",
-  "favouriteContacts": "Kontak Favorit",
-    "allContacts": "Semua Kontak",
-    "searchContacts": "Cari Kontak",
-    "noFavouriteContacts": "Pergi ke Semua Kontak untuk menyimpan kontak favorit Anda!",
-    "clearSearch": "Bersihkan Pencarian",
-    "removeFavourite": "Hapus Favorit",
-    "addFavourite": "Tambahkan Favorit",
-    "call": "Panggilan",
-    "dialer": "Pemanggil",
-    "clearNumber": "Bersihkan Nomor"
+  "clearinput": "Bersihkan input",
+  "presstohear": "Tekan untuk mendengar",
+  "texttospeech": "Teks-ke-Suara"
 },
  "pt" : {
   "home": "Página inicial",
@@ -323,16 +260,9 @@
   "haveAccount": "Você tem uma conta?",
   "signout": "sair",
   "theme": "tema",
-  "favouriteContacts": "Contatos Favoritos",
-    "allContacts": "Todos os Contatos",
-    "searchContacts": "Pesquisar Contatos",
-    "noFavouriteContacts": "Vá para Todos os Contatos para salvar seus contatos favoritos!",
-    "clearSearch": "Limpar Pesquisa",
-    "removeFavourite": "Remover Favorito",
-    "addFavourite": "Adicionar Favorito",
-    "call": "Chamada",
-    "dialer": "Discador",
-    "clearNumber": "Limpar Número"
+  "clearinput": "Limpar entrada",
+  "presstohear": "Pressione para ouvir",
+  "texttospeech": "Texto-para-Fala"
 },
  "ru" : {
   "home": "Домой",
@@ -356,17 +286,9 @@
   "haveAccount": "У вас есть аккаунт?",
   "signout": "Выход",
   "theme": "тема",
-  "favouriteContacts": "Избранные контакты",
-    "allContacts": "Все контакты",
-    "searchContacts": "Поиск контактов",
-    "noFavouriteContacts": "Перейдите во Все контакты, чтобы сохранить свои любимые контакты!",
-    "clearSearch": "Очистить поиск",
-    "removeFavourite": "Удалить избранное",
-    "addFavourite": "Добавить в избранное",
-    "call": "Вызов",
-    "dialer": "набиратель",
-    "clearNumber": "очистить номер"
- 
+  "clearinput": "Очистить ввод",
+  "presstohear": "Нажмите, чтобы услышать",
+  "texttospeech": "Текст в речь"
 },
  "th" : {
   "home": "หน้าแรก",
@@ -390,16 +312,9 @@
   "haveAccount": "คุณมีบัญชีหรือไม่?",
   "signout": "ออกจากระบบ",
   "theme": "ธีม",
-  "favouriteContacts": "ติดต่อที่ชื่นชอบ",
-    "allContacts": "ทุกคนติดต่อ",
-    "searchContacts": "ค้นหาผู้ติดต่อ",
-    "noFavouriteContacts": "ไปที่ทุกคนติดต่อเพื่อบันทึกที่ติดใจของคุณ!",
-    "clearSearch": "ล้างการค้นหา",
-    "removeFavourite": "ลบรายการโปรด",
-    "addFavourite": "เพิ่มรายการโปรด",
-    "call": "โทร",
-    "dialer": "โทร",
-    "clearNumber": "ล้างหมายเลข"
+  "clearinput": "เคลียร์ข้อมูลที่ป้อนเข้า",
+  "presstohear": "กดเพื่อได้ยิน",
+  "texttospeech": "ข้อความเป็นเสียง"
 },
  "ur" : {
   "home": "ہوم",
@@ -423,16 +338,9 @@
   "haveAccount": "کیا آپ کا اکاؤنٹ ہے؟",
   "signout": "سائن آؤٹ",
   "theme": "تھیم",
-  "favouriteContacts": "پسندیدہ رابطے",
-    "allContacts": "تمام رابطے",
-    "searchContacts": "رابطے تلاش کریں",
-    "noFavouriteContacts": "اپنے پسندیدہ رابطے محفوظ کرنے کے لئے تمام رابطے پر جائیں!",
-    "clearSearch": "صاف تلاش",
-    "removeFavourite": "پسندیدہ ہٹائیں",
-    "addFavourite": "پسندیدہ شامل کریں",
-    "call": "کال",
-    "dialer": "ڈائلر",
-    "clearNumber": "نمبر صاف کریں"
+  "clearinput": "ان پٹ ستاکر کریں",
+  "presstohear": "سننے کے لیے دبائیں",
+  "texttospeech": "متن سے بولنا"
 },
  "vi" : {
   "home": "Trang chủ",
@@ -456,16 +364,9 @@
   "haveAccount": "Bạn có tài khoản?",
   "signout": "đăng xuất",
   "theme": "Chủ đề",
-  "favouriteContacts": "Liên hệ Yêu thích",
-    "allContacts": "Tất cả các Liên hệ",
-    "searchContacts": "Tìm kiếm Liên hệ",
-    "noFavouriteContacts": "Đi đến Tất cả các Liên hệ để lưu các liên hệ yêu thích của bạn!",
-    "clearSearch": "Xóa Tìm kiếm",
-    "removeFavourite": "Xóa yêu thích",
-    "addFavourite": "Thêm vào Yêu thích",
-    "call": "Gọi",
-    "dialer": "Bộ gọi",
-    "clearNumber": "Xóa số"
+  "clearinput": "Xóa đầu vào",
+  "presstohear": "Nhấn để nghe",
+  "texttospeech": "Văn bản thành giọng nói"
 },
  "zh" : {
   "home": "主页",
@@ -489,14 +390,7 @@
   "haveAccount": "您有帐户吗？",
   "signout": "退出",
   "theme": "主题",
-  "favouriteContacts": "喜爱联系人",
-    "allContacts": "所有联系人",
-    "searchContacts": "搜索联系人",
-    "noFavouriteContacts": "转到所有联系人以保存您的收藏联系人！",
-    "clearSearch": "清除搜索",
-    "removeFavourite": "移除收藏",
-    "addFavourite": "添加收藏",
-    "call": "呼叫",
-    "dialer": "拨号器",
-    "clearNumber": "清除号码"
+  "clearinput": "清除输入",
+  "presstohear": "按下以听见",
+  "texttospeech": "文字转语音 "
 }}

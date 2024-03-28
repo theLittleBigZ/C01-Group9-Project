@@ -44,13 +44,13 @@ const Questionnaire = () => {
       setSelectedApps([...selectedApps, appName]);
     }
   };
-  
+
   // Function to save all settings to AsyncStorage
   const savePreferences = async () => {
     const userPreferences = {
       speechToText,
       fontSize,
-      theme, 
+      theme,
       language,
       brightness,
       selectedApps,
@@ -222,3 +222,4 @@ const Questionnaire = () => {
 };
 
 export default Questionnaire;
+

@@ -54,20 +54,6 @@ export const useDynamicStyles = (theme, fontsize) => {
       fontSize: fontsize.text,
       color: theme.buttontext,
     },
-  keypadNumber: {
-    color: theme.buttontext,
-    padding: 10,
-    flex: 1,
-    borderRadius: 50,
-    margin: 10,
-    flexDirection:'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: theme.button,
-    borderColor: theme.positive,
-    borderWidth: 2,
-    width: '10%',
-  },
     question: {
       margin: 10,
       flexDirection:'column',
@@ -92,16 +78,16 @@ export const useDynamicStyles = (theme, fontsize) => {
     negative: theme.negative,
     pickerstyle: {
       inputIOS: {
-        backgroundColor: theme.buttoncolour,
-        color: theme.buttontext,
         borderColor: theme.buttontext,
+        borderRadius: 5,
         borderWidth: 5,
-        fontsize: fontsize.input
+        color: theme.buttontext,
+        backgroundColor: theme.buttoncolour,
       },
       inputAndroid: {
         backgroundColor: theme.buttoncolour,
         color: theme.buttontext,
-        borderColor: theme.buttontext,
+        borderRadius: 5,
         borderWidth: 5,
         fontsize: fontsize.input,
       },

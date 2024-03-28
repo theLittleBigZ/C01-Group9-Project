@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { View, Text, Pressable, FlatList, TouchableOpacity, Modal, Button} from 'react-native';
-import { Divider, useTheme } from 'react-native-paper'; 
+import { Divider, useTheme } from 'react-native-paper';
 import { sample } from '../sample-apps.js';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { router } from 'expo-router';
@@ -12,13 +12,15 @@ import { getStyles } from './Styling/Styles.js';
 const Homescreen = () => {
     const [sampleData, setSampleData] = useState(sample);
 
-    const [savedApps, setSavedApps] = useState([]); 
+    const [savedApps, setSavedApps] = useState([]);
 
     const [isUserLoggedIn, setIsUserLoggedIn] = useState(false); // State to track login status
 
     const styles = getStyles();
 
     const [modalVisible, setModalVisible] = useState(false);
+
+    const [isTTS, setIsTTS] = useState(false);
 
     const handleModalButtonPress = () => {
         setModalVisible(true);
@@ -59,7 +61,26 @@ const Homescreen = () => {
         getCacheAndUpdateSampleData();
     }, []);
 
-    
+    useEffect(() => {
+        const getSTT = async () => {
+            try{
+                let value = await load();
+                if (value !== null) {
+                    const check = value.speechToText;
+                    setIsTTS(check);
+                    console.log(isTTS)
+                }
+            }
+            catch (error) {
+                console.log('Error getting speech-to-text:', error);
+            }
+        }
+
+        getSTT();
+    }, []);
+
+
+
     return (
         <View style={styles.container}>
             <Text style={styles.Header}>{i18n.t('home')}</Text>
@@ -73,6 +94,7 @@ const Homescreen = () => {
                     <Text style={styles.item}>{item.appName}</Text>
                 </TouchableOpacity>}
             />
+
             <View>
                 <Divider/>
                 <Pressable styles={styles.button} onPress={handleModalButtonPress}>
@@ -93,13 +115,15 @@ const Homescreen = () => {
                     <Pressable style={styles.button} onPress={() => router.replace("/ContactScreen")}>
                         <Text style={styles.text}>{i18n.t('contacts')}</Text>
                     </Pressable>
-                    <Pressable style={styles.button} onPress={() => router.replace("/Dialer")}>
-                      <Text style={styles.text}>{i18n.t('dialer')}</Text>
-                    </Pressable>
+                    {isTTS ? (
+                        <Pressable style={styles.button} onPress={() => router.replace("/TTSPage")}>
+                            <Text style={styles.text}>{i18n.t('texttospeech')}</Text>
+                        </Pressable>
+                    ): undefined}
                     {isUserLoggedIn ? (
                     <Pressable style={styles.button} onPress={handleLogout}>
-                        <Text style={styles.text}>{i18n.t('signout')}</Text> 
-                    </Pressable>) : 
+                        <Text style={styles.text}>{i18n.t('signout')}</Text>
+                    </Pressable>) :
                     (<Pressable style={styles.button} onPress={() => router.replace("/LoginPage")}>
                         <Text style={styles.text}>{i18n.t('signin')}</Text>
                     </Pressable>)}

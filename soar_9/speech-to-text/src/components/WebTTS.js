@@ -9,12 +9,36 @@ mic.continuous = true;
 mic.intermResults = true;
 mic.lang = 'en-CA';
 
-const STT = () => {
+const synth = window.speechSynthesis;
 
+
+
+const Listen = () => {
     const [isRecording, setIsRecording] = useState(false);
+    const [isSpeaking, setIsSpeaking] = useState(false);
     const [result, setResult] = useState(null);
 
 
+    const speak = (result) => {
+        if(result !== '') {
+            setIsSpeaking(true);
+            const speakText = new SpeechSynthesisUtterance(result);
+            speakText.lang = 'en-CA';
+
+            //once speak ends, console log
+            speakText.onend = e => {
+                console.log("Done speaking ....");
+            }
+
+            //on speak error
+            speakText.onerror = e => {
+                console.error('Error occurred');
+            }
+
+            synth.speak(speakText);
+        }
+        setIsSpeaking(false);
+    }
 
 
     //on change to isRecording, run handleRecording
@@ -52,27 +76,19 @@ const STT = () => {
         handleRecording();
     }, [isRecording]);
 
-    function handleCopyText() {
-        var copyText = result; // Get the text result
-
-        navigator.clipboard.writeText(copyText);  // Copy the text inside the text field
-        alert("Copied: " + copyText + " to Clipboard"); // Alert the copied text
-      }
-
 
     return (
         <>
         <div className='container'>
             <div className='box'>
-                <h2>Speech-To-Text</h2>
+                <h2>Voice Command</h2>
 
                 {isRecording ?
-                <button onClick={() => setIsRecording(prevState => !prevState)}>Stop</button>
-                : <button onClick={() => setIsRecording(prevState => !prevState)}>Start</button>}
+                <button onClick={() => setIsRecording(prevState => !prevState)}>End</button>
+                : <button onClick={() => setIsRecording(prevState => !prevState)} disabled={result !== null}>Speak</button>}
 
+                <button onClick={() => speak(result)} disabled={isSpeaking || result === null}>Hear Reply</button>
                 <button onClick={() => setResult(null)}>Clear</button>
-
-                <button onClick={handleCopyText} disabled={!result}>Copy Text to Clipboard</button>
                 <p>{result}</p>
             </div>
 
@@ -82,4 +98,4 @@ const STT = () => {
     )
 
 }
-export default STT;
+export default Listen;

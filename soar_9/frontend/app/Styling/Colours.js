@@ -1,4 +1,4 @@
-import { load } from '../../services/apiServices.js';
+import { loadCache } from '../../services/apiServices.js';
 import {Appearance} from 'react-native';
 
 export const themes = {
@@ -51,7 +51,7 @@ export const themes = {
 
 export const getTheme = async () => {
   try {
-    let value = await load();
+    let value = await loadCache();
     if (value !== null) {
       return themes[value.theme];
     }

@@ -5,7 +5,6 @@ import * as Linking from 'expo-linking';
 import { Divider } from 'react-native-paper'; 
 import i18n from './Translations/PrimaryLanguage';
 import { router } from 'expo-router';
-import {colours} from "./Styling/Colours.js";
 import { getStyles } from './Styling/Styles';
 
 
@@ -54,7 +53,7 @@ const Dialer = () => {
             <Divider/>
                 <Text style={[styles.Header]}>{i18n.t('navigateto')}:</Text>
                 <Pressable style={styles.button} onPress={() => router.replace("/Homescreen")}>
-                        <Text style={[styles.text, {fontSize:20}]}>{i18n.t('home')}</Text>
+                        <Text style={styles.text}>{i18n.t('home')}</Text>
                         </Pressable>
             </View>
         

@@ -66,7 +66,7 @@ const Homescreen = () => {
             <Divider/>
 
             <FlatList style={styles.appList}
-                data={sampleData.filter(({ saved }) => saved)}
+                data={savedApps.filter(({ saved }) => saved)}
                 renderItem={({item}) =>
                 <TouchableOpacity style={styles.button} onPress={() => {alert("launch app")}}>
                     <Icon style={styles.icon} name={item.icon}></Icon>

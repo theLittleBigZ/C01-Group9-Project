@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Switch, ScrollView, Pressable, Modal} from 'react-native';
 import { Divider } from 'react-native-paper'; 
-import { load, saveToCache } from '../services/apiServices';
+import { load, loadCache, saveToCache } from '../services/apiServices';
 import RNPickerSelect from 'react-native-picker-select';
 import {sample} from '../sample-apps';
 import { router } from 'expo-router';
@@ -68,17 +68,20 @@ const Questionnaire = () => {
   // get apps from user preferences
   const getCacheAndUpdateSampleData = async () => {
     try {
+      let cache = await loadCache();
+      if (cache !== null) {
+        setTheme(cache.theme);
+        setSpeechToTextEnabled(cache.speechToText);
+        setFontSize(cache.fontSize);
+      }
       let value = await load();
-      if (value !== null) {
-        const savedAppNames = value.selectedApps; // Array of app names
-        setSelectedApps(savedAppNames);
-        setTheme(value.theme);
+      if (value !== null) { 
+        setSelectedApps( value.selectedApps); // Array of app names
         setSpeechToTextEnabled(value.speechToText);
         setLanguage(value.language);
-        setFontSize(value.fontSize);
       }
     } catch (error) {
-        console.error('Error getting preferences:', error);
+      console.error('Error getting preferences:', error);
     }
   };
 

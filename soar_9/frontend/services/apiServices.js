@@ -141,6 +141,19 @@ export const load = async () => {
     }
 };
 
+export const loadCache = async () => {
+    console.log('Loading from cache or backend');
+    try {
+        let valueCache = await AsyncStorage.getItem('@UserPreferences');
+        console.log('Returning cached preferences');
+        return valueCache? JSON.parse(valueCache): null;
+
+    } catch (e) {
+        console.error('Error loading cache:', e);
+        return null;
+    }
+};
+
 export const saveFavContacts = async (contacts) => {
     console.log('Saving contacts', contacts);
     try {

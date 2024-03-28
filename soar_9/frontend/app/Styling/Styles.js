@@ -64,7 +64,7 @@ export const useDynamicStyles = (theme, fontsize) => {
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: theme.button,
-    borderColor: 'black',
+    borderColor: theme.positive,
     borderWidth: 2,
     width: '10%',
   },

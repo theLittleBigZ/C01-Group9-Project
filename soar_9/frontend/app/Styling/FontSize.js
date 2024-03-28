@@ -1,4 +1,4 @@
-import { load } from '../../services/apiServices.js';
+import { loadCache } from '../../services/apiServices.js';
 
 export const fontsizes = {
   Small:{
@@ -26,13 +26,13 @@ export const fontsizes = {
 
 export const getFontSize = async () => {
   try {
-    let value = await load();
+    let value = await loadCache();
     if (value !== null) {
       return fontsizes[value.fontSize];
     }
     return fontsizes.Medium;
   }catch (error) {
-    console.error('Error getting theme:', error);
+    console.error('Error getting fontsize:', error);
     return fontsizes.Medium;
   }
 }

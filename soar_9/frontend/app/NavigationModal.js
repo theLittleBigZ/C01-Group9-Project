@@ -32,6 +32,9 @@ import { navigationText } from './text-to-speech/PageInputs.js';
           <Pressable style={styles.button} onPress={() => router.replace("/ContactScreen")}>
               <Text style={styles.text}>{i18n.t('contacts')}</Text>
           </Pressable>
+          <Pressable style={styles.button} onPress={() => router.replace("/Dialer")}>
+              <Text style={styles.text}>{i18n.t('dialer')}</Text>
+          </Pressable>
           {isTTS ? (
               <Pressable style={styles.button} onPress={() => router.replace("/TTSPage")}>
                   <Text style={styles.text}>{i18n.t('texttospeech')}</Text>

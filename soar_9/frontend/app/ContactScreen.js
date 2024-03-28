@@ -129,13 +129,14 @@ const ContactScreen = () => {
         </View>
         ):(
         <View style={styles.container}>
-          <TextInput ref={input => { this.textInput = input }} 
-            style={styles.input} 
-            onChangeText={query => search(query)} 
-            placeholder={i18n.t('searchContacts')}
+          <TextInput 
+            style={styles.input}
             placeholderTextColor={styles.input.color}
-            cursorColor={styles.input.borderColor}/>
-            
+            cursorColor={styles.input.borderColor}
+            ref={input => { this.textInput = input }} 
+            onChangeText={query => search(query)} 
+            placeholder={i18n.t('searchContacts')}/>
+                      
           <Pressable style={styles.button} onPress={() => {setSearchResult(""); this.textInput.clear(); search("")}}>
             <Text style={styles.text}>{i18n.t('clearSearch')}</Text>
             </Pressable>

@@ -37,7 +37,7 @@ const Dialer = () => {
                                 style={styles.keypadNumber}
                                 key={number}
                                 onPress={() => handleKeypadPress(number.toString())}>
-                                <Text style={styles.questionfont}>{number}</Text>
+                                <Text style={styles.text}>{number}</Text>
                             </TouchableOpacity>
                         ))}
                     </View>

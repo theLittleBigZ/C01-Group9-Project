@@ -78,7 +78,8 @@ const Questionnaire = () => {
       }
       let value = await load();
       if (value !== null) { 
-        setSelectedApps( value.selectedApps); // Array of app names
+        const savedAppNames = value.selectedApps; // Array of app names
+        setSelectedApps(savedAppNames); // Array of app names
         setSpeechToTextEnabled(value.speechToText);
         setLanguage(value.language);
       }

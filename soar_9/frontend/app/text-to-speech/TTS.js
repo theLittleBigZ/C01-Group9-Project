@@ -1,7 +1,8 @@
 import { View, Pressable, Text } from 'react-native';
 import * as Speech from 'expo-speech';
 import { getLanguage } from './LanguageTTS';
-import { getStyles } from '../Styling/Styles';
+import { FaPlay, FaStop } from 'react-icons/fa'; // Importing play and stop icons from Font Awesome
+
 
 export function TTS({input, styles}) {
 
@@ -34,10 +35,10 @@ export function TTS({input, styles}) {
     return (
         <View style={[styles.question, {flexDirection: 'row', width: '100%', justifyContent:'flex-end'}]}>
             <Pressable style={styles.ttsbutton} onPress={speak}>
-                <Text style={styles.text}>▶</Text>
+                <FaPlay style={styles.text}/>
             </Pressable>
             <Pressable style={styles.ttsbutton} onPress={stop}>
-                <Text style={styles.text}>◼</Text>
+                <FaStop style={styles.text} />
             </Pressable>
         </View>
     );

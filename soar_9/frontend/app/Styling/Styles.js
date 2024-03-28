@@ -107,9 +107,8 @@ export const useDynamicStyles = (theme, fontsize) => {
     },
     ttsbutton:{
       margin: 10, 
-      padding: 10,
-      height: 50,
-      width: 50,
+      padding: 15,
+      borderRadius: 50,
       fontSize: fontsize.icon,
       backgroundColor: theme.buttoncolour,
       borderColor: theme.buttontext,

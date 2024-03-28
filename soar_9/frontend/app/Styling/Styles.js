@@ -75,6 +75,20 @@ export const useDynamicStyles = (theme, fontsize) => {
       flexDirection:'column',
       padding: 10,
     },
+  keypadNumber: {
+    color: theme.buttontext,
+    padding: 10,
+    flex: 1,
+    borderRadius: 50,
+    margin: 10,
+    flexDirection:'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: theme.button,
+    borderColor: 'black',
+    borderWidth: 2,
+    width: '10%',
+  },
     questionfont: {
       color: theme.headertext,
       fontSize: fontsize.question,
@@ -137,6 +151,7 @@ export const getStyles = () => {
     };
     fetchAndSetStyle();
   }, []);
+
 
   return styles;
 };

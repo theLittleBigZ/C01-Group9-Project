@@ -88,7 +88,7 @@ const Homescreen = () => {
             return text
         }
         setTTStext(getTTStext());
-    }, []);
+    }, [sampleData]);
 
 
     return (

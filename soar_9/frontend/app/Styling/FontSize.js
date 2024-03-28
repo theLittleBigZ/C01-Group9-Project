@@ -27,10 +27,10 @@ export const fontsizes = {
 export const getFontSize = async () => {
   try {
     let value = await load();
-    // if (value !== null) {
-    //   return fontsizes[value.fontSize];
-    // }
-      return fontsizes.Medium;
+    if (value !== null) {
+      return fontsizes[value.fontSize];
+    }
+    return fontsizes.Medium;
   }catch (error) {
     console.error('Error getting theme:', error);
     return fontsizes.Medium;

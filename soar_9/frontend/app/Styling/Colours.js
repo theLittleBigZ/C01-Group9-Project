@@ -32,7 +32,7 @@ export const themes = {
   bluewhite: {
     background: '#153d7d',
     buttoncolour: '#c1c9d6',
-    secondary: '#153d7d',
+    secondary: 'yellow',
     buttontext: 'black',
     headertext: 'white',
     positive: '#c7cc93',
@@ -41,7 +41,7 @@ export const themes = {
   contrast: {
     background: '#faf68e',
     buttoncolour: 'blue',
-    secondary: 'orange',
+    secondary: 'black',
     buttontext: 'white',
     headertext: 'black',
     positive: 'blue',

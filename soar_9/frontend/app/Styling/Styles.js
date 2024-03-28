@@ -112,6 +112,7 @@ export const useDynamicStyles = (theme, fontsize) => {
         backgroundColor: theme.buttoncolour,
         borderColor: theme.buttontext,
         borderWidth: 5,
+        fontsize: fontsize.input
       },
       inputAndroid: {
         backgroundColor: theme.buttoncolour,
@@ -120,6 +121,7 @@ export const useDynamicStyles = (theme, fontsize) => {
         borderRadius: 5,
         borderColor: theme.buttontext,
         borderWidth: 5,
+        fontsize: fontsize.input
       },
     },
   });

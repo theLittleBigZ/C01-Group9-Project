@@ -106,6 +106,24 @@ export const useDynamicStyles = (theme, fontsize) => {
         fontsize: fontsize.input,
       },
     },
+    ttsbuttoncontainer:{
+      padding: 10,
+      width: '100%',
+      backgroundColor: theme.buttoncolour,
+      flexDirection: 'row',
+      justifyContent: 'flex-end',
+    },
+    ttsbutton:{
+      margin: 10, 
+      padding: 10,
+      height: 50,
+      width: 50,
+      fontSize: fontsize.icon,
+      color: theme.buttontext,
+      backgroundColor: theme.buttoncolour,
+      borderColor: theme.buttontext,
+      borderWidth: 1,
+    }
   });
 };
 export const getStyles = () => {

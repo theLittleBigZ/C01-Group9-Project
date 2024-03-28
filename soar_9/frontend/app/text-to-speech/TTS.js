@@ -35,12 +35,12 @@ export function TTS({input}) {
 
 
     return (
-        <View style={styles.input}>
-            <Pressable style={styles.icon} onPress={speak}>
+        <View style={styles.ttsbuttoncontainer}>
+            <Pressable style={styles.ttsbutton} onPress={speak}>
                 <Text style={styles.text}>▶</Text>
             </Pressable>
-            <Pressable onPress={stop}>
-                <Text style={styles.text}>⏹</Text>
+            <Pressable style={styles.ttsbutton} onPress={stop}>
+                <Text style={styles.text}>◼</Text>
             </Pressable>
         </View>
     );

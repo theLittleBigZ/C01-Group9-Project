@@ -82,7 +82,7 @@ const ContactScreen = () => {
   }
 
   const Contact = ({contact}) => (
-    <View style={[styles.container, {borderColor: 'black',  borderWidth: 2,
+    <View style={[styles.container, {borderColor: styles.button.backgroundColor,  borderWidth: 2,
         borderRadius: 10}]}>
           <Text style={styles.questionfont}>
             {contact.firstName ? `${contact.firstName.trim()}` : ""}
@@ -123,7 +123,7 @@ const ContactScreen = () => {
               ItemSeparatorComponent={() => <View style={{ height: 10 }} />}/>
               ):(
                 <View style={[styles.container, {justifyContent: 'center'}]}>
-                  <Text style={styles.text}>{i18n.t('noFavouriteContacts')}</Text>
+                  <Text style={styles.Header}>{i18n.t('noFavouriteContacts')}</Text>
                 </View>
               )}
         </View>
@@ -159,8 +159,8 @@ const ContactScreen = () => {
         </Pressable>
       )}
       <Pressable style={styles.button} onPress={() => router.replace("/Homescreen")}>
-                  <Text style={styles.text}>{i18n.t('home')}</Text>
-              </Pressable>
+          <Text style={styles.text}>{i18n.t('home')}</Text>
+      </Pressable>
   </View>
   );
 };

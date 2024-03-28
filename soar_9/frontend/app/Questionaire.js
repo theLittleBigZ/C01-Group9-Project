@@ -1,6 +1,6 @@
 // Import necessary components and hooks
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, Switch, ScrollView, Pressable, Modal} from 'react-native';
+import { View, Text, Switch, ScrollView, Pressable, Modal} from 'react-native';
 import { Divider } from 'react-native-paper'; 
 import { load, saveToCache } from '../services/apiServices';
 import RNPickerSelect from 'react-native-picker-select';
@@ -119,7 +119,6 @@ const Questionnaire = () => {
                 onPress={() => {
                   setFontSize(sizeMapping[size]);
                   setStyles(useDynamicStyles(themes[theme], fontsizes[sizeMapping[size]]))
-
                 }}
                 style={[styles.button, fontSize === sizeMapping[size] && styles.selectedButton]}
               >
@@ -189,7 +188,7 @@ const Questionnaire = () => {
                 {sample.map((app, index) => (
                   <Pressable
                     key={index}
-                    style={styles1.appOption}
+                    style={styles.container}
                     onPress={() => toggleAppSelection(app.appName)}
                   >
                     <Text style={[styles.text , { color: selectedApps.includes(app.appName) ? styles.negative : styles.positive }]}>
@@ -220,11 +219,3 @@ const Questionnaire = () => {
 };
 
 export default Questionnaire;
-
-const styles1 = StyleSheet.create({
-  appOption: {
-    marginBottom: 15,
-    alignItems: 'center',
-  },
-  
-});

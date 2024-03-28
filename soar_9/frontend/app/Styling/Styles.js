@@ -26,7 +26,6 @@ export const useDynamicStyles = (theme, fontsize) => {
     Header: {
       fontSize: fontsize.header,
       fontWeight: 'bold',
-      fontFamily: 'monospace',
       color: theme.headertext,
       width: '100%',
       textAlign: 'center'
@@ -69,6 +68,11 @@ export const useDynamicStyles = (theme, fontsize) => {
     borderWidth: 2,
     width: '10%',
   },
+    question: {
+      margin: 10,
+      flexDirection:'column',
+      padding: 10,
+    },
     questionfont: {
       color: theme.headertext,
       fontSize: fontsize.question,
@@ -80,7 +84,6 @@ export const useDynamicStyles = (theme, fontsize) => {
       textAlign: 'center',
       fontSize: fontsize.text,
       fontWeight: 'bold',
-      fontFamily: 'monospace',
     },
     selectedButton: {
       backgroundColor: theme.secondary,
@@ -89,21 +92,18 @@ export const useDynamicStyles = (theme, fontsize) => {
     negative: theme.negative,
     pickerstyle: {
       inputIOS: {
-        borderColor: theme.buttontext,
-        borderRadius: 5,
         backgroundColor: theme.buttoncolour,
+        color: theme.buttontext,
         borderColor: theme.buttontext,
         borderWidth: 5,
         fontsize: fontsize.input
       },
       inputAndroid: {
         backgroundColor: theme.buttoncolour,
-        borderColor: theme.buttontext,
         color: theme.buttontext,
-        borderRadius: 5,
         borderColor: theme.buttontext,
         borderWidth: 5,
-        fontsize: fontsize.input
+        fontsize: fontsize.input,
       },
     },
   });
@@ -114,6 +114,8 @@ export const getStyles = () => {
     const fetchAndSetStyle = async () => {
       const fetchedTheme = await getTheme();
       const fetchedFontSize = await getFontSize();
+      console.log("Fetched Theme:", fetchedTheme);
+      console.log("Fetched Font Size:", fetchedFontSize);
       const dynamicStyles = useDynamicStyles(fetchedTheme, fetchedFontSize);
       setStyles(dynamicStyles);
     };

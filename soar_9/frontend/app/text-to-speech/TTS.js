@@ -5,9 +5,7 @@ import i18n from '../Translations/PrimaryLanguage';
 import { getLanguage } from './LanguageTTS';
 import { getStyles } from '../Styling/Styles';
 
-function TTS() {
-
-    const [toSpeak, setToSpeak] = useState('');
+export function TTS({input}) {
 
     const language = async () => {return await getLanguage()}
 
@@ -15,48 +13,36 @@ function TTS() {
 
     const speak = async () => {
         const getLang = await language();
-        console.log(toSpeak);
+        console.log(input);
         const options = {
             language: getLang,
         };
-        Speech.speak(toSpeak, options);
+    
+        try {
+            Speech.speak(input, options);
+        } catch (error) {
+            console.error("Speech API error:", error);
+        }
     };
+
+    const stop = async () => {
+        try {
+            await Speech.stop();
+        } catch (error) {
+            console.error("Stop error:", error);
+        }
+    }
 
 
     return (
-        <View style={[styles.container, {alignItems: 'center'}]}>
-            <Text style={styles.Header}>{i18n.t('texttospeech')}</Text>
-            <TextInput 
-            style={[styles.input, {height: '50%', width: '100%'}]} 
-            multiline={true} 
-            placeholderTextColor={styles.input.color}
-            cursorColor={styles.input.borderColor}
-            value={toSpeak} 
-            onChangeText={(e) => setToSpeak(e)} />   
-
-            <Pressable style={styles.button} onPress={() => setToSpeak('')}>
-                    <Text style={styles.text}>{i18n.t('clearinput')}</Text>
+        <View style={styles.input}>
+            <Pressable style={styles.icon} onPress={speak}>
+                <Text style={styles.text}>▶</Text>
             </Pressable>
-            <Pressable style={styles.button} onPress={speak}>
-                <Text style={styles.text}>{i18n.t('presstohear')}</Text>
+            <Pressable onPress={stop}>
+                <Text style={styles.text}>⏹</Text>
             </Pressable>
         </View>
     );
 }
 export default TTS;
-
-
-const styles = StyleSheet.create({
-    container: {
-        display: 'flex',
-        justifyContent: 'center',
-    },
-    inputBox: {
-        padding: 5,
-        margin: 5,
-        height: 200,
-        width: 500,
-        borderBottomColor: 'black',
-        borderBottomWidth: 1,
-    }
-})

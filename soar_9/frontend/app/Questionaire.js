@@ -12,6 +12,8 @@ import SetBrightness from './SetBrightness.js'
 import {getTheme, themes, themeMap } from './Styling/Colours.js';
 import { getFontSize, fontsizes } from './Styling/FontSize.js';
 import { useDynamicStyles } from './Styling/Styles.js';
+import {TTS} from './text-to-speech/TTS.js';
+import { questionnaireText } from './text-to-speech/PageInputs.js';
 
 const Questionnaire = () => {
   // State for each setting
@@ -100,6 +102,7 @@ const Questionnaire = () => {
     <View style={styles.container}>
       <Text style={styles.Header}>{i18n.t('settings')}</Text>
 
+      <TTS input={questionnaireText}/>
       <Divider/>
       <ScrollView>
         <View style={styles.question}>

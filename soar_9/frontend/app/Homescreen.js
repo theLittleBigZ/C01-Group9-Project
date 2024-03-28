@@ -1,13 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import { View, Text, Pressable, FlatList, TouchableOpacity, Modal, Button} from 'react-native';
-import { Divider, useTheme } from 'react-native-paper';
+import { Divider } from 'react-native-paper';
 import { sample } from '../sample-apps.js';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { router } from 'expo-router';
 import { load, isLoggedIn, logout } from '../services/apiServices.js';
 import i18n from './Translations/PrimaryLanguage.js';
 import { getStyles } from './Styling/Styles.js';
-
+import TTS from './text-to-speech/TTS.js';
+import { NavigationModal } from './NavigationModal.js';
 
 const Homescreen = () => {
     const [sampleData, setSampleData] = useState(sample);
@@ -18,13 +19,15 @@ const Homescreen = () => {
 
     const styles = getStyles();
 
-    const [modalVisible, setModalVisible] = useState(false);
-
     const [isTTS, setIsTTS] = useState(false);
 
-    const handleModalButtonPress = () => {
+    const [TTStext, setTTStext] = useState('');
+
+    const [modalVisible, setModalVisible] = useState(false);
+
+    const handleOpenModal = () => {
         setModalVisible(true);
-    };
+      };
 
     const getCacheAndUpdateSampleData = async () => {
         try {
@@ -43,12 +46,6 @@ const Homescreen = () => {
         } catch (error) {
             console.error('Error getting preferences:', error);
         }
-    };
-
-    const handleLogout = async () => {
-        await logout(); // Call the logout function
-        setIsUserLoggedIn(false); // Update login status
-        // Optionally, navigate to a different screen or show a message
     };
 
     useEffect(() => {
@@ -79,6 +76,19 @@ const Homescreen = () => {
         getSTT();
     }, []);
 
+    useEffect(() => {
+        const getTTStext = () => {
+            let text = ''
+            text += i18n.t('home') + '\n\n';
+            sampleData.filter(({ saved }) => saved).forEach(({ appName }) => {
+                text += `${appName}\n`;
+            });
+            text += i18n.t('navigateto');
+            console.log("your input: " + text);
+            return text
+        }
+        setTTStext(getTTStext());
+    }, []);
 
 
     return (
@@ -86,6 +96,8 @@ const Homescreen = () => {
             <Text style={styles.Header}>{i18n.t('home')}</Text>
             <Divider/>
 
+            <TTS input={TTStext}/>
+            <Divider/>
             <FlatList style={styles.appList}
                 data={sampleData.filter(({ saved }) => saved)}
                 renderItem={({item}) =>
@@ -97,41 +109,16 @@ const Homescreen = () => {
 
             <View>
                 <Divider/>
-                <Pressable styles={styles.button} onPress={handleModalButtonPress}>
+                <Pressable styles={styles.button} onPress={handleOpenModal}>
                     <Text style={styles.Header}>{i18n.t('navigateto') + "  ▲"}</Text>
+                    <NavigationModal 
+                    isUserLoggedIn={isUserLoggedIn} 
+                    setIsUserLoggedIn={setIsUserLoggedIn} 
+                    isTTS={isTTS} 
+                    modalVisible={modalVisible}
+                    setModalVisible={setModalVisible} />
                 </Pressable>
 
-                <Modal
-                    animationType="slide"
-                    transparent={false}
-                    visible={modalVisible}
-                    onRequestClose={() => setModalVisible(false)}
-                    style={styles.container}
-                >
-                    <View style={styles.container}>
-                    <Pressable style={styles.button} onPress={() => router.replace("/Questionaire")}>
-                        <Text style={styles.text}>{i18n.t('settings')}</Text>
-                    </Pressable>
-                    <Pressable style={styles.button} onPress={() => router.replace("/ContactScreen")}>
-                        <Text style={styles.text}>{i18n.t('contacts')}</Text>
-                    </Pressable>
-                    {isTTS ? (
-                        <Pressable style={styles.button} onPress={() => router.replace("/TTSPage")}>
-                            <Text style={styles.text}>{i18n.t('texttospeech')}</Text>
-                        </Pressable>
-                    ): undefined}
-                    {isUserLoggedIn ? (
-                    <Pressable style={styles.button} onPress={handleLogout}>
-                        <Text style={styles.text}>{i18n.t('signout')}</Text>
-                    </Pressable>) :
-                    (<Pressable style={styles.button} onPress={() => router.replace("/LoginPage")}>
-                        <Text style={styles.text}>{i18n.t('signin')}</Text>
-                    </Pressable>)}
-                    <Pressable style={styles.button} onPress={() => setModalVisible(false)}>
-                        <Text style={styles.text}>{i18n.t('close')}</Text>
-                    </Pressable>
-                    </View>
-                </Modal>
              </View>
         </View>
     )

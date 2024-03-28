@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, Pressable, TextInput, Text } from 'react-native';
+import { View, Pressable, Text } from 'react-native';
 import * as Speech from 'expo-speech';
-import i18n from '../Translations/PrimaryLanguage';
 import { getLanguage } from './LanguageTTS';
 import { getStyles } from '../Styling/Styles';
 
@@ -13,7 +11,7 @@ export function TTS({input}) {
 
     const speak = async () => {
         const getLang = await language();
-        console.log(input);
+        console.log("your input :" + input);
         const options = {
             language: getLang,
         };

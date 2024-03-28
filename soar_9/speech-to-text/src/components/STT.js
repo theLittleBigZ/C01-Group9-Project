@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { styles} from '../Styling/Styles.js';
+//import {themes} from '../Styling/Colours'
 
 //get speech recognition from the web (webkit for chrome)
 const SpeechRecognition = window.speechRecognition || window.webkitSpeechRecognition;
@@ -13,8 +15,6 @@ const STT = () => {
 
     const [isRecording, setIsRecording] = useState(false);
     const [result, setResult] = useState(null);
-
-
 
 
     //on change to isRecording, run handleRecording
@@ -62,17 +62,17 @@ const STT = () => {
 
     return (
         <>
-        <div className='container'>
-            <div className='box'>
-                <h2>Speech-To-Text</h2>
+        <div style={styles.container} className='container'>
+            <div style={styles.container} className='box'>
+                <h2 style={styles.Header}>Speech-To-Text</h2>
 
                 {isRecording ?
-                <button onClick={() => setIsRecording(prevState => !prevState)}>Stop</button>
-                : <button onClick={() => setIsRecording(prevState => !prevState)}>Start</button>}
+                <button style={styles.button} onClick={() => setIsRecording(prevState => !prevState)}>Stop</button>
+                : <button style={styles.button} onClick={() => setIsRecording(prevState => !prevState)}>Start</button>}
 
-                <button onClick={() => setResult(null)}>Clear</button>
+                <button style={styles.button} onClick={() => setResult(null)}>Clear</button>
 
-                <button onClick={handleCopyText} disabled={!result}>Copy Text to Clipboard</button>
+                <button style={styles.button} onClick={handleCopyText} disabled={!result}>Copy Text to Clipboard</button>
                 <p>{result}</p>
             </div>
 

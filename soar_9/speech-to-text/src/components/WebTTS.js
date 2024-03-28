@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { styles} from '../Styling/Styles.js';
 
 //get speech recognition from the web (webkit for chrome)
 const SpeechRecognition = window.speechRecognition || window.webkitSpeechRecognition;
@@ -79,16 +80,16 @@ const Listen = () => {
 
     return (
         <>
-        <div className='container'>
-            <div className='box'>
-                <h2>Voice Command</h2>
+        <div style={styles.container} className='container'>
+            <div style={styles.container} className='box'>
+                <h2 style={styles.Header}>Voice Command</h2>
 
                 {isRecording ?
-                <button onClick={() => setIsRecording(prevState => !prevState)}>End</button>
-                : <button onClick={() => setIsRecording(prevState => !prevState)} disabled={result !== null}>Speak</button>}
+                <button style={styles.button} onClick={() => setIsRecording(prevState => !prevState)}>End</button>
+                : <button style={styles.button} onClick={() => setIsRecording(prevState => !prevState)} disabled={result !== null}>Speak</button>}
 
-                <button onClick={() => speak(result)} disabled={isSpeaking || result === null}>Hear Reply</button>
-                <button onClick={() => setResult(null)}>Clear</button>
+                <button style={styles.button} onClick={() => speak(result)} disabled={isSpeaking || result === null}>Hear Reply</button>
+                <button style={styles.button} onClick={() => setResult(null)}>Clear</button>
                 <p>{result}</p>
             </div>
 

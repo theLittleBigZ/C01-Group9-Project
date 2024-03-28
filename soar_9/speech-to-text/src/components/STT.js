@@ -15,39 +15,40 @@ const STT = () => {
     const [result, setResult] = useState(null);
 
 
-    const handleRecording = () => {
-        //if clicked to start recording
-        if(isRecording) {
-            mic.start()
-            mic.onend = () => {
-                console.log('continue...')
-                mic.start();
-            }
-        } else{
-            mic.stop();
-            mic.onend =() => {
-                console.log('Stopped Mic on Click');
-            }
-        }
-        mic.onstart = () => {
-            console.log('Mic is on');
-        }
-        //get transcript, set as result
-        mic.onresult = event => {
-            const transcript = Array.from(event.results)
-            .map(result => result[0])
-            .map(result => result.transcript)
-            .join('');
-            console.log(transcript);
-            setResult(transcript);
-            mic.onerror = event => {
-                console.log(event.error)
-            }
-        }
-    }
+    
 
     //on change to isRecording, run handleRecording
     useEffect(() => {
+        const handleRecording = () => {
+            //if clicked to start recording
+            if(isRecording) {
+                mic.start()
+                mic.onend = () => {
+                    console.log('continue...')
+                    mic.start();
+                }
+            } else{
+                mic.stop();
+                mic.onend =() => {
+                    console.log('Stopped Mic on Click');
+                }
+            }
+            mic.onstart = () => {
+                console.log('Mic is on');
+            }
+            //get transcript, set as result
+            mic.onresult = event => {
+                const transcript = Array.from(event.results)
+                .map(result => result[0])
+                .map(result => result.transcript)
+                .join('');
+                console.log(transcript);
+                setResult(transcript);
+                mic.onerror = event => {
+                    console.log(event.error)
+                }
+            }
+        }
         handleRecording();
     }, [isRecording]);
 

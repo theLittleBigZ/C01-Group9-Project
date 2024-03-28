@@ -25,7 +25,7 @@ import { navigationText } from './text-to-speech/PageInputs.js';
       style={styles.container}
       >
           <View style={styles.container}>
-            <TTS input={navigationText}/>
+            <TTS input={navigationText} styles={styles}/>
           <Pressable style={styles.button} onPress={() => router.replace("/Questionaire")}>
               <Text style={styles.text}>{i18n.t('settings')}</Text>
           </Pressable>

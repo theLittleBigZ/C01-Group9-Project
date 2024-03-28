@@ -3,11 +3,10 @@ import * as Speech from 'expo-speech';
 import { getLanguage } from './LanguageTTS';
 import { getStyles } from '../Styling/Styles';
 
-export function TTS({input}) {
+export function TTS({input, styles}) {
 
     const language = async () => {return await getLanguage()}
 
-    const styles = getStyles();
 
     const speak = async () => {
         const getLang = await language();
@@ -33,7 +32,7 @@ export function TTS({input}) {
 
 
     return (
-        <View style={styles.ttsbuttoncontainer}>
+        <View style={[styles.question, {flexDirection: 'row', width: '100%', justifyContent:'flex-end'}]}>
             <Pressable style={styles.ttsbutton} onPress={speak}>
                 <Text style={styles.text}>▶</Text>
             </Pressable>

@@ -6,27 +6,42 @@ import { Divider, TextInput } from 'react-native-paper';
 import i18n from './Translations/PrimaryLanguage';
 import { router } from 'expo-router';
 import { getStyles } from './Styling/Styles';
+import TTS from './text-to-speech/TTS';
 
 const ContactScreen = () => {
   const [contactsData, setContactsData] = useState([]);
   const [favouriteContacts, setFavouriteContacts] = useState([]);
   const [pageState, setPageState] = useState(1);
   const [searchResult, setSearchResult] = useState([]);
+  const [TTStext, setTTStext] = useState('');
 
   const styles = getStyles();
 
+  useEffect(() => {
+    const getTTStext = () => {
+      let text = i18n.t('favouriteContacts') + '\n'
+      favouriteContacts.forEach(favContact => {
+        if(favContact.firstName != undefined){
+          text += `${favContact.firstName}\n`;
+        }
+      });
+      text += i18n.t('navigateto') + '\n' + i18n.t('allContacts')+ '\n' + i18n.t('home') + '\n';
+      return text
+    }
+    setTTStext(getTTStext());
+}, [favouriteContacts]);
+
 
   useEffect(() => {
-      const fetchData = async () => {
-        const status = await askForContactPermission();
-        if (status === "granted"){
-          const data = await getAllContacts();
-          setContactsData(data);
-          setSearchResult(data);
-        }
-      };
-  
-      fetchData();
+    const fetchData = async () => {
+      const status = await askForContactPermission();
+      if (status === "granted"){
+        const data = await getAllContacts();
+        setContactsData(data);
+        setSearchResult(data);
+      }
+    };
+    fetchData();
   }, []);
 
   const askForContactPermission = async () => {
@@ -108,6 +123,7 @@ const ContactScreen = () => {
       {pageState === 1 ? (
         <View style={styles.container}>
           <Text style={styles.Header}>{i18n.t('favouriteContacts')}</Text>
+          <TTS input={TTStext} styles={styles}/>
           <Divider/>
           {favouriteContacts && favouriteContacts.length > 0 ? (
             <FlatList style={styles.text} data={favouriteContacts} 

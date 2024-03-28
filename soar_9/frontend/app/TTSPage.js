@@ -10,6 +10,8 @@ function TTSPage () {
     const styles = getStyles();
     const [toSpeak, setToSpeak] = useState('');
 
+    styles=getStyles();
+
     return (
         <View style={[styles.container, {alignItems:'center'}]}>
             <Text style={styles.Header}>{i18n.t('texttospeech')}</Text>

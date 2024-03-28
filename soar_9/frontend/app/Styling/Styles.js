@@ -105,13 +105,6 @@ export const useDynamicStyles = (theme, fontsize) => {
         fontsize: fontsize.input,
       },
     },
-    ttsbuttoncontainer:{
-      padding: 10,
-      width: '100%',
-      backgroundColor: theme.backgroundColor,
-      flexDirection: 'row',
-      justifyContent: 'flex-end',
-    },
     ttsbutton:{
       margin: 10, 
       padding: 10,

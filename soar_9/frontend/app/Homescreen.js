@@ -96,7 +96,7 @@ const Homescreen = () => {
             <Text style={styles.Header}>{i18n.t('home')}</Text>
             <Divider/>
 
-            <TTS input={TTStext}/>
+            <TTS input={TTStext} styles={styles}/>
             <Divider/>
             <FlatList style={styles.appList}
                 data={sampleData.filter(({ saved }) => saved)}

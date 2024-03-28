@@ -103,7 +103,7 @@ const Questionnaire = () => {
     <View style={styles.container}>
       <Text style={styles.Header}>{i18n.t('settings')}</Text>
 
-      <TTS input={questionnaireText}/>
+      <TTS input={questionnaireText} styles={styles}/>
       <Divider/>
       <ScrollView>
         <View style={styles.question}>

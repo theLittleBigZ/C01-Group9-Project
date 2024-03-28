@@ -96,8 +96,8 @@ const Questionnaire = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.Header}>{i18n.t('settings')}</Text>
-      <Divider/>
 
+      <Divider/>
       <ScrollView>
         <View style={styles.question}>
           <Text style={styles.questionfont}>{i18n.t('enablespeechtotext')}:</Text>
@@ -108,8 +108,8 @@ const Questionnaire = () => {
             value={speechToText}
           />
         </View>
-        <Divider/>
 
+        <Divider/>
         <View style={styles.question}>
           <Text style={styles.questionfont}>{i18n.t('fontsize')}:</Text>
           <View style={styles.text}>
@@ -128,8 +128,8 @@ const Questionnaire = () => {
             ))}
           </View>
         </View>
-        <Divider/>
 
+        <Divider/>
         <View style={styles.question}>
           <Text style={styles.questionfont}>{i18n.t('language') + ":"}</Text>
           <ScrollView style={{borderWidth:2,  borderColor: styles.icon.borderColor}}>
@@ -144,10 +144,9 @@ const Questionnaire = () => {
               style={styles.pickerstyle}/>
           </ScrollView>
         </View>
-        <Divider/>
 
         <Divider/>
-
+        
         <View style={styles.question}>
           <Text style={styles.questionfont}>{i18n.t('theme') + ":"}</Text>
           <ScrollView style={{borderWidth:2, borderColor: styles.icon.borderColor}}>

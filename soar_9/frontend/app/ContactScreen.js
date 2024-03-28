@@ -84,7 +84,7 @@ const ContactScreen = () => {
   const Contact = ({contact}) => (
     <View style={[styles.container, {borderColor: 'black',  borderWidth: 2,
         borderRadius: 10}]}>
-          <Text style={styles.text}>
+          <Text style={styles.questionfont}>
             {contact.firstName ? `${contact.firstName.trim()}` : ""}
             {contact.lastName ? ` ${contact.lastName.trim()}` : ""}
           </Text>
@@ -129,9 +129,15 @@ const ContactScreen = () => {
         </View>
         ):(
         <View style={styles.container}>
-          <TextInput ref={input => { this.textInput = input }} style={styles.input} onChangeText={query => search(query)} placeholder={i18n.t('searchContacts')}/>
+          <TextInput ref={input => { this.textInput = input }} 
+            style={styles.input} 
+            onChangeText={query => search(query)} 
+            placeholder={i18n.t('searchContacts')}
+            placeholderTextColor={styles.input.color}
+            cursorColor={styles.input.borderColor}/>
+            
           <Pressable style={styles.button} onPress={() => {setSearchResult(""); this.textInput.clear(); search("")}}>
-            <Text style={[styles.text, {fontSize:20}]}>{i18n.t('clearSearch')}</Text>
+            <Text style={styles.text}>{i18n.t('clearSearch')}</Text>
             </Pressable>
           <FlatList style={styles.text} data={searchResult} 
             renderItem={({item}) => (<Contact contact={item}/>)}
@@ -142,18 +148,18 @@ const ContactScreen = () => {
       }
   
       <Divider/>
-      <Text style={[styles.text]}>{i18n.t('navigateto')}:</Text>
+      <Text style={styles.Header}>{i18n.t('navigateto')}:</Text>
       {pageState == 0 ? (
         <Pressable style={styles.button} onPress={() => setPageState(1)}>
-          <Text style={[styles.text, {fontSize:20}]}>{i18n.t('favouriteContacts')}</Text>
+          <Text style={styles.text}>{i18n.t('favouriteContacts')}</Text>
         </Pressable>
       ):(
         <Pressable style={styles.button} onPress={() => setPageState(0)}>
-        <Text style={[styles.text, {fontSize:20}]}>{i18n.t('allContacts')}</Text>
+        <Text style={styles.text}>{i18n.t('allContacts')}</Text>
         </Pressable>
       )}
       <Pressable style={styles.button} onPress={() => router.replace("/Homescreen")}>
-                  <Text style={[styles.text, {fontSize:20}]}>{i18n.t('home')}</Text>
+                  <Text style={styles.text}>{i18n.t('home')}</Text>
               </Pressable>
   </View>
   );

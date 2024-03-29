@@ -51,8 +51,7 @@ const Listen = () => {
                 },
                 body: JSON.stringify({
                 model: 'tinyllama',
-                prompt: transcript,
-                stream: false
+                prompt: transcript
                 })
             });
 

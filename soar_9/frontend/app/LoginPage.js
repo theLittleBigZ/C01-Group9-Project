@@ -1,4 +1,4 @@
-import { View, Text, TextInput, Pressable } from 'react-native';
+import { View, Text, TextInput, Pressable, ScrollView } from 'react-native';
 import { Divider } from 'react-native-paper';
 import React, { useState } from 'react';
 import { router } from 'expo-router';
@@ -32,6 +32,7 @@ const LoginPage = () => {
       <Text style={styles.Header}>{i18n.t('signin')}</Text>
       <Divider />
 
+      <ScrollView>
       {error !== '' && (
         <View style={styles.errorBox}>
           <Text style={styles.errorText}>{error}</Text>
@@ -70,7 +71,7 @@ const LoginPage = () => {
       <Pressable style={styles.button} onPress={() => router.replace("/RegisterPage")}>
         <Text style={styles.text}>{i18n.t('register')}</Text>
       </Pressable>
-
+      </ScrollView>
     </View>
   );
 }

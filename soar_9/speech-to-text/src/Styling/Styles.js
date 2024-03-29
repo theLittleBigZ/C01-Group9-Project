@@ -11,7 +11,6 @@ export const getStyles = () => {
       padding: 20,
       alignItems: 'center',
       flexDirection: 'column',
-      flex: 1,
     },
     button: {
       margin: 10,

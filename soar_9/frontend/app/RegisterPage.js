@@ -1,4 +1,4 @@
-import { View, Text, TextInput, Pressable } from 'react-native';
+import { View, Text, TextInput, Pressable, ScrollView } from 'react-native';
 import { Divider } from 'react-native-paper';
 import React, { useState } from 'react';
 import { router } from 'expo-router';
@@ -39,6 +39,8 @@ const RegisterPage = () => {
     <View style={styles.container}>
       <Text style={styles.Header}>{i18n.t('register')}</Text>
       <Divider />
+
+      <ScrollView>
 
       {error !== '' && (
         <View style={styles.errorBox}>
@@ -104,6 +106,7 @@ const RegisterPage = () => {
       <Pressable style={styles.button} onPress={() => router.replace("/LoginPage")}>
         <Text style={styles.text}>{i18n.t('haveAccount')}</Text>
       </Pressable>
+      </ScrollView>
     </View>
   );
 }

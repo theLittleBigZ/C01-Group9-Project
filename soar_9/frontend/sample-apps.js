@@ -21,7 +21,7 @@ export const sample = [
         "appName": "Contacts",
         "icon": "contacts",
         "saved": true,
-        "url": "app://com.google.android.contacts"
+        "url": "router:/ContactScreen"
     },
     {
         "appName": "Notepad",
@@ -39,7 +39,7 @@ export const sample = [
         "appName": "Health",
         "icon": "heart",
         "saved": false,
-        "url": "app://com.google.android.apps.wellbeing"
+        "url": "router:/Reminders"
     },
     {
         "appName": "Settings",

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { View, Text, Pressable, FlatList, TouchableOpacity, Modal, Button} from 'react-native';
+import { View, Text, Pressable, FlatList, TouchableOpacity, Modal, Button, Linking, Alert} from 'react-native';
 import { Divider } from 'react-native-paper';
 import { sample } from '../sample-apps.js';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -90,6 +90,25 @@ const Homescreen = () => {
         setTTStext(getTTStext());
     }, [sampleData]);
 
+    const openApp = (url) => {
+        Linking.canOpenURL(url)
+          .then((supported) => {
+            if (!supported) {
+              Alert.alert(
+                'Error',
+                'The requested application ' + url.split(".").reverse()[0] + ' is not installed on this device. Please install the application and try again. this error may also be caused if you are running an sandboxed version of the app like in Expo-go'
+              );
+            } else {
+              return Linking.openURL(url);
+            }
+          })
+          .catch(() =>
+            Alert.alert(
+              'Error',
+              'An error occurred while trying to open the application. Please try again later.'
+            )
+          );
+      };
 
     return (
         <View style={styles.container}>
@@ -101,7 +120,7 @@ const Homescreen = () => {
             <FlatList style={styles.appList}
                 data={sampleData.filter(({ saved }) => saved)}
                 renderItem={({item}) =>
-                <TouchableOpacity style={styles.button} onPress={() => {alert("launch app")}}>
+                <TouchableOpacity style={styles.button} onPress={() => {openApp(item.url)}}>
                     <Icon style={styles.icon} name={item.icon}></Icon>
                     <Text style={styles.item}>{item.appName}</Text>
                 </TouchableOpacity>}

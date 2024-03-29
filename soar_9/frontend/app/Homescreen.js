@@ -119,7 +119,7 @@ const Homescreen = () => {
                     setModalVisible={setModalVisible} />
                 </Pressable>
 
-             </View>
+            </View>
         </View>
     )
 }

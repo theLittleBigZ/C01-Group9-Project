@@ -27,6 +27,11 @@ code {
   border-radius: 5px;
 }
 
+.textbox {
+  border: solid 2px rgb(255, 255, 255);
+  height: max-content;
+}
+
 h1 {
   margin-left: 20px;
 }

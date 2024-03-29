@@ -43,7 +43,12 @@ const STT = () => {
                 .map(result => result.transcript)
                 .join('');
                 console.log(transcript);
-                setResult(transcript);
+                if(result === null) {
+                    setResult(transcript)
+                } else {
+                    setResult(result + ' ' + transcript);
+                }
+
                 mic.onerror = event => {
                     console.log(event.error)
                 }
@@ -73,7 +78,13 @@ const STT = () => {
                 <button style={styles.button} onClick={() => setResult(null)}>Clear</button>
 
                 <button style={styles.button} onClick={handleCopyText} disabled={!result}>Copy Text to Clipboard</button>
-                <p>{result}</p>
+
+
+
+                <div>
+                    <p>{result}</p>
+                </div>
+
             </div>
 
         </div>

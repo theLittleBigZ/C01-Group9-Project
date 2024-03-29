@@ -17,13 +17,13 @@ const synth = window.speechSynthesis;
 const Listen = () => {
     const [isRecording, setIsRecording] = useState(false);
     const [isSpeaking, setIsSpeaking] = useState(false);
-    const [result, setResult] = useState(null);
+    const [response, setResponse] = useState(null);
 
 
-    const speak = (result) => {
-        if(result !== '') {
+    const speak = (response) => {
+        if(response !== '') {
             setIsSpeaking(true);
-            const speakText = new SpeechSynthesisUtterance(result);
+            const speakText = new SpeechSynthesisUtterance(response);
             speakText.lang = 'en-CA';
 
             //once speak ends, console log
@@ -41,6 +41,11 @@ const Listen = () => {
         setIsSpeaking(false);
     }
 
+
+    const converse = (transcript) => {
+
+        setResponse(transcript);
+    }
 
     //on change to isRecording, run handleRecording
     useEffect(() => {
@@ -68,7 +73,7 @@ const Listen = () => {
                 .map(result => result.transcript)
                 .join('');
                 console.log(transcript);
-                setResult(transcript);
+                converse(transcript);
                 mic.onerror = event => {
                     console.log(event.error)
                 }
@@ -84,13 +89,20 @@ const Listen = () => {
             <div style={styles.container} className='box'>
                 <h2 style={styles.Header}>Voice Command</h2>
 
-                {isRecording ?
-                <button style={styles.button} onClick={() => setIsRecording(prevState => !prevState)}>End</button>
-                : <button style={styles.button} onClick={() => setIsRecording(prevState => !prevState)} disabled={result !== null}>Speak</button>}
+                <div>
+                    {isRecording ?
+                    <button style={styles.button} onClick={() => setIsRecording(prevState => !prevState)}>End</button>
+                    : <button style={styles.button} onClick={() => setIsRecording(prevState => !prevState)} disabled={response !== null}>Speak</button>}
 
-                <button style={styles.button} onClick={() => speak(result)} disabled={isSpeaking || result === null}>Hear Reply</button>
-                <button style={styles.button} onClick={() => setResult(null)}>Clear</button>
-                <p>{result}</p>
+                    <button style={styles.button} onClick={() => speak(response)} disabled={isSpeaking || response === null}>Hear Reply</button>
+
+                    <button style={styles.button} onClick={() => setResponse(null)}>Clear</button>
+                </div>
+
+                <div>
+                    <p>{response}</p>
+                </div>
+
             </div>
 
         </div>

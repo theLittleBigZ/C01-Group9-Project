@@ -5,6 +5,8 @@
   "settings": "الإعدادات",
   "signin": "تسجيل الدخول",
   "small": "صغير",
+  "low": "منخفض",
+  "high": "عالي",
   "medium": "متوسط",
   "large": "كبير",
   "enablespeechtotext": "تمكين التحويل الصوتي إلى نص",
@@ -69,7 +71,9 @@
   "addFavourite": "পছন্দ যোগ করুন",
   "call": "কল",
   "dialer": "ডায়ালার",
-  "clearNumber": "নম্বর মুছে ফেলুন"
+  "clearNumber": "নম্বর মুছে ফেলুন", 
+  "low": "নিম্ন",
+  "high": "উচ্চ"
 },
 
  "bo" : {
@@ -106,7 +110,9 @@
   "addFavourite": "བསྐྱར་ཞུ་ཆས་གཅིག",
   "call": "འབྲི་བ་",
   "dialer": "འཛུལ་གཏོང་ཀ",
-  "clearNumber": "ཨེསི་ཨང་མ་གཏོང་བ་"
+  "clearNumber": "ཨེསི་ཨང་མ་གཏོང་བ་",
+  "low": "ལོ་མིག",
+  "high": "ཉེ་བར"
 },
  "en" : {
   "home": "Home",
@@ -114,6 +120,8 @@
   "settings": "Settings",
   "signin": "Sign In",
   "small": "Small",
+  "low": "Low",
+  "high": "High",
   "medium": "Medium",
   "large": "Large",
   "enablespeechtotext": "Enable Speech to Text",
@@ -180,7 +188,9 @@
     "addFavourite": "Agregar Favorito",
     "call": "Llamar",
     "dialer": "Marcador",
-    "clearNumber": "Borrar número"
+    "clearNumber": "Borrar número",
+    "low": "Bajo",
+    "high": "Alto"
 
 },
  "fa" : {
@@ -217,8 +227,9 @@
     "addFavourite": "افزودن به مورد علاقه",
     "call": "تماس",
     "dialer": "شماره گیر",
-    "clearNumber": "پاک کردن شماره"
-
+    "clearNumber": "پاک کردن شماره",
+    "low": "کم",
+    "high": "بالا"
 },
  "fr" :{
   "home": "Accueil",
@@ -254,9 +265,9 @@
     "addFavourite": "Ajouter Favori",
     "call": "Appel",
     "dialer": "Composeur",
-    "clearNumber": "Effacer le numéro"
-
-
+    "clearNumber": "Effacer le numéro",
+    "low": "Faible",
+    "high": "Élevé"
 },
  "hi" : {
   "home": "होम",
@@ -292,8 +303,9 @@
     "addFavourite": "पसंदीदा जोड़ें",
     "call": "कॉल",
     "dialer": "डायलर",
-    "clearNumber": "स्पष्ट संख्या"
-
+    "clearNumber": "स्पष्ट संख्या",
+    "low": "कम",
+    "high": "उच्च"
 },
  "id" : {
   "home": "Beranda",
@@ -329,7 +341,9 @@
     "addFavourite": "Tambahkan Favorit",
     "call": "Panggilan",
     "dialer": "Pemanggil",
-    "clearNumber": "Bersihkan Nomor"
+    "clearNumber": "Bersihkan Nomor",
+    "low": "Rendah",
+    "high": "Tinggi"
 },
  "pt" : {
   "home": "Página inicial",
@@ -365,7 +379,9 @@
     "addFavourite": "Adicionar Favorito",
     "call": "Chamada",
     "dialer": "Discador",
-    "clearNumber": "Limpar Número"
+    "clearNumber": "Limpar Número",
+    "low": "Baixo",
+    "high": "Alto"
 },
  "ru" : {
   "home": "Домой",
@@ -401,7 +417,9 @@
     "addFavourite": "Добавить в избранное",
     "call": "Вызов",
     "dialer": "набиратель",
-    "clearNumber": "очистить номер"
+    "clearNumber": "очистить номер",
+    "low": "Низкий",
+    "high": "Высокий"
 },
  "th" : {
   "home": "หน้าแรก",
@@ -437,7 +455,9 @@
     "addFavourite": "เพิ่มรายการโปรด",
     "call": "โทร",
     "dialer": "โทร",
-    "clearNumber": "ล้างหมายเลข"
+    "clearNumber": "ล้างหมายเลข",
+    "low": "ต่ำ",
+    "high": "สูง"
 },
  "ur" : {
   "home": "ہوم",
@@ -473,7 +493,9 @@
     "addFavourite": "پسندیدہ شامل کریں",
     "call": "کال",
     "dialer": "ڈائلر",
-    "clearNumber": "نمبر صاف کریں"
+    "clearNumber": "نمبر صاف کریں",
+    "low": "کم",
+    "high": "زیادہ"
 },
  "vi" : {
   "home": "Trang chủ",
@@ -509,7 +531,9 @@
     "addFavourite": "Thêm vào Yêu thích",
     "call": "Gọi",
     "dialer": "Bộ gọi",
-    "clearNumber": "Xóa số"
+    "clearNumber": "Xóa số",
+    "low": "Thấp",
+    "high": "Cao"
 },
  "zh" : {
   "home": "主页",
@@ -545,5 +569,7 @@
     "addFavourite": "添加收藏",
     "call": "呼叫",
     "dialer": "拨号器",
-    "clearNumber": "清除号码"
+    "clearNumber": "清除号码",
+    "low": "低",
+    "high": "高"
 }}

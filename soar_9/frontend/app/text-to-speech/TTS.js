@@ -1,3 +1,4 @@
+
 import { View, Pressable, Text } from 'react-native';
 import * as Speech from 'expo-speech';
 import { getLanguage } from './LanguageTTS';

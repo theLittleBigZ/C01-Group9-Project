@@ -100,8 +100,8 @@ const Homescreen = () => {
                     (<Pressable style={styles.button} onPress={() => router.replace("/LoginPage")}>
                         <Text style={styles.text}>{i18n.t('signin')}</Text>
                     </Pressable>)}
-                    <Pressable style={styles.button} onPress={() => router.replace("/Notifications")}>
-                        <Text style={styles.text}>{i18n.t('notifications')}</Text>
+                    <Pressable style={styles.button} onPress={() => router.replace("/Reminders")}>
+                        <Text style={styles.text}>{i18n.t('reminders')}</Text>
                     </Pressable> 
                     <Pressable style={styles.button} onPress={() => setModalVisible(false)}>
                         <Text style={styles.text}>{i18n.t('close')}</Text>

@@ -1,8 +1,12 @@
 // Sending data to backend
 import axios from "axios";
-const BACKEND_URL = 'http://192.168.1.137:3000';
+import publicIP from 'react-native-public-ip';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as Notifications from 'expo-notifications';
 
+const ip =  publicIP();
+const BACKEND_URL = `http://${ip}:3000`;
+console.log('Backend URL:', BACKEND_URL);
 
 
 export const register = async (username, email, password) => {
@@ -141,43 +145,6 @@ export const load = async () => {
     }
 };
 
-export const saveFavContacts = async (contacts) => {
-    console.log('Saving contacts', contacts);
-    try {
-        await AsyncStorage.setItem('@UserContacts', JSON.stringify(contacts));
-        await sendContactsToBackend(contacts);
-        console.log('Contacts saved');
-    } catch (e) {
-        console.error('Error saving contacts:', e);
-    }
-};
-
-export const loadContacts = async () => {
-    console.log('Loading contacts');
-    try {
-        let value = await AsyncStorage.getItem('@UserContacts');
-        console.log('Contacts loaded', value);
-        return value ? JSON.parse(value) : null;
-    } catch (e) {
-        console.error('Error loading contacts:', e);
-        return null;
-    }
-};
-
-export const sendContactsToBackend = async (contacts) => {
-    console.log('Sending contacts to backend');
-    if (await isLoggedIn()) {
-        try {
-            await axios.put(`${BACKEND_URL}/contacts`, contacts, { withCredentials: true });
-            console.log('Contacts sent to backend');
-        } catch (e) {
-            console.error('Error sending contacts to backend:', e);
-        }
-    } else {
-        console.log('User not logged in, skipping contacts update');
-    }
-}
-
 export const notify = async (title, message, token) => {
     console.log('Sending notification to token:', token);
     try {
@@ -187,3 +154,116 @@ export const notify = async (title, message, token) => {
         console.error('Error sending notification:', e);
     }
 }
+
+export const loadReminders = async () => {
+    console.log('Loading reminders');
+    // load from local storage and backend
+    try {
+        let value = await AsyncStorage.getItem('@Reminders');
+        console.log('Reminders loaded from local storage:', value);
+
+        //automatically remove expired reminders / reminders with end date before today
+        if (value) {
+            const reminders = JSON.parse(value);
+            const today = new Date();
+            const updatedReminders = reminders.filter((r) => new Date(r.endDate) > today);
+            await AsyncStorage.setItem('@Reminders', JSON.stringify(updatedReminders));
+            // delete expired reminders from cache
+            AsyncStorage.setItem('@Reminders', JSON.stringify(updatedReminders));
+            console.log('Reminders updated:', updatedReminders);
+            return updatedReminders;
+        }
+        let reminders = value ? JSON.parse(value) : [];
+        // return local storage value if not logged in
+        return reminders;
+    } catch (e) {
+        console.error('Error loading reminders:', e);
+        return [];
+    }
+
+}
+
+export const addReminder = async (id,title, reminder, time, interval, endDate ) => {
+    console.log('Adding reminder:', reminder);
+    try {
+        let reminders = await loadReminders();
+        const newReminder = { _id:id, title:title, reminder:reminder, time:time, interval:interval, endDate:endDate};
+        reminders.push(newReminder);
+        await AsyncStorage.setItem('@Reminders', JSON.stringify(reminders));
+        // create notification for reminder
+        await createNotificationForReminder(newReminder);
+        console.log('Reminder notification added');
+        console.log('Reminder added');
+        // Attempt to add to backend
+        return newReminder;
+    } catch (e) {
+        console.error('Error adding reminder:', e);
+    }
+}
+    
+
+export const deleteReminder = async (id) => {
+    console.log('Deleting reminder:', id);
+    try {
+        let reminders = await loadReminders();
+        reminders = reminders.filter((r) => r.id !== id);
+        await AsyncStorage.setItem('@Reminders', JSON.stringify(reminders));
+        console.log('Reminder deleted');
+        // Attempt to delete from backend
+    } catch (e) {
+        console.error('Error deleting reminder:', e);
+    }
+}
+
+export const updateReminder = async (id, title, reminder, time, interval, endDate) => {
+    console.log('Updating reminder:', id);
+    try {
+        let reminders = await loadReminders();
+        const index = reminders.findIndex((r) => r.id === id);
+        if (index !== -1) {
+            reminders[index] = { id, title, reminder, time, interval, endDate };
+            await AsyncStorage.setItem('@Reminders', JSON.stringify(reminders));
+            console.log('Reminder updated');
+            // Attempt to update in backend
+        }
+    } catch (e) {
+        console.error('Error updating reminder:', e);
+    }
+}
+
+export const createNotificationForReminder = async (reminder) => {
+    // Create a notification that will be triggered at the reminder time
+    console.log('Creating notification for reminder:', reminder);
+    try {
+        await Notifications.scheduleNotificationAsync({
+            content: {
+                title: reminder.title,
+                body: reminder.reminder,
+            },
+            trigger: new Date(reminder.time),
+        });
+        console.log('Notification created');
+    } catch (e) {
+        console.error('Error creating notification:', e);
+    }
+}   
+
+
+export const deleteAllReminders = async () => {
+    console.log('Deleting all reminders');
+    try {
+        await AsyncStorage.removeItem('@Reminders');
+        console.log('All reminders deleted');
+        // Attempt to delete all from backend
+    } catch (e) {
+        console.error('Error deleting all reminders:', e);
+    }
+}
+
+
+
+
+
+
+
+

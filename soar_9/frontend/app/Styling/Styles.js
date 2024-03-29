@@ -122,6 +122,41 @@ export const useDynamicStyles = (theme) => {
         borderWidth: 5,
       }
     },
+    card : {
+      backgroundColor: theme.buttoncolour,
+      borderColor: theme.buttontext,
+      borderWidth: 2,
+      borderRadius: 20,
+      padding: 20,
+      margin: 10,
+    },
+    cardText: {
+      color: theme.buttontext,
+      fontSize: 20,
+    },
+    reminder: {
+      backgroundColor: theme.buttoncolour,
+      borderColor: theme.buttontext,
+      borderWidth: 2,
+      borderRadius: 20,
+      padding: 20,
+      margin: 10,
+    },
+    reminderText: {
+      color: theme.buttontext,
+      fontSize: 20,
+    },
+    reminderTitle: {
+      color: theme.buttontext,
+      fontSize: 30,
+      fontWeight: 'bold',
+    },
+    errorBox: {
+      backgroundColor: theme.error,
+      padding: 10,
+      margin: 10,
+      borderRadius: 20,
+    },
   });
 };
 

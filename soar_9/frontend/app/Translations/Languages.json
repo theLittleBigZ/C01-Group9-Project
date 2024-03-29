@@ -21,7 +21,19 @@
   "haveAccount": "لديك حساب؟",
   "signout": "تسجيل الخروج", 
   "theme": "سمة",
-  "notifications": "إشعارات"
+  "notifications": "إشعارات",
+  "reminders": "تذكير",
+  "title": "عنوان",
+  "reminder": "تذكير",
+  "pickDateTime": "اختر التاريخ والوقت",
+  "save": "حفظ",
+  "frequency": "تكرار",
+  "pickEndDate": "اختر تاريخ الانتهاء",
+  "Delete": "حذف",
+  "edit": "تعديل",
+  "addReminder": "إضافة تذكير",
+  "submit": "إرسال",
+  "return": "عودة",
 },
  "bn" : {
   "home": "হোম",
@@ -45,7 +57,19 @@
   "haveAccount": "আপনার একটি অ্যাকাউন্ট আছে?",
   "signout": "সাইন আউট",
   "theme": "থিম",
-  "notifications": "বিজ্ঞপ্তি"
+  "notifications": "বিজ্ঞপ্তি",
+  "reminders": "অনুস্মারক",
+  "title": "শিরোনাম",
+  "reminder": "অনুস্মারক",
+  "pickDateTime": "তারিখ এবং সময় নির্বাচন করুন",
+  "save": "সংরক্ষণ",
+  "frequency": "প্রায়তন্ত্র",
+  "pickEndDate": "শেষ তারিখ নির্বাচন করুন",
+  "Delete": "মুছে ফেলা",
+  "edit": "সম্পাদনা",
+  "addReminder": "অনুস্মারক যোগ করুন",
+  "submit": "জমা দিন",
+  "return": "ফিরে আসুন"
 },
 
  "bo" : {
@@ -70,7 +94,19 @@
   "haveAccount": "ཁྱེད་ཀྱང་ཁྱབ་ཚར་འཛུགས་རྒྱབ་འབད་ཡོད་པ་", 
   "signout": "འཛུགས་རྒྱབ་འབད",
   "theme": "སྒྲིག་ཀོགས་",
-  "notifications": "སྤྱིར་བཏང་བསྡུར་འགྱུར"
+  "notifications": "སྤྱིར་བཏང་བསྡུར་འགྱུར",
+  "reminders": "བསྡུར་འགྱུར",
+  "title": "གཏོགས",
+  "reminder": "བསྡུར་འགྱུར",
+  "pickDateTime": "ཉིནམ་དང་དུས་ཚོད་འདི་འཛུགས་རྒྱབ་འབད",
+  "save": "སྲུང",
+  "frequency": "དུས་ཚོད",
+  "pickEndDate": "དུས་ཚོད་གི་ཉིནམ་འདི་འཛུགས་རྒྱབ་འབད",
+  "Delete": "བསམ་བཀོད",
+  "edit": "ཞུན་དག",
+  "addReminder": "བསྡུར་འགྱུར་འདི་འཛུགས་རྒྱབ་འབད",
+  "submit": "སྤྱི་འཛུགས",
+  "return": "སྔོན་ལ"
 },
  "en" : {
   "home": "Home",
@@ -94,7 +130,19 @@
   "haveAccount": "Have an account?",
   "signout": "Sign Out",
   "theme": "Theme",
-  "notifications": "Notifications"
+  "notifications": "Notifications",
+  "reminders": "Reminders",
+  "title": "Title",
+  "reminder": "Reminder",
+  "pickDateTime": "Pick Date and Time",
+  "save": "Save",
+  "frequency": "Frequency",
+  "pickEndDate": "Pick End Date",
+  "Delete": "Delete",
+  "edit": "Edit",
+  "addReminder": "Add Reminder",
+  "submit": "Submit",
+  "return": "Return"
 },
  "es" : {
   "home": "Inicio",
@@ -118,8 +166,19 @@
   "haveAccount": "¿Tienes una cuenta?",
   "signout": "Cerrar sesión",
   "theme": "tema",
-  "notifications": "Notificaciones"
-
+  "notifications": "Notificaciones",
+  "reminders": "Recordatorios",
+  "title": "Título",
+  "reminder": "Recordatorio",
+  "pickDateTime": "Seleccionar fecha y hora",
+  "save": "Guardar",
+  "frequency": "Frecuencia",
+  "pickEndDate": "Seleccionar fecha de finalización",
+  "Delete": "Eliminar",
+  "edit": "Editar",
+  "addReminder": "Agregar recordatorio",
+  "submit": "Enviar",
+  "return": "Volver"
 },
  "fa" : {
   "home": "خانه",
@@ -143,7 +202,19 @@
   "haveAccount": "آیا حساب کاربری دارید؟",
   "signout": "خروج",
   "theme": "تم",
-  "notifications": "اطلاعیه‌ها"
+  "notifications": "اطلاعیه‌ها",
+  "reminders": "یادآورها",
+  "title": "عنوان",
+  "reminder": "یادآور",
+  "pickDateTime": "انتخاب تاریخ و زمان",
+  "save": "ذخیره",
+  "frequency": "فراوانی",
+  "pickEndDate": "انتخاب تاریخ پایان",
+  "Delete": "حذف",
+  "edit": "ویرایش",
+  "addReminder": "افزودن یادآور",
+  "submit": "ارسال",
+  "return": "بازگشت"
 
 },
  "fr" :{
@@ -168,8 +239,19 @@
   "haveAccount": "Vous avez un compte?",
   "signout": "Déconnexion",
   "theme": "thème",
-  "notifications": "Notifications"
-
+  "notifications": "Notifications",
+  "reminders": "Rappels",
+  "title": "Titre",
+  "reminder": "Rappel",
+  "pickDateTime": "Choisir la date et l'heure",
+  "save": "Sauvegarder",
+  "frequency": "Fréquence",
+  "pickEndDate": "Choisir la date de fin",
+  "Delete": "Effacer",
+  "edit": "Modifier",
+  "addReminder": "Ajouter un rappel",
+  "submit": "Confirmer",
+  "return": "Retour",
 },
  "hi" : {
   "home": "होम",
@@ -193,8 +275,19 @@
   "haveAccount": "आपका खाता है?",
   "signout": "साइन आउट",
   "theme": "थीम",
-  "notifications": "सूचनाएं"
-
+  "notifications": "सूचनाएं",
+  "reminders": "याद दिलाने वाले",
+  "title": "शीर्षक",
+  "reminder": "याद दिलाने वाला",
+  "pickDateTime": "तारीख और समय चुनें",
+  "save": "सहेजें",
+  "frequency": "आवृत्ति",
+  "pickEndDate": "समाप्ति तिथि चुनें",
+  "Delete": "हटाएं",
+  "edit": "संपादित करें",
+  "addReminder": "याद दिलाने वाला जोड़ें",
+  "submit": "प्रस्तुत",
+  "return": "वापस जाएं"
 },
  "id" : {
   "home": "Beranda",
@@ -218,7 +311,19 @@
   "haveAccount": "Anda memiliki akun?",
   "signout": "Keluar",
   "theme": "tema",
-  "notifications": "Pemberitahuan"
+  "notifications": "Pemberitahuan",
+  "reminders": "Pengingat",
+  "title": "Judul",
+  "reminder": "Pengingat",
+  "pickDateTime": "Pilih Tanggal dan Waktu",
+  "save": "Simpan",
+  "frequency": "Frekuensi",
+  "pickEndDate": "Pilih Tanggal Akhir",
+  "Delete": "Hapus",
+  "edit": "Edit",
+  "addReminder": "Tambahkan Pengingat",
+  "submit": "Kirim",
+  "return": "Kembali"
 },
  "pt" : {
   "home": "Página inicial",
@@ -242,7 +347,19 @@
   "haveAccount": "Você tem uma conta?",
   "signout": "sair",
   "theme": "tema",
-  "notifications": "Notificações"
+  "notifications": "Notificações",
+  "reminders": "Lembretes",
+  "title": "Título",
+  "reminder": "Lembrete",
+  "pickDateTime": "Escolher data e hora",
+  "save": "Salvar",
+  "frequency": "Frequência",
+  "pickEndDate": "Escolher data final",
+  "Delete": "Excluir",
+  "edit": "Editar",
+  "addReminder": "Adicionar lembrete",
+  "submit": "Enviar",
+  "return": "Retornar"
 },
  "ru" : {
   "home": "Домой",
@@ -266,7 +383,19 @@
   "haveAccount": "У вас есть аккаунт?",
   "signout": "Выход",
   "theme": "тема",
-  "notifications": "Уведомления" 
+  "notifications": "Уведомления",
+  "reminders": "Напоминания",
+  "title": "Заголовок",
+  "reminder": "Напоминание",
+  "pickDateTime": "Выберите дату и время",
+  "save": "Сохранить",
+  "frequency": "Частота",
+  "pickEndDate": "Выберите дату окончания",
+  "Delete": "Удалить",
+  "edit": "Редактировать",
+  "addReminder": "Добавить напоминание",
+  "submit": "Отправить",
+  "return": "Вернуться"
 },
  "th" : {
   "home": "หน้าแรก",
@@ -290,7 +419,19 @@
   "haveAccount": "คุณมีบัญชีหรือไม่?",
   "signout": "ออกจากระบบ",
   "theme": "ธีม",
-  "notifications": "การแจ้งเตือน"
+  "notifications": "การแจ้งเตือน",
+  "reminders": "การแจ้งเตือน",
+  "title": "หัวข้อ",
+  "reminder": "การแจ้งเตือน",
+  "pickDateTime": "เลือกวันที่และเวลา",
+  "save": "บันทึก",
+  "frequency": "ความถี่",
+  "pickEndDate": "เลือกวันที่สิ้นสุด",
+  "Delete": "ลบ",
+  "edit": "แก้ไข",
+  "addReminder": "เพิ่มการแจ้งเตือน",
+  "submit": "ส่ง",
+  "return": "กลับ"
 },
  "ur" : {
   "home": "ہوم",
@@ -314,7 +455,19 @@
   "haveAccount": "کیا آپ کا اکاؤنٹ ہے؟",
   "signout": "سائن آؤٹ",
   "theme": "تھیم",
-  "notifications": "اطلاعات"
+  "notifications": "اطلاعات",
+  "reminders": "یاد دہانی",
+  "title": "عنوان",
+  "reminder": "یاد دہانی",
+  "pickDateTime": "تاریخ اور وقت منتخب کریں",
+  "save": "محفوظ کریں",
+  "frequency": "تعداد",
+  "pickEndDate": "آخری تاریخ منتخب کریں",
+  "Delete": "حذف کریں",
+  "edit": "ترمیم",
+  "addReminder": "یاد دہانی شامل کریں",
+  "submit": "جمع کریں",
+  "return": "واپس"
 },
  "vi" : {
   "home": "Trang chủ",
@@ -338,7 +491,19 @@
   "haveAccount": "Bạn có tài khoản?",
   "signout": "đăng xuất",
   "theme": "Chủ đề",
-  "notifications": "Thông báo"
+  "notifications": "Thông báo",
+  "reminders": "Nhắc nhở",
+  "title": "Tiêu đề",
+  "reminder": "Nhắc nhở",
+  "pickDateTime": "Chọn Ngày và Giờ",
+  "save": "Lưu",
+  "frequency": "Tần suất",
+  "pickEndDate": "Chọn Ngày Kết thúc",
+  "Delete": "Xóa",
+  "edit": "Chỉnh sửa",
+  "addReminder": "Thêm Nhắc nhở",
+  "submit": "Gửi",
+  "return": "Trở lại"
 },
  "zh" : {
   "home": "主页",
@@ -362,5 +527,18 @@
   "haveAccount": "您有帐户吗？",
   "signout": "退出",
   "theme": "主题",
-  "notifications": "通知"
+  "notifications": "通知",
+  "reminders": "提醒",
+  "title": "标题",
+  "reminder": "提醒",
+  "pickDateTime": "选择日期和时间",
+  "save": "保存",
+  "frequency": "频率",
+  "pickEndDate": "选择结束日期",
+  "Delete": "删除",
+  "edit": "编辑",
+  "addReminder": "添加提醒",
+  "submit": "提交",
+  "return": "返回"
+  
 }}

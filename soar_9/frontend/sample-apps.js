@@ -3,7 +3,7 @@ export const sample = [
         "appName": "Phone",
         "icon": "phone",
         "saved": true,
-        "url": "app://com.google.android.dialer"
+        "url": "router:/Dialer"
     },
     {
         "appName": "Gallery",

@@ -105,7 +105,7 @@ const Questionnaire = () => {
   useEffect(() => {
     const questionnaireText =
   `${i18n.t('settings')}\n
-    ${i18n.t('enablespeechtotext')}\n
+    ${i18n.t('texttospeech')}\n
     ${i18n.t('fontsize')}\n
     ${i18n.t('small')}\n
     ${i18n.t('medium')}\n

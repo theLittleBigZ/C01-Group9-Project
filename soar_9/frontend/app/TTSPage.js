@@ -13,7 +13,7 @@ function TTSPage () {
     return (
         <View style={styles.container}>
             <Text style={styles.Header}>{i18n.t('texttospeech')}</Text>
-            <ScrollView>
+
             <TextInput 
                 style={[styles.input, {height: '50%', width: '100%'}]} 
                 multiline={true} 
@@ -32,7 +32,6 @@ function TTSPage () {
             <Pressable style={styles.button} onPress={() => router.replace("/")}>
                 <Text style={styles.text}>{(i18n.t('home'))}</Text>
             </Pressable>
-            </ScrollView>
         </View>
     )
 }

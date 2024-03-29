@@ -278,7 +278,7 @@ const Reminders = () => {
     )}
 
     <Pressable style={styles.button} onPress={handleSubmit}>
-      <Text style={styles.buttonText}>{i18n.t('Submit')}</Text>
+      <Text style={styles.buttonText}>{i18n.t('submit')}</Text>
     </Pressable>
   </View>
   );

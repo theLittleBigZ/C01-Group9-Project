@@ -4,9 +4,8 @@ import publicIP from 'react-native-public-ip';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Notifications from 'expo-notifications';
 
-const ip =  publicIP();
-const BACKEND_URL = `http://${ip}:3000`;
-console.log('Backend URL:', BACKEND_URL);
+const BACKEND_URL = 'http://192.168.1.137:3000'; // change to your backend URL
+
 
 
 export const register = async (username, email, password) => {
@@ -219,10 +218,11 @@ export const deleteReminder = async (id) => {
     console.log('Deleting reminder:', id);
     try {
         let reminders = await loadReminders();
+        console.log('Reminders:', reminders);
         reminders = reminders.filter((r) => r.id !== id);
+        console.log('Reminders:', reminders);
         await AsyncStorage.setItem('@Reminders', JSON.stringify(reminders));
         console.log('Reminder deleted');
-        // Attempt to delete from backend
     } catch (e) {
         console.error('Error deleting reminder:', e);
     }

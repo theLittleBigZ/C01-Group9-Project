@@ -7,6 +7,8 @@ import i18n from './Translations/PrimaryLanguage';
 import { router } from 'expo-router';
 import { getStyles } from './Styling/Styles';
 import TTS from './text-to-speech/TTS';
+import { loadFavContacts, addFavContact, deleteFavContact } from '../services/apiServices';
+
 
 const ContactScreen = () => {
   const [contactsData, setContactsData] = useState([]);
@@ -17,7 +19,17 @@ const ContactScreen = () => {
 
   const styles = getStyles();
 
+  //load favourite contacts from the database
 
+  useEffect(() => {
+    const fetchContacts = async () => {
+      let data = await loadFavContacts();
+      console.log("favourite contacts: ", data);
+      setFavouriteContacts(data);
+    };
+    fetchContacts();
+  }, []);
+  
 
   useEffect(() => {
     const getTTStext = () => {
@@ -32,6 +44,7 @@ const ContactScreen = () => {
     }
     setTTStext(getTTStext());
 }, [favouriteContacts]);
+
 
 
   useEffect(() => {
@@ -71,15 +84,12 @@ const ContactScreen = () => {
   }
 
   function handleFavourite(contact) {
-    const isFavourite = favouriteContacts.some(favContact => favContact.id === contact.id);
-
-    if (isFavourite){
-      console.log("removing favourite " + contact.firstName)
-      setFavouriteContacts((prevFavouriteContacts) => prevFavouriteContacts.filter((favContact) => favContact.id!==contact.id));
-    }
-    else{
-      console.log("adding favourite " + contact.firstName)
-      setFavouriteContacts((prevFavouriteContacts) => [...favouriteContacts, contact]);
+    if (favouriteContacts.some(favContact => favContact.id === contact.id)){
+      deleteFavContact(contact.id);
+      setFavouriteContacts(favouriteContacts.filter(favContact => favContact.id !== contact.id));
+    } else {
+      addFavContact(contact);
+      setFavouriteContacts([...favouriteContacts, contact]);
     }
   }
   
@@ -129,21 +139,12 @@ const ContactScreen = () => {
           <Divider/>
           {favouriteContacts && favouriteContacts.length > 0 ? (
             <FlatList style={styles.text} data={favouriteContacts} 
-              renderItem={({item}) => (
-                //only show contacts that are still available in the device
-                contactsData.some(availableContact => availableContact.id === item.id) ? (
-                  //render contact if available
-                  <Contact contact={item}/>
-                ) : (
-                  //if not available remove from favourites
-                  handleFavourite(item)))}
+              renderItem={({item}) => (<Contact contact={item}/>)}
               keyExtractor={(item) => item.id}
               ItemSeparatorComponent={() => <View style={{ height: 10 }} />}/>
-              ):(
-                <View style={[styles.container, {justifyContent: 'center'}]}>
-                  <Text style={styles.Header}>{i18n.t('noFavouriteContacts')}</Text>
-                </View>
-              )}
+          ):(
+            <Text style={styles.text}>{i18n.t('noFavouriteContacts')}</Text>
+          )}
         </View>
         ):(
         <View style={styles.container}>

@@ -145,6 +145,19 @@ export const load = async () => {
     }
 };
 
+export const loadCache = async () => {
+    console.log('Loading from cache');
+    try {
+        let value = await AsyncStorage.getItem('@UserPreferences');
+        console.log('Preferences loaded from cache:', value);
+        return value ? JSON.parse(value) : null;
+    }
+    catch (e) {
+        console.error('Error loading from cache:', e);
+        return null;
+    }
+};
+
 export const notify = async (title, message, token) => {
     console.log('Sending notification to token:', token);
     try {
@@ -257,6 +270,42 @@ export const deleteAllReminders = async () => {
         // Attempt to delete all from backend
     } catch (e) {
         console.error('Error deleting all reminders:', e);
+    }
+}
+
+export const addFavContact = async (contact) => {
+    console.log('Adding favourite contact:', contact);
+    try {
+        let favContacts = await loadFavContacts();
+        favContacts.push(contact);
+        await AsyncStorage.setItem('@FavouriteContacts', JSON.stringify(favContacts));
+        console.log('Favourite contact added');
+    } catch (e) {
+        console.error('Error adding favourite contact:', e);
+    }
+}
+
+export const loadFavContacts = async () => {
+    console.log('Loading favourite contacts');
+    try {
+        let value = await AsyncStorage.getItem('@FavouriteContacts');
+        console.log('Favourite contacts loaded:', value);
+        return value ? JSON.parse(value) : [];
+    } catch (e) {
+        console.error('Error loading favourite contacts:', e);
+        return [];
+    }
+}
+
+export const deleteFavContact = async (id) => {
+    console.log('Deleting favourite contact:', id);
+    try {
+        let favContacts = await loadFavContacts();
+        favContacts = favContacts.filter((c) => c.id !== id);
+        await AsyncStorage.setItem('@FavouriteContacts', JSON.stringify(favContacts));
+        console.log('Favourite contact deleted');
+    } catch (e) {
+        console.error('Error deleting favourite contact:', e);
     }
 }
 

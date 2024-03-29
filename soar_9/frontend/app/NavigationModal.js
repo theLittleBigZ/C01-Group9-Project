@@ -47,6 +47,9 @@ import { useEffect, useState } from 'react';
           <Pressable style={styles.button} onPress={() => router.replace("/Questionaire")}>
               <Text style={styles.text}>{i18n.t('settings')}</Text>
           </Pressable>
+          <Pressable style={styles.button} onPress={() => router.replace("/Reminders")}>
+              <Text style={styles.text}>{i18n.t('reminders')}</Text>
+            </Pressable>
           <Pressable style={styles.button} onPress={() => router.replace("/ContactScreen")}>
               <Text style={styles.text}>{i18n.t('contacts')}</Text>
           </Pressable>
@@ -68,6 +71,7 @@ import { useEffect, useState } from 'react';
           <Pressable style={styles.button} onPress={() => {setModalVisible(false)}}>
               <Text style={styles.text}>{i18n.t('close')}</Text>
           </Pressable>
+
           </View>
       </Modal>
     );

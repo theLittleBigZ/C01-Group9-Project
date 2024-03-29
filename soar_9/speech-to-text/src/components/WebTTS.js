@@ -42,9 +42,24 @@ const Listen = () => {
     }
 
 
-    const converse = (transcript) => {
+    const converse = async (transcript) => {
+        try{
+            const response = await fetch('https://ttpeqnda.the403.xyz/api/generate', {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                model: 'tinyllama',
+                prompt: transcript,
+                stream: false
+                })
+            });
 
-        setResponse(transcript);
+        }catch (error){
+            console.error('Error:', error);
+        }
+        setResponse(response);
     }
 
     //on change to isRecording, run handleRecording

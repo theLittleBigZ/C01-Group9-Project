@@ -57,7 +57,7 @@ export const sample = [
         "appName": "Messages",
         "icon": "android-messages",
         "saved": false,
-        "url": "https://wa.me/"
+        "url": "content://" /* https://wa.me/ <- whatsapp*/
     },
     {
         "appName": "Calendar",

@@ -45,7 +45,7 @@ export const sample = [
         "appName": "Settings",
         "icon": "wrench",
         "saved": false,
-        "url": "app://com.android.settings"
+        "url": "router:/Questionaire"
     },
     {
         "appName": "Chrome",

@@ -265,8 +265,8 @@ export const createNotificationForReminder = async (reminder) => {
     console.log('Creating notification for reminder:', reminder);
 
     let trigger;
-    const time = new Date(reminder.dateTime); // Assuming reminder.dateTime is a Date object
-
+    const time = new Date(reminder.time); // Assuming reminder.dateTime is a Date object
+    console.log('Reminder time:', time);
     switch (reminder.interval) {
         case "None":
             trigger = time;

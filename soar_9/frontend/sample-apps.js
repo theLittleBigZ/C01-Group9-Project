@@ -63,7 +63,7 @@ export const sample = [
         "appName": "Calendar",
         "icon": "calendar",
         "saved": false,
-        "url": "app://com.google.android.calendar"
+        "url": "https://www.google.com/calendar"
     },
     {
         "appName": "Calculator",

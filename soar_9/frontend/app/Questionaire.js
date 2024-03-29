@@ -129,7 +129,7 @@ const Questionnaire = () => {
       <Divider/>
       <ScrollView>
         <View style={styles.question}>
-          <Text style={styles.questionfont}>{i18n.t('enablespeechtotext')}:</Text>
+          <Text style={styles.questionfont}>{i18n.t('texttospeech')}:</Text>
           <Switch
             trackColor={{ false: styles.negative, true: styles.positive }}
             thumbColor={speechToText ? styles.positive : styles.negative}

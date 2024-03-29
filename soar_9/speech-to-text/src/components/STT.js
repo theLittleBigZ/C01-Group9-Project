@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getStyles} from '../Styling/Styles.js';
+import Form from 'react-bootstrap/Form';
+//import {themes} from '../Styling/Colours'
 
 //get speech recognition from the web (webkit for chrome)
 const SpeechRecognition = window.speechRecognition || window.webkitSpeechRecognition;
@@ -10,10 +12,13 @@ mic.continuous = true;
 mic.intermResults = true;
 mic.lang = 'en-CA';
 
+
 const STT = () => {
 
     const [isRecording, setIsRecording] = useState(false);
     const [result, setResult] = useState(null);
+    const [lang, setLang] = useState('en-CA');
+
 
     const styles = getStyles();
     //on change to isRecording, run handleRecording
@@ -63,12 +68,33 @@ const STT = () => {
         alert("Copied: " + copyText + " to Clipboard"); // Alert the copied text
       }
 
+    const onChangeLang = (e) => {
+        mic.lang = e.target.value;
+        console.log(mic.lang);
+    }
+
 
     return (
         <>
         <div style={styles.container} className='container'>
             <div style={styles.question} className='box'>
                 <h2 style={styles.Header}>Speech-To-Text</h2>
+
+
+                <Form.Select style={styles.button} onChange={onChangeLang}>
+                    <option>Select Language</option>
+                    <option value="ar-SA">العربية (Arabic)</option>
+                    <option value="bn-BD">বাংলা (Bengali)</option>
+                    <option value="en-CA">English (Canadian)</option>
+                    <option value="fr-FR">Français (French)</option>
+                    <option value="hi-IN">हिंदी (Hindi)</option>
+                    <option value="id-ID">Bahasa Indonesia (Indonesian)</option>
+                    <option value="zh-CN">中文 (Mandarin)</option>
+                    <option value="pt-PT">Língua Portuguesa (Portuguese)</option>
+                    <option value="ru-RU">русский язык (Russian)</option>
+                    <option value="es-ES">Español (Spanish)</option>
+                    <option value="th-TH">ภาษาไทย (Thai)</option>
+                </Form.Select>
 
                 {isRecording ?
                 <button style={styles.button} onClick={() => setIsRecording(prevState => !prevState)}>

@@ -68,8 +68,6 @@ export const getLanguage = async () => {
 
     }
 
-    console.log("Your Language is: " + language);
-
     return language;
 
 }

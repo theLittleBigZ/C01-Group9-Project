@@ -5,7 +5,7 @@ import { Platform } from 'react-native';
 import i18n from './Translations/PrimaryLanguage.js';
 
 
-const SetBrightness = ({styles}) => {
+const SetBrightness = ({styles, setbrightness, brightness}) => {
     
     useEffect(() => {
         (async () => {
@@ -28,20 +28,28 @@ const SetBrightness = ({styles}) => {
             //possible workaround - store which button they had pressed and set the brightness again everytime they open the app
         }
     }
+    const brightnessMap = {
+        [i18n.t('low')]: 0.3,
+        [i18n.t('medium')]: 0.7,
+        [i18n.t('high')]: 1,
+    };
 
     return (
-        <View>
-            <Pressable style={styles.button} title="low" onPress={()=>setBrightness(0.3)}>
-                <Text style={styles.text}>{i18n.t('low')}</Text>
+        <View style={styles.text}>
+            {[i18n.t('low'), i18n.t('medium'), i18n.t('high')].map((level) => (
+            <Pressable
+                key={level}
+                onPress={() => {
+                setbrightness(brightnessMap[level]);
+                setBrightness(brightnessMap[level]);
+                }}
+                style={[styles.button, brightness === brightnessMap[level] && styles.selectedButton]}
+            >
+                <Text style={styles.text}>{level}</Text>
             </Pressable>
-            <Pressable style={styles.button} title="medium" onPress={()=>setBrightness(0.7)}>
-                <Text style={styles.text}>{i18n.t('medium')}</Text>
-            </Pressable>
-            <Pressable  style={styles.button} title="high" onPress={()=>setBrightness(1)}>
-                <Text style={styles.text}>{i18n.t('high')}</Text>
-            </Pressable>
+            ))}
         </View>
-    )
-}
+    );
+};
 
 export default SetBrightness;

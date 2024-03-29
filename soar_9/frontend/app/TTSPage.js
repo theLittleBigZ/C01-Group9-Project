@@ -11,7 +11,7 @@ function TTSPage () {
     const [toSpeak, setToSpeak] = useState('');
 
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, {justifyContent: 'center'}]}>
             <Text style={styles.Header}>{i18n.t('texttospeech')}</Text>
 
             <TextInput 

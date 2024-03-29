@@ -14,6 +14,7 @@ import { getFontSize, fontsizes } from './Styling/FontSize.js';
 import { useDynamicStyles } from './Styling/Styles.js';
 import {TTS} from './text-to-speech/TTS.js';
 import { questionnaireText } from './text-to-speech/PageInputs.js';
+import { BrightnessMode } from 'expo-brightness';
 
 const Questionnaire = () => {
   // State for each setting
@@ -75,6 +76,7 @@ const Questionnaire = () => {
         setTheme(cache.theme);
         setSpeechToTextEnabled(cache.speechToText);
         setFontSize(cache.fontSize);
+        setBrightness(cache.brightness);
       }
       let value = await load();
       if (value !== null) { 
@@ -171,8 +173,8 @@ const Questionnaire = () => {
 
         <Divider/>
         <View style={styles.question}>
-          <Text style={styles.questionfont}>{i18n.t('brightness')}: {brightness}%</Text>
-            <SetBrightness styles={styles}/>
+          <Text style={styles.questionfont}>{i18n.t('brightness')}: </Text>
+            <SetBrightness styles={styles} brightness={brightness} setbrightness={setBrightness}/>
         </View>
 
         <Divider/>

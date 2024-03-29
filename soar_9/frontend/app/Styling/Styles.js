@@ -42,7 +42,6 @@ export const useDynamicStyles = (theme, fontsize) => {
       borderColor: theme.buttontext,
       backgroundColor: theme.buttoncolour,
       height: 40,
-      margin: 12,
       borderWidth: 1,
       padding: 10,
       color: theme.buttontext,

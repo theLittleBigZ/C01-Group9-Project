@@ -1,6 +1,6 @@
 // Sending data to backend
 import axios from "axios";
-const BACKEND_URL = 'http://192.168.178.76:3000';
+const BACKEND_URL = 'http://192.168.2.17:3000';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
@@ -137,6 +137,19 @@ export const load = async () => {
         }
     } catch (e) {
         console.error('Error loading data:', e);
+        return null;
+    }
+};
+
+export const loadCache = async () => {
+    console.log('Loading from cache or backend');
+    try {
+        let valueCache = await AsyncStorage.getItem('@UserPreferences');
+        console.log('Returning cached preferences');
+        return valueCache? JSON.parse(valueCache): null;
+
+    } catch (e) {
+        console.error('Error loading cache:', e);
         return null;
     }
 };

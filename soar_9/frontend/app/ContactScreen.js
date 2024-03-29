@@ -6,27 +6,42 @@ import { Divider, TextInput } from 'react-native-paper';
 import i18n from './Translations/PrimaryLanguage';
 import { router } from 'expo-router';
 import { getStyles } from './Styling/Styles';
+import TTS from './text-to-speech/TTS';
 
 const ContactScreen = () => {
   const [contactsData, setContactsData] = useState([]);
   const [favouriteContacts, setFavouriteContacts] = useState([]);
   const [pageState, setPageState] = useState(1);
   const [searchResult, setSearchResult] = useState([]);
+  const [TTStext, setTTStext] = useState('');
 
   const styles = getStyles();
 
+  useEffect(() => {
+    const getTTStext = () => {
+      let text = i18n.t('favouriteContacts') + '\n'
+      favouriteContacts.forEach(favContact => {
+        if(favContact.firstName != undefined){
+          text += `${favContact.firstName}\n`;
+        }
+      });
+      text += i18n.t('navigateto') + '\n' + i18n.t('allContacts')+ '\n' + i18n.t('home') + '\n';
+      return text
+    }
+    setTTStext(getTTStext());
+}, [favouriteContacts]);
+
 
   useEffect(() => {
-      const fetchData = async () => {
-        const status = await askForContactPermission();
-        if (status === "granted"){
-          const data = await getAllContacts();
-          setContactsData(data);
-          setSearchResult(data);
-        }
-      };
-  
-      fetchData();
+    const fetchData = async () => {
+      const status = await askForContactPermission();
+      if (status === "granted"){
+        const data = await getAllContacts();
+        setContactsData(data);
+        setSearchResult(data);
+      }
+    };
+    fetchData();
   }, []);
 
   const askForContactPermission = async () => {
@@ -82,9 +97,9 @@ const ContactScreen = () => {
   }
 
   const Contact = ({contact}) => (
-    <View style={[styles.container, {borderColor: 'black',  borderWidth: 2,
+    <View style={[styles.container, {borderColor: styles.button.backgroundColor,  borderWidth: 2,
         borderRadius: 10}]}>
-          <Text style={styles.text}>
+          <Text style={styles.questionfont}>
             {contact.firstName ? `${contact.firstName.trim()}` : ""}
             {contact.lastName ? ` ${contact.lastName.trim()}` : ""}
           </Text>
@@ -108,6 +123,7 @@ const ContactScreen = () => {
       {pageState === 1 ? (
         <View style={styles.container}>
           <Text style={styles.Header}>{i18n.t('favouriteContacts')}</Text>
+          <TTS input={TTStext} styles={styles}/>
           <Divider/>
           {favouriteContacts && favouriteContacts.length > 0 ? (
             <FlatList style={styles.text} data={favouriteContacts} 
@@ -123,15 +139,22 @@ const ContactScreen = () => {
               ItemSeparatorComponent={() => <View style={{ height: 10 }} />}/>
               ):(
                 <View style={[styles.container, {justifyContent: 'center'}]}>
-                  <Text style={styles.text}>{i18n.t('noFavouriteContacts')}</Text>
+                  <Text style={styles.Header}>{i18n.t('noFavouriteContacts')}</Text>
                 </View>
               )}
         </View>
         ):(
         <View style={styles.container}>
-          <TextInput ref={input => { this.textInput = input }} style={styles.input} onChangeText={query => search(query)} placeholder={i18n.t('searchContacts')}/>
+          <TextInput 
+            style={styles.input}
+            placeholderTextColor={styles.input.color}
+            cursorColor={styles.input.borderColor}
+            ref={input => { this.textInput = input }} 
+            onChangeText={query => search(query)} 
+            placeholder={i18n.t('searchContacts')}/>
+                      
           <Pressable style={styles.button} onPress={() => {setSearchResult(""); this.textInput.clear(); search("")}}>
-            <Text style={[styles.text, {fontSize:20}]}>{i18n.t('clearSearch')}</Text>
+            <Text style={styles.text}>{i18n.t('clearSearch')}</Text>
             </Pressable>
           <FlatList style={styles.text} data={searchResult} 
             renderItem={({item}) => (<Contact contact={item}/>)}
@@ -142,19 +165,19 @@ const ContactScreen = () => {
       }
   
       <Divider/>
-      <Text style={[styles.text]}>{i18n.t('navigateto')}:</Text>
+      <Text style={styles.Header}>{i18n.t('navigateto')}:</Text>
       {pageState == 0 ? (
         <Pressable style={styles.button} onPress={() => setPageState(1)}>
-          <Text style={[styles.text, {fontSize:20}]}>{i18n.t('favouriteContacts')}</Text>
+          <Text style={styles.text}>{i18n.t('favouriteContacts')}</Text>
         </Pressable>
       ):(
         <Pressable style={styles.button} onPress={() => setPageState(0)}>
-        <Text style={[styles.text, {fontSize:20}]}>{i18n.t('allContacts')}</Text>
+        <Text style={styles.text}>{i18n.t('allContacts')}</Text>
         </Pressable>
       )}
       <Pressable style={styles.button} onPress={() => router.replace("/Homescreen")}>
-                  <Text style={[styles.text, {fontSize:20}]}>{i18n.t('home')}</Text>
-              </Pressable>
+          <Text style={styles.text}>{i18n.t('home')}</Text>
+      </Pressable>
   </View>
   );
 };

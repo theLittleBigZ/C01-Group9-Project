@@ -31,13 +31,13 @@ const SetBrightness = ({styles}) => {
     return (
         <View>
             <Pressable style={styles.button} title="low" onPress={()=>setBrightness(0.3)}>
-                <Text style={[styles.text, {fontSize: 20}]}>low</Text>
+                <Text style={styles.text}>low</Text>
             </Pressable>
             <Pressable style={styles.button} title="medium" onPress={()=>setBrightness(0.7)}>
-                <Text style={[styles.text, {fontSize: 20}]}>medium</Text>
+                <Text style={styles.text}>medium</Text>
             </Pressable>
             <Pressable  style={styles.button} title="high" onPress={()=>setBrightness(1)}>
-                <Text style={[styles.text, {fontSize: 20}]}>high</Text>
+                <Text style={styles.text}>high</Text>
             </Pressable>
         </View>
     )

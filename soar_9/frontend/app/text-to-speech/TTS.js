@@ -1,49 +1,46 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, Button, TextInput } from 'react-native';
+
+import { View, Pressable, Text } from 'react-native';
 import * as Speech from 'expo-speech';
+import { getLanguage } from './LanguageTTS';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
+export function TTS({input, styles}) {
+
+    const language = async () => {return await getLanguage()}
 
 
-function TTS() {
-
-
-    let [toSpeak, setToSpeak] = useState('');
-
-
-
-
-    const speak = () => {
+    const speak = async () => {
+        const getLang = await language();
+        console.log("your input :" + input);
         const options = {
+            language: getLang,
         };
-        Speech.speak(toSpeak, options);
+    
+        try {
+            Speech.speak(input, options);
+        } catch (error) {
+            console.error("Speech API error:", error);
+        }
     };
+
+    const stop = async () => {
+        try {
+            await Speech.stop();
+        } catch (error) {
+            console.error("Stop error:", error);
+        }
+    }
 
 
     return (
-        <View style={styles.container}>
-            <View>
-                <TextInput style={styles.inputBox} multiline={true} value={toSpeak} onChangeText={(e) => setToSpeak(e)} />
-                <Button title='Clear input' onPress={() => setToSpeak('')}/>
-            </View>
-
-
-        <Button title="Press to hear the text input" onPress={speak} />
+        <View style={[styles.question, {flexDirection: 'row', width: '100%', justifyContent:'flex-end'}]}>
+            <Pressable style={styles.ttsbutton} onPress={speak}>
+                <Icon name='play' style={styles.text}/>
+            </Pressable>
+            <Pressable style={styles.ttsbutton} onPress={stop}>
+                <Icon name='stop' style={styles.text} />
+            </Pressable>
         </View>
     );
 }
 export default TTS;
-
-
-const styles = StyleSheet.create({
-    container: {
-        display: 'flex',
-        justifyContent: 'center',
-    },
-    inputBox: {
-        padding: 5,
-        margin: 5,
-        height: 200,
-        width: 500,
-        borderBottomColor: 'black',
-        borderBottomWidth: 1,
-    }
-})

@@ -98,11 +98,11 @@ const RegisterPage = () => {
       <Divider />
 
       <Pressable style={styles.button} onPress={handleRegister}>
-        <Text style={[styles.text, { fontSize: 20 }]}>{i18n.t('register')}</Text>
+        <Text style={styles.text}>{i18n.t('register')}</Text>
       </Pressable>
 
       <Pressable style={styles.button} onPress={() => router.replace("/LoginPage")}>
-        <Text style={[styles.text, { fontSize: 20 }]}>{i18n.t('haveAccount')}</Text>
+        <Text style={styles.text}>{i18n.t('haveAccount')}</Text>
       </Pressable>
     </View>
   );

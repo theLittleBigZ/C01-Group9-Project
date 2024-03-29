@@ -87,7 +87,7 @@ export const loadFromBackend = async () => {
             console.log('Data loaded from backend');
             return JSON.stringify(response.data);
         } catch (e) {
-            console.error('Error loading from backend:', e);
+            // console.error('Error loading from backend:', e);
         }
     } else {
         console.log('User not logged in, skipping backend load');
@@ -141,13 +141,53 @@ export const load = async () => {
     }
 };
 
-export const saveContacts = async (contacts) => {
+export const loadCache = async () => {
+    console.log('Loading from cache or backend');
+    try {
+        let valueCache = await AsyncStorage.getItem('@UserPreferences');
+        console.log('Returning cached preferences');
+        return valueCache? JSON.parse(valueCache): null;
+
+    } catch (e) {
+        console.error('Error loading cache:', e);
+        return null;
+    }
+};
+
+export const saveFavContacts = async (contacts) => {
     console.log('Saving contacts', contacts);
     try {
         await AsyncStorage.setItem('@UserContacts', JSON.stringify(contacts));
+        await sendContactsToBackend(contacts);
         console.log('Contacts saved');
     } catch (e) {
         console.error('Error saving contacts:', e);
     }
 };
+
+export const loadContacts = async () => {
+    console.log('Loading contacts');
+    try {
+        let value = await AsyncStorage.getItem('@UserContacts');
+        console.log('Contacts loaded', value);
+        return value ? JSON.parse(value) : null;
+    } catch (e) {
+        console.error('Error loading contacts:', e);
+        return null;
+    }
+};
+
+export const sendContactsToBackend = async (contacts) => {
+    console.log('Sending contacts to backend');
+    if (await isLoggedIn()) {
+        try {
+            await axios.put(`${BACKEND_URL}/contacts`, contacts, { withCredentials: true });
+            console.log('Contacts sent to backend');
+        } catch (e) {
+            console.error('Error sending contacts to backend:', e);
+        }
+    } else {
+        console.log('User not logged in, skipping contacts update');
+    }
+}
 

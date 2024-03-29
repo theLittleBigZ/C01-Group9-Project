@@ -1,15 +1,13 @@
-// Styles.js
-
 import { StyleSheet } from "react-native";
 import { useState, useEffect } from 'react';
 import { getTheme } from './Colours';
+import { getFontSize } from "./FontSize";
 
-
-export const useDynamicStyles = (theme) => {
+export const useDynamicStyles = (theme, fontsize) => {
   return StyleSheet.create({
     container: {
       backgroundColor: theme.background,
-      padding: 20,
+      padding: 25,
       justifyContent: 'center',
       flex: 1,
     },
@@ -26,16 +24,15 @@ export const useDynamicStyles = (theme) => {
       width: '90%',
     },
     Header: {
-      fontSize: 40,
+      fontSize: fontsize.header,
       fontWeight: 'bold',
-      fontFamily: 'monospace',
       color: theme.headertext,
       width: '100%',
       textAlign: 'center'
     },
     icon: {
       padding: 5,
-      fontSize: 50,
+      fontSize: fontsize.icon,
       color: theme.buttontext,
       borderColor: theme.buttontext,
       borderWidth: 2,
@@ -49,28 +46,26 @@ export const useDynamicStyles = (theme) => {
       borderWidth: 1,
       padding: 10,
       color: theme.buttontext,
-      fontSize: 20,
+      fontSize: fontsize.input,
     },
     item: {
       flex: 1,
       margin: 10, 
-      fontSize: 30,
+      fontSize: fontsize.text,
       color: theme.buttontext,
     },
-    modalView: {
-      margin: 20,
-      backgroundColor: "white",
-      borderRadius: 20,
-      padding: 35,
-      alignItems: "center",
-      shadowColor: "#000",
-      shadowOffset: {
-        width: 0,
-        height: 2
-      },
-      shadowOpacity: 0.25,
-      shadowRadius: 4,
-      elevation: 5
+    keypadNumber: {
+      padding: 10,
+      flex: 1,
+      borderRadius: 50,
+      margin: 10,
+      flexDirection:'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: theme.buttoncolour,
+      borderColor: theme.buttontext,
+      borderWidth: 2,
+      width: '10%',
     },
     question: {
       margin: 10,
@@ -79,64 +74,62 @@ export const useDynamicStyles = (theme) => {
     },
     questionfont: {
       color: theme.headertext,
-      fontSize: 20,
+      fontSize: fontsize.question,
       marginBottom: 10,
       fontWeight: '400',
     },
     text: {
       color: theme.buttontext,
       textAlign: 'center',
-      fontSize: 30,
+      fontSize: fontsize.text,
       fontWeight: 'bold',
-      fontFamily: 'monospace',
     },
     selectedButton: {
       backgroundColor: theme.secondary,
     },
-    bottomNav: {
-      backgroundColor: theme.secondary,
-      width: '100%',
-      justifyContent: 'flex-end',
-    },
-    headerfont: {
-      color: theme.headertext,
-      textAlign: 'center',
-      fontSize: 30,
-      fontWeight: 'bold',
-      fontFamily: 'monospace',
-    },
+    positive: theme.positive,
+    negative: theme.negative,
     pickerstyle: {
       inputIOS: {
-        borderColor: theme.buttontext,
-        borderRadius: 5,
         backgroundColor: theme.buttoncolour,
+        color: theme.buttontext,
         borderColor: theme.buttontext,
         borderWidth: 5,
+        fontsize: fontsize.input
       },
       inputAndroid: {
         backgroundColor: theme.buttoncolour,
-        borderColor: theme.buttontext,
         color: theme.buttontext,
-        borderRadius: 5,
         borderColor: theme.buttontext,
         borderWidth: 5,
-      }
+        fontsize: fontsize.input,
+      },
     },
+    ttsbutton:{
+      margin: 10, 
+      padding: 15,
+      borderRadius: 50,
+      fontSize: fontsize.icon,
+      backgroundColor: theme.buttoncolour,
+      borderColor: theme.buttontext,
+      borderWidth: 1,
+    }
   });
 };
-
 export const getStyles = () => {
-  const [styles, setStyles] = useState(useDynamicStyles(getTheme()));
-
+  const [styles, setStyles] = useState(useDynamicStyles(getTheme(), getFontSize()));
   useEffect(() => {
     const fetchAndSetStyle = async () => {
       const fetchedTheme = await getTheme();
-      const dynamicStyles = useDynamicStyles(fetchedTheme);
+      const fetchedFontSize = await getFontSize();
+      console.log("Fetched Theme:", fetchedTheme);
+      console.log("Fetched Font Size:", fetchedFontSize);
+      const dynamicStyles = useDynamicStyles(fetchedTheme, fetchedFontSize);
       setStyles(dynamicStyles);
     };
-
     fetchAndSetStyle();
   }, []);
+
 
   return styles;
 };

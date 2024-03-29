@@ -1,8 +1,8 @@
 // Import necessary components and hooks
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, Switch, ScrollView, Pressable, Modal} from 'react-native';
+import { View, Text, Switch, ScrollView, Pressable, Modal} from 'react-native';
 import { Divider } from 'react-native-paper'; 
-import { load, saveToCache } from '../services/apiServices';
+import { load, loadCache, saveToCache } from '../services/apiServices';
 import RNPickerSelect from 'react-native-picker-select';
 import {sample} from '../sample-apps';
 import { router } from 'expo-router';
@@ -10,24 +10,27 @@ import languageMap from './Translations/LanguageMap';
 import i18n from './Translations/PrimaryLanguage';
 import SetBrightness from './SetBrightness.js'
 import {getTheme, themes, themeMap } from './Styling/Colours.js';
+import { getFontSize, fontsizes } from './Styling/FontSize.js';
 import { useDynamicStyles } from './Styling/Styles.js';
+import {TTS} from './text-to-speech/TTS.js';
+import { questionnaireText } from './text-to-speech/PageInputs.js';
 
 const Questionnaire = () => {
   // State for each setting
   const [speechToText, setSpeechToTextEnabled] = useState(false);
   const [fontSize, setFontSize] = useState('Medium'); // Default to 'Medium'
   const [theme, setTheme] = useState('default');
-  const [language, setLanguage] = useState(i18n.locale);
+  const [language, setLanguage] = useState('en');
   const [brightness, setBrightness] = useState(0.5); // Assuming brightness ranges from 0 to 1
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedApps, setSelectedApps] = useState([]);
-  const [styles, setStyles] = useState(useDynamicStyles(getTheme()));
+  const [styles, setStyles] = useState(useDynamicStyles(getTheme(), getFontSize()));
 
-  
   useEffect(() => {
     const fetchAndSetStyles = async () => {
       const fetchedTheme = await getTheme();
-      const dynamicStyles = useDynamicStyles(fetchedTheme);
+      const fetchedFontSize = await getFontSize();
+      const dynamicStyles = useDynamicStyles(fetchedTheme, fetchedFontSize);
       setStyles(dynamicStyles);
     };
 
@@ -43,13 +46,13 @@ const Questionnaire = () => {
       setSelectedApps([...selectedApps, appName]);
     }
   };
-  
+
   // Function to save all settings to AsyncStorage
   const savePreferences = async () => {
     const userPreferences = {
       speechToText,
       fontSize,
-      theme, 
+      theme,
       language,
       brightness,
       selectedApps,
@@ -67,14 +70,21 @@ const Questionnaire = () => {
   // get apps from user preferences
   const getCacheAndUpdateSampleData = async () => {
     try {
+      let cache = await loadCache();
+      if (cache !== null) {
+        setTheme(cache.theme);
+        setSpeechToTextEnabled(cache.speechToText);
+        setFontSize(cache.fontSize);
+      }
       let value = await load();
-      if (value !== null) {
+      if (value !== null) { 
         const savedAppNames = value.selectedApps; // Array of app names
-        setSelectedApps(savedAppNames);
-        setTheme(value.theme);
+        setSelectedApps(savedAppNames); // Array of app names
+        setSpeechToTextEnabled(value.speechToText);
+        setLanguage(value.language);
       }
     } catch (error) {
-        console.error('Error getting preferences:', error);
+      console.error('Error getting preferences:', error);
     }
   };
 
@@ -83,39 +93,49 @@ const Questionnaire = () => {
     getCacheAndUpdateSampleData();
   }, []);
   
-
+  const sizeMapping = {
+    [i18n.t('small')]: 'Small',
+    [i18n.t('medium')]: 'Medium',
+    [i18n.t('large')]: 'Large',
+  };
 
   return (
     <View style={styles.container}>
       <Text style={styles.Header}>{i18n.t('settings')}</Text>
-      <Divider/>
 
+      <TTS input={questionnaireText} styles={styles}/>
+      <Divider/>
       <ScrollView>
         <View style={styles.question}>
           <Text style={styles.questionfont}>{i18n.t('enablespeechtotext')}:</Text>
           <Switch
+            trackColor={{ false: styles.negative, true: styles.positive }}
+            thumbColor={speechToText ? styles.positive : styles.negative}
             onValueChange={setSpeechToTextEnabled}
             value={speechToText}
           />
         </View>
-        <Divider/>
 
+        <Divider/>
         <View style={styles.question}>
           <Text style={styles.questionfont}>{i18n.t('fontsize')}:</Text>
           <View style={styles.text}>
             {[i18n.t('small'), i18n.t('medium'), i18n.t('large')].map((size) => (
               <Pressable
                 key={size}
-                onPress={() => setFontSize(size)}
-                style={[styles.button, fontSize === size && styles1.selectedButton]}
+                onPress={() => {
+                  setFontSize(sizeMapping[size]);
+                  setStyles(useDynamicStyles(themes[theme], fontsizes[sizeMapping[size]]))
+                }}
+                style={[styles.button, fontSize === sizeMapping[size] && styles.selectedButton]}
               >
-                <Text style={[styles.text, {fontSize: 20}]}>{size}</Text>
+                <Text style={styles.text}>{size}</Text>
               </Pressable>
             ))}
           </View>
         </View>
-        <Divider/>
 
+        <Divider/>
         <View style={styles.question}>
           <Text style={styles.questionfont}>{i18n.t('language') + ":"}</Text>
           <ScrollView style={{borderWidth:2,  borderColor: styles.icon.borderColor}}>
@@ -130,10 +150,9 @@ const Questionnaire = () => {
               style={styles.pickerstyle}/>
           </ScrollView>
         </View>
-        <Divider/>
 
         <Divider/>
-
+        
         <View style={styles.question}>
           <Text style={styles.questionfont}>{i18n.t('theme') + ":"}</Text>
           <ScrollView style={{borderWidth:2, borderColor: styles.icon.borderColor}}>
@@ -141,7 +160,7 @@ const Questionnaire = () => {
               items={themeMap}
               onValueChange={(value) => {
                 setTheme(value);
-                setStyles(useDynamicStyles(themes[value]))
+                setStyles(useDynamicStyles(themes[value], fontsizes[fontSize]))
               }}
               style={styles.pickerstyle}
               value={theme}
@@ -161,24 +180,25 @@ const Questionnaire = () => {
           <Text style={styles.questionfont}>{i18n.t('select') +" "+ i18n.t('frequentlyused') +" "+ i18n.t('apps')}:</Text>
 
           <Pressable style={styles.button} onPress={() => setModalVisible(true)}>
-            <Text style={[styles.text, {fontSize: 20}]}>{i18n.t('select') +" "+ i18n.t('apps')}</Text>
+            <Text style={styles.text}>{i18n.t('select') +" "+ i18n.t('apps')}</Text>
           </Pressable>
 
           <Modal
             animationType="slide"
-            transparent={true}
+            transparent={false}
             visible={modalVisible}
+            style={styles.container}
             onRequestClose={() => setModalVisible(!modalVisible)}
           >
-            <View style={styles.modalView}>
+            <View style={styles.container}>
               <ScrollView>
                 {sample.map((app, index) => (
                   <Pressable
                     key={index}
-                    style={styles1.appOption}
+                    style={styles.container}
                     onPress={() => toggleAppSelection(app.appName)}
                   >
-                    <Text style={{ color: selectedApps.includes(app.appName) ? '#FF6347' : '#000' }}>
+                    <Text style={[styles.text , { color: selectedApps.includes(app.appName) ? styles.negative : styles.positive }]}>
                     {selectedApps.includes(app.appName) ? app.appName + ' [remove]': app.appName + ' [add]' }
                     </Text>
                   </Pressable>
@@ -188,7 +208,7 @@ const Questionnaire = () => {
                 style={styles.button}
                 onPress={() => setModalVisible(!modalVisible)}
               >
-                <Text style={[styles.text, {fontSize:20}]}>{i18n.t('close')}</Text>
+                <Text style={styles.text}>{i18n.t('close')}</Text>
               </Pressable>
             </View>
           </Modal>
@@ -207,10 +227,3 @@ const Questionnaire = () => {
 
 export default Questionnaire;
 
-const styles1 = StyleSheet.create({
-  appOption: {
-    marginBottom: 15,
-    alignItems: 'center',
-  },
-  
-});

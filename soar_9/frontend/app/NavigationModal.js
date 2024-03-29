@@ -5,10 +5,29 @@ import { getStyles } from './Styling/Styles.js';
 import { logout } from '../services/apiServices.js';
 import TTS from './text-to-speech/TTS.js';
 import { navigationText } from './text-to-speech/PageInputs.js';
+import { useEffect, useState } from 'react';
 
   export const NavigationModal = ({isUserLoggedIn, setIsUserLoggedIn, isTTS, modalVisible, setModalVisible}) => {
     const styles = getStyles();
+    const [TTStext, setTTStext] = useState('');
 
+    useEffect(() => {
+        const getTTStext = () => {
+            let text =  `${i18n.t('settings')}\n
+            ${i18n.t('contacts')}\n
+            ${i18n.t('dialer')}\n
+            ${i18n.t('texttospeech')}\n`
+            
+            if(isUserLoggedIn){
+                text +=  `${i18n.t('signout')}\n`
+            } else{
+                text += `${i18n.t('signin')}\n`;
+            }
+            text += `${i18n.t('close')}\n`;
+            return text
+        }
+        setTTStext(getTTStext());
+    }, [isUserLoggedIn]);
 
     const handleLogout = async () => {
       await logout(); // Call the logout function

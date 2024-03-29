@@ -16,6 +16,7 @@ export const questionnaireText =
 export const navigationText = 
   `${i18n.t('settings')}\n
    ${i18n.t('contacts')}\n
+   ${i18n.t('dialer')}\n
    ${i18n.t('texttospeech')}\n
    ${i18n.t('signout')}\n
    ${i18n.t('close')}\n`;

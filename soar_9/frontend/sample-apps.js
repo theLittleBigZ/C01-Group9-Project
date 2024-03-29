@@ -33,7 +33,7 @@ export const sample = [
         "appName": "YouTube",
         "icon": "youtube",
         "saved": false,
-        "url": "app://com.google.android.youtube"
+        "url": "https://www.youtube.com"
     },
     {
         "appName": "Health",

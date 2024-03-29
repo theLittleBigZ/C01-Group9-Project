@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { styles} from '../Styling/Styles.js';
-import { getStyles } from '../../../frontend/app/Styling/Styles.js';
-//import {themes} from '../Styling/Colours'
+import { getStyles} from '../Styling/Styles.js';
 
 //get speech recognition from the web (webkit for chrome)
 const SpeechRecognition = window.speechRecognition || window.webkitSpeechRecognition;
@@ -17,7 +15,7 @@ const STT = () => {
     const [isRecording, setIsRecording] = useState(false);
     const [result, setResult] = useState(null);
 
-
+    const styles = getStyles();
     //on change to isRecording, run handleRecording
     useEffect(() => {
         const handleRecording = () => {
@@ -69,18 +67,24 @@ const STT = () => {
     return (
         <>
         <div style={styles.container} className='container'>
-            <div style={styles.container} className='box'>
+            <div style={styles.question} className='box'>
                 <h2 style={styles.Header}>Speech-To-Text</h2>
 
                 {isRecording ?
-                <button style={styles.button} onClick={() => setIsRecording(prevState => !prevState)}>Stop</button>
-                : <button style={styles.button} onClick={() => setIsRecording(prevState => !prevState)}>Start</button>}
+                <button style={styles.button} onClick={() => setIsRecording(prevState => !prevState)}>
+                    <span style={styles.text}>Stop</span>
+                </button>
+                : <button style={styles.button} onClick={() => setIsRecording(prevState => !prevState)}>
+                    <span style={styles.text}>Start</span>
+                </button>}
 
-                <button style={styles.button} onClick={() => setResult(null)}>Clear</button>
+                <button style={styles.button} onClick={() => setResult(null)}>
+                    <span style={styles.text}>Clear</span>
+                </button>
 
-                <button style={styles.button} onClick={handleCopyText} disabled={!result}>Copy Text to Clipboard</button>
-
-
+                <button style={styles.button} onClick={handleCopyText} disabled={!result}>
+                    <span style={styles.text}>Copy Text to Clipboard</span>
+                </button>
 
                 <div>
                     <p>{result}</p>

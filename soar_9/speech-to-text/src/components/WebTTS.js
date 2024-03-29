@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { styles} from '../Styling/Styles.js';
+import { getStyles} from '../Styling/Styles.js';
 
 //get speech recognition from the web (webkit for chrome)
 const SpeechRecognition = window.speechRecognition || window.webkitSpeechRecognition;
@@ -18,7 +18,7 @@ const Listen = () => {
     const [isRecording, setIsRecording] = useState(false);
     const [isSpeaking, setIsSpeaking] = useState(false);
     const [response, setResponse] = useState(null);
-
+    const styles = getStyles();
 
     const speak = (response) => {
         if(response !== '') {
@@ -86,17 +86,25 @@ const Listen = () => {
     return (
         <>
         <div style={styles.container} className='container'>
-            <div style={styles.container} className='box'>
+            <div style={styles.question} className='box'>
                 <h2 style={styles.Header}>Voice Command</h2>
 
                 <div>
                     {isRecording ?
-                    <button style={styles.button} onClick={() => setIsRecording(prevState => !prevState)}>End</button>
-                    : <button style={styles.button} onClick={() => setIsRecording(prevState => !prevState)} disabled={response !== null}>Speak</button>}
+                    <button style={styles.button} onClick={() => setIsRecording(prevState => !prevState)}>
+                        <span style={styles.text}>End</span>
+                    </button>
+                    : <button style={styles.button} onClick={() => setIsRecording(prevState => !prevState)} disabled={response !== null}>
+                        <span style={styles.text}>Speak</span>
+                    </button>}
 
-                    <button style={styles.button} onClick={() => speak(response)} disabled={isSpeaking || response === null}>Hear Reply</button>
+                    <button style={styles.button} onClick={() => speak(response)} disabled={isSpeaking || response === null}>
+                        <span style={styles.text}>Hear Reply</span>
+                    </button>
 
-                    <button style={styles.button} onClick={() => setResponse(null)}>Clear</button>
+                    <button style={styles.button} onClick={() => setResponse(null)}>
+                        <span style={styles.text}>Clear</span>
+                    </button>
                 </div>
 
                 <div>

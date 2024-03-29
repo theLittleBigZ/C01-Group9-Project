@@ -1,11 +1,16 @@
-// Styles.js
-import {theme} from './Colours';
+import { fontsizes } from "./FontSize";
+import {themes} from "./Colours";
 
-export const styles = {
+const theme = themes.default;
+const fontsize = fontsizes.Medium;
+
+export const getStyles = () => {
+  return {
     container: {
       backgroundColor: theme.background,
       padding: 20,
-      justifyContent: 'center',
+      alignItems: 'center',
+      flexDirection: 'column',
       flex: 1,
     },
     button: {
@@ -21,16 +26,15 @@ export const styles = {
       width: '90%',
     },
     Header: {
-      fontSize: 40,
+      fontSize: fontsize.header,
       fontWeight: 'bold',
-      fontFamily: 'monospace',
       color: theme.headertext,
       width: '100%',
-      textAlign: 'center'
+      textAlign: 'center',
     },
     icon: {
       padding: 5,
-      fontSize: 50,
+      fontSize: fontsize.icon,
       color: theme.buttontext,
       borderColor: theme.buttontext,
       borderWidth: 2,
@@ -44,93 +48,73 @@ export const styles = {
       borderWidth: 1,
       padding: 10,
       color: theme.buttontext,
-      fontSize: 20,
+      fontSize: fontsize.input,
     },
     item: {
       flex: 1,
       margin: 10, 
-      fontSize: 30,
+      fontSize: fontsize.text,
       color: theme.buttontext,
     },
-    modalView: {
-      margin: 20,
-      backgroundColor: "white",
-      borderRadius: 20,
-      padding: 35,
-      alignItems: "center",
-      shadowColor: "#000",
-      shadowOffset: {
-        width: 0,
-        height: 2
-      },
-      shadowOpacity: 0.25,
-      shadowRadius: 4,
-      elevation: 5
+    keypadNumber: {
+      padding: 10,
+      flex: 1,
+      borderRadius: 50,
+      margin: 10,
+      flexDirection:'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: theme.buttoncolour,
+      borderColor: theme.buttontext,
+      borderWidth: 2,
+      width: '10%',
     },
     question: {
       margin: 10,
       flexDirection:'column',
       padding: 10,
     },
-  keypadNumber: {
-    color: theme.buttontext,
-    padding: 10,
-    flex: 1,
-    borderRadius: 50,
-    margin: 10,
-    flexDirection:'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: theme.button,
-    borderColor: 'black',
-    borderWidth: 2,
-    width: '10%',
-  },
     questionfont: {
       color: theme.headertext,
-      fontSize: 20,
+      fontSize: fontsize.question,
       marginBottom: 10,
       fontWeight: '400',
     },
     text: {
       color: theme.buttontext,
       textAlign: 'center',
-      fontSize: 30,
+      fontSize: fontsize.text,
       fontWeight: 'bold',
-      fontFamily: 'monospace',
     },
     selectedButton: {
       backgroundColor: theme.secondary,
     },
-    bottomNav: {
-      backgroundColor: theme.secondary,
-      width: '100%',
-      justifyContent: 'flex-end',
-    },
-    headerfont: {
-      color: theme.headertext,
-      textAlign: 'center',
-      fontSize: 30,
-      fontWeight: 'bold',
-      fontFamily: 'monospace',
-    },
+    positive: theme.positive,
+    negative: theme.negative,
     pickerstyle: {
       inputIOS: {
-        borderColor: theme.buttontext,
-        borderRadius: 5,
         backgroundColor: theme.buttoncolour,
+        color: theme.buttontext,
         borderColor: theme.buttontext,
         borderWidth: 5,
+        fontsize: fontsize.input
       },
       inputAndroid: {
         backgroundColor: theme.buttoncolour,
-        borderColor: theme.buttontext,
         color: theme.buttontext,
-        borderRadius: 5,
         borderColor: theme.buttontext,
         borderWidth: 5,
-      }
+        fontsize: fontsize.input,
+      },
     },
+    ttsbutton:{
+      margin: 10, 
+      padding: 15,
+      borderRadius: 50,
+      fontSize: fontsize.icon,
+      backgroundColor: theme.buttoncolour,
+      borderColor: theme.buttontext,
+      borderWidth: 1,
+    }
   };
-
-
+};

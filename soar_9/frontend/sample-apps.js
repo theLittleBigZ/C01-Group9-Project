@@ -57,7 +57,7 @@ export const sample = [
         "appName": "Messages",
         "icon": "android-messages",
         "saved": false,
-        "url": "app://com.google.android.apps.messaging"
+        "url": "https://wa.me/"
     },
     {
         "appName": "Calendar",

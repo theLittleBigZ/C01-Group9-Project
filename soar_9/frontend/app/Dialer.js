@@ -29,7 +29,7 @@ const Dialer = () => {
         <Text style={styles.Header}>{i18n.t('dialer')}</Text>
           <Divider/>
             <View style={styles.container}>
-                <Text style={styles.questionfont}>{number}</Text>
+                <Text style={[styles.contactName, {textAlign: 'center'}]}>{number}</Text>
                 {numbers.map((numberRow) =>
                     <View key={numberRow[0]} style={{ flexDirection: 'row', justifyContent: "space-evenly"}}>
                         {numberRow.map((number) =>(

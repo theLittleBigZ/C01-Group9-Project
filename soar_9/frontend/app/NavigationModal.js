@@ -16,19 +16,17 @@ import {openBrowserAsync} from 'expo-web-browser';
             let text =  `${i18n.t('settings')}.\n
             ${i18n.t('reminders')}.\n
             ${i18n.t('contacts')}.\n
-            ${i18n.t('dialer')}.\n
-            ${i18n.t('texttospeech')}.\n`
+            ${i18n.t('dialer')}. \n`
+            {isTTS ? text += `${i18n.t('texttospeech')}.\n` : undefined }
+            text += `${i18n.t('sttbutton')}. `
 
-            if(isUserLoggedIn){
-                text +=  `${i18n.t('signout')}.\n`
-            } else{
-                text += `${i18n.t('signin')}.\n`;
-            }
+            {isUserLoggedIn ? text +=  `${i18n.t('signout')}.\n` : text += `${i18n.t('signin')}.\n` }
             text += `${i18n.t('close')}.\n`;
             return text
         }
         setTTStext(getTTStext());
-    }, [isUserLoggedIn]);
+        console.log(getTTStext());
+    }, [isUserLoggedIn, isTTS]);
 
     const handleLogout = async () => {
       await logout(); // Call the logout function

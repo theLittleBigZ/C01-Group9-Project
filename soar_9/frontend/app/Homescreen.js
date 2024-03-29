@@ -91,6 +91,11 @@ const Homescreen = () => {
     }, [sampleData]);
 
     const openApp = (url) => {
+        console.log(url.split(":").reverse()[0]);
+        if(url.includes("router")){
+            console.log(url);
+            router.replace(url.split(":").reverse()[0]);
+        }else{
         Linking.canOpenURL(url)
           .then((supported) => {
             if (!supported) {
@@ -108,6 +113,7 @@ const Homescreen = () => {
               'An error occurred while trying to open the application. Please try again later.'
             )
           );
+        }
       };
 
     return (

@@ -90,11 +90,15 @@ export const useDynamicStyles = (theme, fontsize) => {
     negative: theme.negative,
     pickerstyle: {
       inputIOS: {
-        backgroundColor: theme.buttoncolour,
-        color: theme.buttontext,
         borderColor: theme.buttontext,
-        borderWidth: 5,
-        fontsize: fontsize.input
+        borderRadius: 1,
+        backgroundColor: theme.buttoncolour,
+        borderColor: theme.buttontext,
+        borderWidth: 1,
+        fontSize: 20,
+        color: theme.buttontext,
+        textAlign: 'center',
+        paddingVertical: 10
       },
       inputAndroid: {
         backgroundColor: theme.buttoncolour,

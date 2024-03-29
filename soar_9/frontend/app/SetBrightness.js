@@ -6,27 +6,20 @@ import i18n from './Translations/PrimaryLanguage.js';
 
 
 const SetBrightness = ({styles, setbrightness, brightness}) => {
-    
-    useEffect(() => {
-        (async () => {
-          const { status } = await Brightness.requestPermissionsAsync();
+
+    async function setBrightness(level) {
+        const { status } = await Brightness.requestPermissionsAsync();
           console.log(status);
           if (status === "granted"){
-            //const brightnessLevel = fetch brightness level from server
-            setBrightness(brightnessLevel);
+            if (Platform.OS === "android") {
+                Brightness.setSystemBrightnessAsync(level); 
+                //expo docs said "warning: this method is experimental"
+            }
+            else{ //ios
+                Brightness.setBrightnessAsync(level); //only sets the brightness until they lock the phone
+            }
           }
-        })}, []);
- 
-    function setBrightness(level) {
-        //want to store the brightness level choice so that the brightness is set to that next time they open the app
-        if (Platform.OS === "android") {
-            Brightness.setSystemBrightnessAsync(level); 
-            //expo docs said "warning: this method is experimental"
-        }
-        else{ //ios
-            Brightness.setBrightnessAsync(level); //only sets the brightness until they lock the phone
-            //possible workaround - store which button they had pressed and set the brightness again everytime they open the app
-        }
+        
     }
     const brightnessMap = {
         [i18n.t('low')]: 0.3,

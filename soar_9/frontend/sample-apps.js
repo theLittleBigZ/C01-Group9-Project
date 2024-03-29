@@ -81,6 +81,6 @@ export const sample = [
         "appName": "Files",
         "icon": "folder",
         "saved": false,
-        "url": "app://com.google.android.apps.nbu.files"
+        "url": "https://drive.google.com/drive/my-drive"
     }
 ]

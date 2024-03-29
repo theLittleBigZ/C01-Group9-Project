@@ -108,7 +108,7 @@ const Listen = () => {
                 </div>
 
                 <div>
-                    <p>{response}</p>
+                    <p style={styles.text}>{response}</p>
                 </div>
 
             </div>

@@ -5,7 +5,6 @@ import { Divider } from 'react-native-paper';
 import { router } from 'expo-router';
 import i18n from './Translations/PrimaryLanguage';
 import { getStyles } from './Styling/Styles';
-import {openBrowserAsync} from 'expo-web-browser';
 
 function TTSPage () {
     const styles = getStyles();
@@ -31,10 +30,6 @@ function TTSPage () {
                         <Text style={styles.text}>{i18n.t('clearinput')}</Text>
                 </Pressable>
                 <Divider />
-                <Pressable style={styles.button} onPress={() =>{openBrowserAsync('https://stt.the403.xyz/')}}>
-                        <Text style={styles.text}>{i18n.t('sttbutton')}</Text>
-                </Pressable>
-                <Divider/>
                 <Pressable style={styles.button} onPress={() => router.replace("/")}>
                     <Text style={styles.text}>{(i18n.t('home'))}</Text>
                 </Pressable>

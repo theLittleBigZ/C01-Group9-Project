@@ -17,7 +17,6 @@ const STT = () => {
 
     const [isRecording, setIsRecording] = useState(false);
     const [result, setResult] = useState(null);
-    const [lang, setLang] = useState('en-CA');
 
 
     const styles = getStyles();
@@ -82,18 +81,18 @@ const STT = () => {
 
 
                 <Form.Select style={styles.button} onChange={onChangeLang}>
-                    <option>Select Language</option>
-                    <option value="ar-SA">العربية (Arabic)</option>
-                    <option value="bn-BD">বাংলা (Bengali)</option>
-                    <option value="en-CA">English (Canadian)</option>
-                    <option value="fr-FR">Français (French)</option>
-                    <option value="hi-IN">हिंदी (Hindi)</option>
-                    <option value="id-ID">Bahasa Indonesia (Indonesian)</option>
-                    <option value="zh-CN">中文 (Mandarin)</option>
-                    <option value="pt-PT">Língua Portuguesa (Portuguese)</option>
-                    <option value="ru-RU">русский язык (Russian)</option>
-                    <option value="es-ES">Español (Spanish)</option>
-                    <option value="th-TH">ภาษาไทย (Thai)</option>
+                    <option style={styles.text}>Select Language</option>
+                    <option value="ar-SA" style={styles.text}>العربية (Arabic)</option>
+                    <option value="bn-BD" style={styles.text}>বাংলা (Bengali)</option>
+                    <option value="en-CA" style={styles.text}>English (Canadian)</option>
+                    <option value="fr-FR" style={styles.text}>Français (French)</option>
+                    <option value="hi-IN" style={styles.text}>हिंदी (Hindi)</option>
+                    <option value="id-ID" style={styles.text}>Bahasa Indonesia (Indonesian)</option>
+                    <option value="zh-CN" style={styles.text}>中文 (Mandarin)</option>
+                    <option value="pt-PT" style={styles.text}>Língua Portuguesa (Portuguese)</option>
+                    <option value="ru-RU" style={styles.text}>русский язык (Russian)</option>
+                    <option value="es-ES" style={styles.text}>Español (Spanish)</option>
+                    <option value="th-TH" style={styles.text}>ภาษาไทย (Thai)</option>
                 </Form.Select>
 
                 {isRecording ?
@@ -113,7 +112,7 @@ const STT = () => {
                 </button>
 
                 <div>
-                    <p>{result}</p>
+                    <p style={styles.text}>{result}</p>
                 </div>
 
             </div>

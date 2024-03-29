@@ -2,7 +2,7 @@ import { getLocales } from 'expo-localization';
 import { load } from '../../services/apiServices.js';
 import {options} from '../Translations/LanguageMap.js';
 
-let language = 'en';
+let language = 'en-CA';
 
 const initialize = async() => {
     try {
@@ -31,37 +31,37 @@ export const getLanguage = async () => {
             language = 'en-CA';
             break;
         case 'fr':
-            language = 'fr-FR';
+            language = 'fr';
             break;
         case 'hi':
-            language = 'hi-IN';
+            language = 'hi';
             break;
         case 'id':
-            language = 'id-ID';
+            language = 'id';
             break;
         case 'zh':
-            language = 'zh-CN';
+            language = 'zh';
             break;
         case 'pt':
-            language = 'pt-PT';
+            language = 'pt';
             break;
         case 'ru':
-            language = 'ru-RU';
+            language = 'ru';
             break;
         case 'es':
-            language = 'es-ES';
+            language = 'es';
             break;
         case 'th':
-            language = 'th-TH';
+            language = 'th';
             break;
         case 'th':
-            language = 'en-CA';
+            language = 'th';
             break;
         case 'ur':
-            language = 'en_CA';
+            language = 'ur';
             break;
         case 'vi':
-            language = 'en-CA';
+            language = 'vi';
             break;
         default:
             language = 'en-CA';

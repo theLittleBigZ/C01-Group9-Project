@@ -1,7 +1,7 @@
 // Import necessary components and hooks
 import React, { useState, useEffect } from 'react';
 import { View, Text, Switch, ScrollView, Pressable, Modal} from 'react-native';
-import { Divider } from 'react-native-paper'; 
+import { Divider } from 'react-native-paper';
 import { load, loadCache, saveToCache } from '../services/apiServices';
 import RNPickerSelect from 'react-native-picker-select';
 import {sample} from '../sample-apps';
@@ -13,7 +13,7 @@ import {getTheme, themes, themeMap } from './Styling/Colours.js';
 import { getFontSize, fontsizes } from './Styling/FontSize.js';
 import { useDynamicStyles } from './Styling/Styles.js';
 import {TTS} from './text-to-speech/TTS.js';
-import { questionnaireText } from './text-to-speech/PageInputs.js';
+//import { questionnaireText } from './text-to-speech/PageInputs.js';
 import { BrightnessMode } from 'expo-brightness';
 
 const Questionnaire = () => {
@@ -26,6 +26,7 @@ const Questionnaire = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedApps, setSelectedApps] = useState([]);
   const [styles, setStyles] = useState(useDynamicStyles(getTheme(), getFontSize()));
+  const [questionnaireText, setQuestionaireText] = useState('');
 
   useEffect(() => {
     const fetchAndSetStyles = async () => {
@@ -79,7 +80,7 @@ const Questionnaire = () => {
         setBrightness(cache.brightness);
       }
       let value = await load();
-      if (value !== null) { 
+      if (value !== null) {
         const savedAppNames = value.selectedApps; // Array of app names
         setSelectedApps(savedAppNames); // Array of app names
         setSpeechToTextEnabled(value.speechToText);
@@ -94,12 +95,31 @@ const Questionnaire = () => {
   useEffect(() => {
     getCacheAndUpdateSampleData();
   }, []);
-  
+
   const sizeMapping = {
     [i18n.t('small')]: 'Small',
     [i18n.t('medium')]: 'Medium',
     [i18n.t('large')]: 'Large',
   };
+
+  useEffect(() => {
+    const questionnaireText =
+  `${i18n.t('settings')}\n
+    ${i18n.t('enablespeechtotext')}\n
+    ${i18n.t('fontsize')}\n
+    ${i18n.t('small')}\n
+    ${i18n.t('medium')}\n
+    ${i18n.t('large')}\n
+    ${i18n.t('language')}\n
+    ${i18n.t('theme')}\n
+    ${i18n.t('brightness')}\n
+    ${i18n.t('select')}${i18n.t('frequentlyused')}${i18n.t('apps')}\n
+    ${i18n.t('home')}`;
+
+    setQuestionaireText(questionnaireText);
+  }, [language]);
+
+
 
   return (
     <View style={styles.container}>
@@ -154,7 +174,7 @@ const Questionnaire = () => {
         </View>
 
         <Divider/>
-        
+
         <View style={styles.question}>
           <Text style={styles.questionfont}>{i18n.t('theme') + ":"}</Text>
           <ScrollView style={{borderWidth:2, borderColor: styles.icon.borderColor}}>

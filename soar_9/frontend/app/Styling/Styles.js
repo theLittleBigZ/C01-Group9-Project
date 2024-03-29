@@ -122,41 +122,49 @@ export const useDynamicStyles = (theme, fontsize) => {
       borderColor: theme.buttontext,
       borderWidth: 1,
     },
-    card : {
+    card: {
       backgroundColor: theme.buttoncolour,
       borderColor: theme.buttontext,
-      borderWidth: 2,
-      borderRadius: 20,
-      padding: 20,
-      margin: 10,
+      borderWidth: 1, // Reduced from 2 to 1
+      borderRadius: 15, // Reduced from 20 to 15 for a slightly less rounded look
+      padding: 15, // Reduced from 20 to 15
+      margin: 5, // Reduced from 10 to 5
     },
     cardText: {
       color: theme.buttontext,
-      fontSize: 20,
+      fontSize: 16, // Reduced from 20 to 16
     },
     reminder: {
       backgroundColor: theme.buttoncolour,
       borderColor: theme.buttontext,
-      borderWidth: 2,
-      borderRadius: 20,
-      padding: 20,
-      margin: 10,
+      borderWidth: 1, // Reduced from 2 to 1
+      borderRadius: 15, // Reduced from 20 to 15
+      padding: 15, // Reduced from 20 to 15
+      margin: 5, // Reduced from 10 to 5
     },
     reminderText: {
       color: theme.buttontext,
-      fontSize: 20,
+      fontSize: 16, // Reduced from 20 to 16
     },
     reminderTitle: {
       color: theme.buttontext,
-      fontSize: 30,
+      fontSize: 24, // Reduced from 30 to 24
       fontWeight: 'bold',
     },
     errorBox: {
       backgroundColor: theme.error,
-      padding: 10,
-      margin: 10,
-      borderRadius: 20,
+      padding: 8, // Reduced from 10 to 8
+      margin: 5, // Reduced from 10 to 5
+      borderRadius: 15, // Reduced from 20 to 15
     },
+    reminderButton: {
+      backgroundColor: theme.buttoncolour,
+      borderColor: theme.buttontext,
+      borderWidth: 0.5, // Reduced from 2 to 1
+      borderRadius: 15, // Reduced from 20 to 15
+      padding: 1.3, // Reduced from 20 to 15
+      margin: 5, // Reduced from 10 to 5
+    },    
   });
 };
 export const getStyles = () => {

@@ -8,7 +8,7 @@ import i18n from './Translations/PrimaryLanguage.js';
 import { Platform } from 'react-native';
 import { router } from 'expo-router';
 
-const repeatIntervals = ["None", "Daily", "Weekly", "Bi-Weekly", "Monthly"];
+const repeatIntervals = ["None", "Daily", "Weekly"];
 
 const Reminders = () => {
   const [reminders, setReminders] = useState([]);
@@ -46,6 +46,13 @@ const Reminders = () => {
   const handleSubmit = async () => {
     if (isEditing) {
       try {
+
+        if (!title || !reminder || !dateTime) {
+          Alert.alert("Title, Reminder, and Date/Time are required");
+          return;
+        }
+        
+        // if the new date
         await updateReminder(editingId, title, reminder, dateTime);
         const updatedList = reminders.map(item => item._id === editingId ? { _id: editingId, title, reminder, dateTime, repeatInterval, endDate} : item);
         setReminders(updatedList);
@@ -205,19 +212,20 @@ if(Platform.OS === 'ios'){
             onChangeText={(text) => handleInputChange(text, item._id, 'reminder')}
             value={item.reminder}
           />
-          <Pressable style={styles.button} onPress={() => toggleDateTimePicker()}>
+          <Pressable style={styles.reminderButton} onPress={() => toggleDateTimePicker()}>
             <Text style={styles.text}>{i18n.t('pickDateTime')}</Text>
           </Pressable>
           {showDateTimePicker && (
             <DateTimePicker
+              minimumDate={new Date()}
               value={new Date(item.time)}
               mode="datetime"
               is24Hour={true}
-              display="spinner"
+              display="default"
               onChange={handleDateTimeChange}
             />
           )}
-         <Pressable style={styles.button} onPress={() => toggleFrequencyViewer()}>
+         <Pressable style={styles.reminderButton} onPress={() => toggleFrequencyViewer()}>
           <Text style={styles.text}>{i18n.t('frequency') }</Text>
         </Pressable>
           {showFrequencyViewer && (
@@ -254,17 +262,17 @@ if(Platform.OS === 'ios'){
                                                 hour: '2-digit',
                                                 minute: '2-digit',})}</Text>
           {item.repeatInterval !== "None" && (
-            <Text style={styles.reminderText}>Repeat: {item.repeatInterval}</Text>
+            <Text style={styles.reminderText}>Repeat {item.interval}</Text>
           )}
           {item.repeatInterval !== "None" && (
             <Text style={styles.reminderText}>End Date: {new Date(item.endDate).toLocaleDateString()}</Text>
           )}
         </>
         )}
-        <Pressable style={styles.button} onPress={() => handleEditReminder(item._id)}>
+        <Pressable style={styles.reminderButton} onPress={() => handleEditReminder(item._id)}>
           <Text style={styles.text}>{item.isEditing ? 'Save' : 'Edit'}</Text>
         </Pressable>
-        <Pressable style={styles.button} onPress={() => handleDeleteReminder(item._id)}>
+        <Pressable style={styles.reminderButton} onPress={() => handleDeleteReminder(item._id)}>
           <Text style={styles.text}>{i18n.t('Delete')}</Text>
         </Pressable>
       </View>
@@ -286,20 +294,20 @@ if(Platform.OS === 'ios'){
       placeholder={i18n.t('reminder')}
     />
 
-      <Pressable style={styles.button} onPress={() => toggleDateTimePicker()}>
-        <Text style={styles.text}>{i18n.t('frequency') }</Text>
+      <Pressable style={styles.reminderButton} onPress={() => toggleDateTimePicker()}>
+        <Text style={styles.text}>{i18n.t('pickDateTime') }</Text>
       </Pressable>
       <DateTimePicker
         minimumDate={new Date()}
         value={dateTime}
         mode="datetime"
         is24Hour={true}
-        display="spinner"
-        // onChange={handleDateTimeChange}
+        display="default"
+        onChange={handleDateTimeChange}
       />
 
 
-    <Pressable style={styles.button} onPress={() => toggleFrequencyViewer()}>
+    <Pressable style={styles.reminderButton} onPress={() => toggleFrequencyViewer()}>
       <Text style={styles.text}>{i18n.t('frequency')}</Text>
     </Pressable>
     {showFrequencyViewer && (
@@ -330,6 +338,9 @@ if(Platform.OS === 'ios'){
     <Pressable style={styles.button} onPress={handleSubmit}>
       <Text style={styles.text}>{i18n.t('submit')}</Text>
     </Pressable>
+    <Pressable style={styles.button} onPress={() => router.replace("/")}>
+        <Text style={styles.text}>{i18n.t('home')}</Text>
+    </Pressable>
   </View>
   ); } 
   else {return (
@@ -351,7 +362,7 @@ if(Platform.OS === 'ios'){
             onChangeText={(text) => handleInputChange(text, item._id, 'reminder')}
             value={item.reminder}
           />
-      <Pressable style={styles.button} onPress={() => toggleDatePicker()}>
+      <Pressable style={styles.reminderButton} onPress={() => toggleDatePicker()}>
         <Text style={styles.text}>Pick Date</Text>
       </Pressable>
       {showDatePicker && 
@@ -364,7 +375,7 @@ if(Platform.OS === 'ios'){
         // onChange={handleDateTimeChange}
       />}
 
-      <Pressable style={styles.button} onPress={() => toggleTimePicker()}>
+      <Pressable style={styles.reminderButton} onPress={() => toggleTimePicker()}>
         <Text style={styles.text}>PickTime</Text>
       </Pressable>
       {showTimePicker &&
@@ -376,7 +387,7 @@ if(Platform.OS === 'ios'){
         display="spinner"
         // onChange={handleDateTimeChange}
       />}
-         <Pressable style={styles.button} onPress={() => toggleFrequencyViewer()}>
+         <Pressable style={styles.reminderButton} onPress={() => toggleFrequencyViewer()}>
           <Text style={styles.text}>{i18n.t('frequency') }</Text>
         </Pressable>
           {showFrequencyViewer && (
@@ -390,7 +401,7 @@ if(Platform.OS === 'ios'){
             </Picker>
           )}
             <>
-               <Pressable style={styles.button} onPress={() => toggleEndDate()}>
+               <Pressable style={styles.reminderButton} onPress={() => toggleEndDate()}>
                 <Text style={styles.text}>{i18n.t('pickEndDate')}</Text>
               </Pressable>
               {showEndDate && 
@@ -421,10 +432,10 @@ if(Platform.OS === 'ios'){
           )}
         </>
         )}
-        <Pressable style={styles.button} onPress={() => handleEditReminder(item._id)}>
+        <Pressable style={styles.reminderButton} onPress={() => handleEditReminder(item._id)}>
           <Text style={styles.text}>{item.isEditing ? 'Save' : 'Edit'}</Text>
         </Pressable>
-        <Pressable style={styles.button} onPress={() => handleDeleteReminder(item._id)}>
+        <Pressable style={styles.reminderButton} onPress={() => handleDeleteReminder(item._id)}>
           <Text style={styles.text}>{i18n.t('Delete')}</Text>
         </Pressable>
       </View>
@@ -446,7 +457,7 @@ if(Platform.OS === 'ios'){
       placeholder={i18n.t('reminder')}
     />
 
-      <Pressable style={styles.button} onPress={() => toggleDatePicker()}>
+      <Pressable style={styles.reminderButton} onPress={() => toggleDatePicker()}>
         <Text style={styles.text}>Pick Date</Text>
       </Pressable> 
       {showDatePicker && 
@@ -459,7 +470,7 @@ if(Platform.OS === 'ios'){
         onChange={handleDateChange}
       />}
 
-      <Pressable style={styles.button} onPress={() => toggleTimePicker()}>
+      <Pressable style={styles.reminderButton} onPress={() => toggleTimePicker()}>
         <Text style={styles.text}>PickTime</Text>
       </Pressable>
       {showTimePicker &&
@@ -472,7 +483,7 @@ if(Platform.OS === 'ios'){
         onChange={handleTimeChange}
       />}
 
-    {/* <Pressable style={styles.button} onPress={() => toggleFrequencyViewer()}>
+    {/* <Pressable style={styles.reminderButton} onPress={() => toggleFrequencyViewer()}>
       <Text style={styles.text}>{i18n.t('frequency')}</Text>
     </Pressable>
     {showFrequencyViewer && (
@@ -485,11 +496,11 @@ if(Platform.OS === 'ios'){
         ))}
       </Picker>
     )}  */}
-    {/* if repeatInterval is not None, show the end date picker */}
+    {/* if repeatInterval is not None, show the end date picker */}\
     
     {repeatInterval !== "None" && (
       <>
-        <Pressable style={styles.button} onPress={() => toggleEndDate()}>
+        <Pressable style={styles.reminderButton} onPress={() => toggleEndDate()}>
           <Text style={styles.text}>{i18n.t('pickEndDate')}</Text>
         </Pressable>
         {showEndDate && 
@@ -506,9 +517,9 @@ if(Platform.OS === 'ios'){
     <Pressable style={styles.button} onPress={handleSubmit}>
       <Text style={styles.text}>{i18n.t('submit')}</Text>
     </Pressable>
-    {/* <Pressable style={styles.button} onPress={() => router.replace("/")}>
+    <Pressable style={styles.button} onPress={() => router.replace("/")}>
         <Text style={styles.text}>{i18n.t('home')}</Text>
-    </Pressable> */}
+    </Pressable>
 
   </View>
   )}

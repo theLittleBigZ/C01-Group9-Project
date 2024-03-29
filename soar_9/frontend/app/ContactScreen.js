@@ -111,7 +111,7 @@ const ContactScreen = () => {
   const Contact = ({contact}) => (
     <View style={[styles.container, {borderColor: styles.button.backgroundColor,  borderWidth: 2,
         borderRadius: 10}]}>
-          <Text style={styles.questionfont}>
+          <Text style={styles.contactName}>
             {contact.firstName ? `${contact.firstName.trim()}` : ""}
             {contact.lastName ? ` ${contact.lastName.trim()}` : ""}
           </Text>

@@ -83,6 +83,11 @@ export const useDynamicStyles = (theme, fontsize) => {
       fontSize: fontsize.text,
       fontWeight: 'bold',
     },
+    contactName: {
+      color: theme.headertext,
+      fontSize: fontsize.text,
+      fontWeight: 'bold',
+    },
     selectedButton: {
       backgroundColor: theme.secondary,
     },

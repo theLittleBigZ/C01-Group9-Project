@@ -12,11 +12,3 @@ export const questionnaireText =
    ${i18n.t('brightness')}\n
    ${i18n.t('select')}${i18n.t('frequentlyused')}${i18n.t('apps')}\n
    ${i18n.t('home')}`;
-
-export const navigationText = 
-  `${i18n.t('settings')}\n
-   ${i18n.t('contacts')}\n
-   ${i18n.t('dialer')}\n
-   ${i18n.t('texttospeech')}\n
-   ${i18n.t('signout')}\n
-   ${i18n.t('close')}\n`;

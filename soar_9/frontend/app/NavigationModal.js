@@ -4,7 +4,6 @@ import i18n from './Translations/PrimaryLanguage.js';
 import { getStyles } from './Styling/Styles.js';
 import { logout } from '../services/apiServices.js';
 import TTS from './text-to-speech/TTS.js';
-import { navigationText } from './text-to-speech/PageInputs.js';
 import { useEffect, useState } from 'react';
 
   export const NavigationModal = ({isUserLoggedIn, setIsUserLoggedIn, isTTS, modalVisible, setModalVisible}) => {
@@ -44,7 +43,7 @@ import { useEffect, useState } from 'react';
       style={styles.container}
       >
           <View style={styles.container}>
-            <TTS input={navigationText} styles={styles}/>
+            <TTS input={TTStext} styles={styles}/>
           <Pressable style={styles.button} onPress={() => router.replace("/Questionaire")}>
               <Text style={styles.text}>{i18n.t('settings')}</Text>
           </Pressable>

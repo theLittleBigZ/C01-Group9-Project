@@ -55,6 +55,11 @@ const Reminders = () => {
           Alert.alert("Title, Reminder, and Date/Time are required");
           return;
         }
+        //make sure the time is in the future
+        if(dateTime < new Date()){
+          Alert.alert("Please select a later time");
+          return;
+        }
         const newReminder = await addReminder(reminders.length + 1, title, reminder, dateTime, repeatInterval, endDate);
         setReminders([...reminders, newReminder]);
       } catch (error) {

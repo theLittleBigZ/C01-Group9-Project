@@ -51,7 +51,7 @@ export const sample = [
         "appName": "Chrome",
         "icon": "google-chrome",
         "saved": false,
-        "url": "app://com.android.chrome"
+        "url": "googlechrome://newtab"
     },
     {
         "appName": "Messages",

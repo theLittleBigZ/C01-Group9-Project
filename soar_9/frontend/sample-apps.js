@@ -9,13 +9,13 @@ export const sample = [
         "appName": "Gallery",
         "icon": "flower",
         "saved": true,
-        "url": "app://com.google.android.apps.nbu.files"
+        "url": "content://media/internal/images/media"
     },
     {
         "appName": "Clock",
         "icon": "clock",
         "saved": true,
-        "url": "app://com.google.android.deskclock"
+        "url": "app://com.google.android.deskclock" /* Not working */
     },
     {
         "appName": "Contacts",
@@ -27,7 +27,7 @@ export const sample = [
         "appName": "Notepad",
         "icon": "notebook",
         "saved": true,
-        "url": "app://com.google.android.apps.docs"
+        "url": "https://keep.google.com" /* make sure google keep is installed on demo phone */
     },
     {
         "appName": "YouTube",

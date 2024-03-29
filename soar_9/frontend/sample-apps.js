@@ -69,13 +69,13 @@ export const sample = [
         "appName": "Calculator",
         "icon": "calculator",
         "saved": false,
-        "url": "app://com.google.android.calculator"
+        "url": "app://com.google.android.calculator" /* Not working */
     },
     {
         "appName": "Camera",
         "icon": "camera",
         "saved": false,
-        "url": "app://com.google.android.GoogleCamera"
+        "url": "app://com.google.android.GoogleCamera" /* Not working */
     },
     {
         "appName": "Files",

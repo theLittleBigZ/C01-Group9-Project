@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { styles} from '../Styling/Styles.js';
+import { getStyles } from '../../../frontend/app/Styling/Styles.js';
 //import {themes} from '../Styling/Colours'
 
 //get speech recognition from the web (webkit for chrome)

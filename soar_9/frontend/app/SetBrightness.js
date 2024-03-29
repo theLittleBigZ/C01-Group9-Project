@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, Pressable } from 'react-native';
 import * as Brightness from 'expo-brightness';
 import { Platform } from 'react-native';
+import i18n from './Translations/PrimaryLanguage.js';
 
 
 const SetBrightness = ({styles}) => {
@@ -31,13 +32,13 @@ const SetBrightness = ({styles}) => {
     return (
         <View>
             <Pressable style={styles.button} title="low" onPress={()=>setBrightness(0.3)}>
-                <Text style={styles.text}>low</Text>
+                <Text style={styles.text}>{i18n.t('low')}</Text>
             </Pressable>
             <Pressable style={styles.button} title="medium" onPress={()=>setBrightness(0.7)}>
-                <Text style={styles.text}>medium</Text>
+                <Text style={styles.text}>{i18n.t('medium')}</Text>
             </Pressable>
             <Pressable  style={styles.button} title="high" onPress={()=>setBrightness(1)}>
-                <Text style={styles.text}>high</Text>
+                <Text style={styles.text}>{i18n.t('high')}</Text>
             </Pressable>
         </View>
     )

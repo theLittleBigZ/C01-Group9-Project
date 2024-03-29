@@ -5,7 +5,7 @@ import * as Linking from 'expo-linking';
 import { Divider } from 'react-native-paper'; 
 import i18n from './Translations/PrimaryLanguage.js';
 import { router } from 'expo-router';
-import { getStyles } from './Styling/Styles';
+import { getStyles } from './Translations/Styling/Styles.js';
 
 const ContactScreen = () => {
   const [contactsData, setContactsData] = useState([]);

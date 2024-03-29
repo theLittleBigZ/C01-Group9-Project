@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { router } from 'expo-router';
 import i18n from './Translations/PrimaryLanguage';
 import { register } from '../services/apiServices.js'; // Assuming you have a similar function for registration
-import { getStyles } from './Styling/Styles.js';
+import { getStyles } from './Translations/Styling/Styles.js';
 
 const RegisterPage = () => {
   const [username, setUsername] = useState('');

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Button, FlatList, Alert, Pressable } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { getStyles } from './Styling/Styles.js';
+import { getStyles } from './Translations/Styling/Styles.js';
 import { loadReminders, addReminder, deleteReminder, updateReminder} from '../services/apiServices.js';
 import i18n from './Translations/PrimaryLanguage.js';
 

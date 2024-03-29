@@ -17,6 +17,8 @@ const ContactScreen = () => {
 
   const styles = getStyles();
 
+
+
   useEffect(() => {
     const getTTStext = () => {
       let text = i18n.t('favouriteContacts') + '\n'

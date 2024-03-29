@@ -27,7 +27,7 @@ const saltrounds = 10;
 const uri = process.env.MONGO_URI;
 const client = new MongoClient(uri);
 const dbName = "Cluster0";
-const collectionName = "users";
+const userCollection = "users";
 
 app.use(session({
   secret: process.env.SESSION_SECRET,
@@ -66,7 +66,7 @@ const checkAuthenticated = (req, res, next) => {
 app.post("/register", async (req, res) => {
   console.log('Registering user:', req.body);
   const db = req.app.locals.db;
-  const collection = db.collection(collectionName);
+  const collection = db.collection(userCollection);
   const { username, email, password } = req.body;
   try {
 
@@ -92,7 +92,7 @@ app.post("/register", async (req, res) => {
 app.post("/login", async (req, res) => {
 
   const db = req.app.locals.db;
-  const collection = db.collection(collectionName);
+  const collection = db.collection(userCollection);
   const { email, password } = req.body;
   try {
     const user = await collection.findOne({ email });
@@ -134,7 +134,7 @@ app.get("/user", checkAuthenticated, (req, res) => {
 app.get("/preferences", checkAuthenticated, async (req, res) => {
   console.log('Getting preferences for user:', req.session.user);
   const db = req.app.locals.db;
-  const collection = db.collection(collectionName);
+  const collection = db.collection(userCollection);
   const user = await collection.findOne({ _id: new ObjectId(req.session.user._id) });
   const preferences = { language: user.language, fontSize: user.fontSize,
                           brightness: user.brightness, speechToText: user.speechToText,
@@ -146,7 +146,7 @@ app.get("/preferences", checkAuthenticated, async (req, res) => {
 app.put("/preferences", checkAuthenticated, async (req, res) => {
   console.log('Updating preferences for user:', req.session.user);
   const db = req.app.locals.db;
-  const collection = db.collection(collectionName);
+  const collection = db.collection(userCollection);
   const { language, fontSize, brightness, speechToText, selectedApps, theme} = req.body;
   console.log('New preferences:', req.body);
   try {
@@ -158,33 +158,9 @@ app.put("/preferences", checkAuthenticated, async (req, res) => {
   }
 });
 
-app.put("/contacts", checkAuthenticated, async (req, res) => {
-  console.log('Updating contacts for user:', req.session.user);
-  const db = req.app.locals.db;
-  const collection = db.collection(collectionName);
-  const { favoriteContacts } = req.body;
-  console.log('New contacts:', req.body);
-  try {
-    await collection.updateOne({ _id: new ObjectId(req.session.user._id) },
-      { $set: { favoriteContacts } });
-    res.status(200).json('Contacts updated');
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
-
-app.get("/contacts", checkAuthenticated, async (req, res) => {
-  console.log('Getting contacts for user:', req.session.user);
-  const db = req.app.locals.db;
-  const collection = db.collection(collectionName);
-  const user = await collection.findOne({ _id: new ObjectId(req.session.user._id) });
-  const contacts = user.favoriteContacts;
-  res.status(200).json(contacts);
-});
-
 app.delete("/deleteAll", async (req, res) => {
   const db = req.app.locals.db;
-  const collection = db.collection(collectionName);
+  const collection = db.collection(userCollection);
   try {
     await collection.deleteMany();
     res.status(200).json('All users deleted');
@@ -193,6 +169,32 @@ app.delete("/deleteAll", async (req, res) => {
   }
 });
 
+// Send notifications
+app.post("/sendNotification", async (req, res) => {
+  console.log('Sending notification to token:', req.body.token);
+  const {title, body, token} = req.body;
+  console.log('Notification:', title, body, token);
+
+  if (!title || !body || !token) {
+    return res.status(400).json({ message: 'Missing required fields' });
+  }
+
+  const response = await fetch('https://exp.host/--/api/v2/push/send', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      to: token,
+      title,
+      body,
+    }),
+  });
+
+  const data = await response.json();
+  console.log(data);
+  res.status(200).json(data);
+});
 
 app.listen(port, () => {
     console.log(`Server listening at http://localhost:${port}`);

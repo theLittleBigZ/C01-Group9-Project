@@ -71,7 +71,7 @@ const Listen = () => {
         if(reply !== undefined){
             console.log('yes');
         }
-        setResponse(reply.message.content);
+        setResponse(transcript);
     }
 
     //on change to isRecording, run handleRecording

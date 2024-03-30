@@ -43,22 +43,29 @@ const Listen = () => {
 
 
     const converse = async (transcript) => {
-        try{
-            const response = await fetch('https://ttpeqnda.the403.xyz/api/generate', {
-                method: 'POST',
-                headers: {
-                'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                model: 'tinyllama',
-                prompt: transcript
-                })
-            });
-
-        }catch (error){
-            console.error('Error:', error);
+        try {
+        const response = await fetch('https://ttpeqnda.the403.xyz/api/generate', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            model: 'tinyllama',
+            prompt: transcript,
+            stream: false
+          })
+        });
+    
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
         }
-        setResponse(response);
+    
+        const data = await response.text();  // Use .text() instead of .json()
+        setResponse(data);  // Now data should be a string
+      } catch (error) {
+        console.error('Error:', error);
+      }
+        //setResponse(response);
     }
 
     //on change to isRecording, run handleRecording

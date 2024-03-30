@@ -69,9 +69,11 @@ const Listen = () => {
         console.log("Finished fetch")
         console.log("reply: " + JSON.stringify(reply));
         if(reply.message.content !== undefined){
-            console.log('yes');
+            setResponse(reply.message.content);
+        }else{
+            setResponse(transcript);
         }
-        setResponse(reply.message.content);
+        
     }
 
     //on change to isRecording, run handleRecording

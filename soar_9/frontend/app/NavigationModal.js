@@ -48,7 +48,7 @@ import {openBrowserAsync} from 'expo-web-browser';
             <Pressable style={styles.button} onPress={() => router.replace("/Questionaire")}>
               <Text style={styles.text}>{i18n.t('settings')}</Text>
             </Pressable>
-            <Pressable style={styles.button} onPress={() => router.replace("/Reminders")}>
+            <Pressable style={styles.button} onPress={() => router.replace("/ViewReminders")}>
                 <Text style={styles.text}>{i18n.t('reminders')}</Text>
                 </Pressable>
             <Pressable style={styles.button} onPress={() => router.replace("/ContactScreen")}>

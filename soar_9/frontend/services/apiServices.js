@@ -173,17 +173,8 @@ export const loadReminders = async () => {
     try {
         let value = await AsyncStorage.getItem('@Reminders');
         console.log('Reminders loaded from local storage:', value);
-
-        //automatically remove expired reminders / reminders with end date before today
         if (value) {
             const reminders = JSON.parse(value);
-            const today = new Date();
-            const updatedReminders = reminders.filter((r) => new Date(r.endDate) > today);
-            await AsyncStorage.setItem('@Reminders', JSON.stringify(updatedReminders));
-            // delete expired reminders from cache
-            AsyncStorage.setItem('@Reminders', JSON.stringify(updatedReminders));
-            console.log('Reminders updated:', updatedReminders);
-            return updatedReminders;
         }
         let reminders = value ? JSON.parse(value) : [];
         // return local storage value if not logged in
@@ -195,22 +186,24 @@ export const loadReminders = async () => {
 
 }
 
-export const addReminder = async (id,title, reminder, time, interval, endDate ) => {
+export const addReminder = async ( reminder ) => {
     console.log('Adding reminder:', reminder);
     try {
         let reminders = await loadReminders();
-        const newReminder = { _id:id, title:title, reminder:reminder, time:time, interval:interval, endDate:endDate};
-        reminders.push(newReminder);
+        if (reminders === null) {
+            reminders = [];
+        }
+        reminders.push(reminder);
         await AsyncStorage.setItem('@Reminders', JSON.stringify(reminders));
-        // create notification for reminder
-        await createNotificationForReminder(newReminder);
-        console.log('Reminder notification added');
         console.log('Reminder added');
-        // Attempt to add to backend
-        return newReminder;
+
+        // create notification for reminder
+        console.log('Creating notification for reminder:', reminder.id);
+        await createNotificationForReminder(reminder);
     } catch (e) {
         console.error('Error adding reminder:', e);
     }
+    
 }
     
 
@@ -236,71 +229,81 @@ export const deleteReminder = async (id) => {
     }
 }
 
-export const updateReminder = async (id, title, reminder, time, interval, endDate) => {
-    console.log('Updating reminder:', id);
+export const updateReminder = async (id, updatedReminder) => {
+    console.log('Updating reminder:', id, updatedReminder);
     try {
         let reminders = await loadReminders();
-        const index = reminders.findIndex((r) => r.id === id);
-        if (index !== -1) {
-            reminders[index] = { id, title, reminder, time, interval, endDate };
-            await AsyncStorage.setItem('@Reminders', JSON.stringify(reminders));
-
-            // remove the old notification
-            console.log('Cancelling old notification:', reminders[index].id);
-            await Notifications.cancelScheduledNotificationAsync(reminders[index].id);
-
-            // create notification for reminder
-            console.log('Creating new notification for reminder:', reminders[index].id);
-            await createNotificationForReminder(reminders[index]);
-            
-            console.log('Reminder updated');
-            // Attempt to update in backend
+        const index = reminders.findIndex((r) => r._id === id);
+        if (index === -1) {
+            console.error('Reminder not found:', id);
+            return;
         }
+
+        // check if the date or time has changed
+        if (reminders[index].date !== updatedReminder.date || reminders[index].time !== updatedReminder.time) {
+            // cancel the old notification
+            console.log('Cancelling old notification:', id);
+            try {
+                await Notifications.cancelScheduledNotificationAsync(id);
+            } catch (e) {
+                console.error('Error cancelling notification:', e);
+            }
+
+            // create a new notification
+            console.log('Creating new notification for updated reminder:', updatedReminder.id);
+            await createNotificationForReminder(updatedReminder);
+        }
+        reminders[index] = updatedReminder;
+        await AsyncStorage.setItem('@Reminders', JSON.stringify(reminders));
+        console.log('Reminder updated');
     } catch (e) {
         console.error('Error updating reminder:', e);
     }
 }
 
+
 export const createNotificationForReminder = async (reminder) => {
     console.log('Creating notification for reminder:', reminder);
-
-    let trigger;
-    const time = new Date(reminder.time); // Assuming reminder.dateTime is a Date object
-    console.log('Reminder time:', time);
-    switch (reminder.interval) {
-        case "None":
-            trigger = time;
-            break;
-        case "Daily":
-            trigger = { hour: time.getHours(), minute: time.getMinutes(), repeats: true };
-            break;
-        case "Weekly":
-            trigger = { weekDay: time.getDay(), hour: time.getHours(), minute: time.getMinutes(), repeats: true };
-            break;
-        case "Bi-Weekly":
-            // For bi-weekly, you might need to manually handle it as `expo-notifications` does not support bi-weekly directly
-            console.error("Bi-Weekly is not directly supported. Consider a custom implementation.");
-            break;
-        case "Monthly":
-            // Same as Bi-Weekly, handling monthly repeats directly isn't supported, consider a workaround
-            console.error("Monthly is not directly supported. Consider a custom implementation.");
-            break;
-        default:
-            console.error("Unsupported repeat interval");
-            return;
+  
+    // Calculate the time for the notification
+    let notificationDate = new Date(reminder.date);
+    notificationDate.setHours(reminder.time.getHours());
+    notificationDate.setMinutes(reminder.time.getMinutes());
+    notificationDate.setSeconds(0);
+  
+    // Define the base content and trigger for the notification
+    const notification = {
+      content: {
+        title: reminder.title || "Reminder", // Added a fallback title
+        body: reminder.reminder,
+        data: { id: reminder.id },
+      },
+      trigger: {
+        hour: notificationDate.getHours(),
+        minute: notificationDate.getMinutes(),
+        second: 0,
+      },
+    };
+  
+    // Adjust the trigger for intervals
+    if (reminder.interval === "Daily") {
+      notification.trigger.repeats = true; // Make it repeat daily
+    } else if (reminder.interval === "Weekly") {
+      notification.trigger.weekDay = notificationDate.getDay(); // For weekly repeat, specify the day of the week
+      notification.trigger.repeats = true;
+    } else {
+      // For non-repeating, set the exact date and time
+      notification.trigger = notificationDate;
     }
-
+  
+    // Schedule the notification
     try {
-        const notificationId = await Notifications.scheduleNotificationAsync({
-            content: {
-                title: reminder.title,
-                body: reminder.reminder,
-            },
-            trigger,
-        });
-        console.log('Notification created with ID:', notificationId);
+      const notificationId = await Notifications.scheduleNotificationAsync(notification);
+      console.log('Notification scheduled with ID:', notificationId);
+      return notificationId; // Optionally return the notification ID for future reference
     } catch (e) {
-        console.error('Error creating notification:', e);
+      console.error('Error creating notification:', e);
+      throw e; // Re-throw the error for handling upstream if necessary
     }
 }; 
 

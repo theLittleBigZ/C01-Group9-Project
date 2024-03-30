@@ -43,26 +43,35 @@ const Listen = () => {
 
 
     const converse = async (transcript) => {
-        let reply = '';
-        try{
+        try {
             console.log("Began fetch");
-            reply = await fetch('https://ttpeqnda.the403.xyz/api/generate', {
-                method: 'POST',
-                headers: {
+        var reply = await fetch('https://ttpeqnda.the403.xyz/api/chat', {
+            method: 'POST',
+            headers: {
                 'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                model: 'tinyllama',
-                prompt: transcript
-                })
-            });
+            },
+            body: JSON.stringify({
+                "model": "tinyllama",
+                "messages": [
+                    {
+                        "role": "user",
+                        "content": transcript
+                    }
+                ],
+                "stream": false
+            })
+        });
 
-        }catch (error){
-            console.error('Error:', error);
-        }
+        reply = await reply.json();
+    } catch (error) {
+        console.error('Error:', error);
+    }
         console.log("Finished fetch")
-        console.log("reply: " + reply);
-        setResponse(reply);
+        console.log("reply: " + JSON.stringify(reply.response));
+        if(reply.response !== undefined){
+            console.log('yes');
+        }
+        setResponse(reply.response);
     }
 
     //on change to isRecording, run handleRecording

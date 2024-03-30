@@ -6,7 +6,7 @@ All members helped each other with testing and debugging of each other's feature
 
 
 # Yann Gbaguidi:
-- As a user, I want to be able to access the app without an account that I must sign up for and log into, so that barriers to using the app as a mobile phone beginner is minimized.
+- As a user, I want to be able to access the app without an account that I must sign up for and log into, so that barriers to using the app as a mobile phone beginner is minimized (backend configuration).
 - As a user, I want the app to save my preferences so that I don’t have to re-input them each time I open the app
 - As a user, I want to be able to set reminders that will notify me at specific times
 

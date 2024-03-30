@@ -43,8 +43,10 @@ const Listen = () => {
 
 
     const converse = async (transcript) => {
+        let reply = '';
         try{
-            const response = await fetch('https://ttpeqnda.the403.xyz/api/generate', {
+            console.log("Began fetch");
+            reply = await fetch('https://ttpeqnda.the403.xyz/api/generate', {
                 method: 'POST',
                 headers: {
                 'Content-Type': 'application/json'
@@ -58,12 +60,15 @@ const Listen = () => {
         }catch (error){
             console.error('Error:', error);
         }
-        setResponse(response);
+        console.log("Finished fetch")
+        console.log("reply: " + reply);
+        setResponse(reply);
     }
 
     //on change to isRecording, run handleRecording
     useEffect(() => {
         const handleRecording = () => {
+            let transcript = '';
             //if clicked to start recording
             if(isRecording) {
                 mic.start()
@@ -75,6 +80,7 @@ const Listen = () => {
                 mic.stop();
                 mic.onend =() => {
                     console.log('Stopped Mic on Click');
+                    converse(transcript);
                 }
             }
             mic.onstart = () => {
@@ -82,12 +88,11 @@ const Listen = () => {
             }
             //get transcript, set as result
             mic.onresult = event => {
-                const transcript = Array.from(event.results)
+                transcript = Array.from(event.results)
                 .map(result => result[0])
                 .map(result => result.transcript)
                 .join('');
                 console.log(transcript);
-                converse(transcript);
                 mic.onerror = event => {
                     console.log(event.error)
                 }

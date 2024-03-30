@@ -42,14 +42,42 @@ const Listen = () => {
     }
 
 
-    const converse = (transcript) => {
+    const converse = async (transcript) => {
+        try {
+            console.log("Began fetch");
+        var reply = await fetch('https://ttpeqnda.the403.xyz/api/chat', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "model": "tinyllama",
+                "messages": [
+                    {
+                        "role": "user",
+                        "content": transcript
+                    }
+                ],
+                "stream": false
+            })
+        });
 
-        setResponse(transcript);
+        reply = await reply.json();
+    } catch (error) {
+        console.error('Error:', error);
+    }
+        console.log("Finished fetch")
+        console.log("reply: " + JSON.stringify(reply));
+        if(reply.message.content !== undefined){
+            console.log('yes');
+        }
+        setResponse(reply.message.content);
     }
 
     //on change to isRecording, run handleRecording
     useEffect(() => {
         const handleRecording = () => {
+            let transcript = '';
             //if clicked to start recording
             if(isRecording) {
                 mic.start()
@@ -61,6 +89,7 @@ const Listen = () => {
                 mic.stop();
                 mic.onend =() => {
                     console.log('Stopped Mic on Click');
+                    converse(transcript);
                 }
             }
             mic.onstart = () => {
@@ -68,12 +97,11 @@ const Listen = () => {
             }
             //get transcript, set as result
             mic.onresult = event => {
-                const transcript = Array.from(event.results)
+                transcript = Array.from(event.results)
                 .map(result => result[0])
                 .map(result => result.transcript)
                 .join('');
                 console.log(transcript);
-                converse(transcript);
                 mic.onerror = event => {
                     console.log(event.error)
                 }

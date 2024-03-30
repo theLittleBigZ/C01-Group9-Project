@@ -67,11 +67,11 @@ const Listen = () => {
         console.error('Error:', error);
     }
         console.log("Finished fetch")
-        console.log("reply: " + JSON.stringify(reply.response));
-        if(reply.response !== undefined){
+        console.log("reply: " + JSON.stringify(reply));
+        if(reply.message.content !== undefined){
             console.log('yes');
         }
-        setResponse(reply.response);
+        setResponse(reply.message.content);
     }
 
     //on change to isRecording, run handleRecording

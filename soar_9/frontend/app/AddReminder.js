@@ -20,7 +20,6 @@ const AddReminder = () => {
     const [showDate, setShowDate] = useState(false);
     const [showTime, setShowTime] = useState(false);
     const styles = getStyles();
-    const [frequency, setFrequency] = useState('None');
     const [showFrequency, setShowFrequency] = useState(false);
     const [endDate, setEndDate] = useState(new Date());
     const [showEndDate, setShowEndDate] = useState(false);

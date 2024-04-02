@@ -113,6 +113,7 @@ const AddReminder = () => {
                 <DateTimePicker
                     value={date}
                     minimumDate={new Date()}
+                    is24Hour={true}
                     mode="date"
                     display="spinner"
                     onChange={(event, selectedDate) => {
@@ -125,6 +126,7 @@ const AddReminder = () => {
                 <DateTimePicker
                     value={time}
                     minimumDate={new Date()}
+                    is24Hour={true}
                     mode="time"
                     display="spinner"
                     onChange={(event, selectedTime) => {
@@ -159,6 +161,7 @@ const AddReminder = () => {
                 <DateTimePicker
                     minimumDate={new Date()}
                     value={endDate}
+                    is24Hour={true}
                     mode="date"
                     display="spinner"
                     onChange={(event, selectedDate) => {

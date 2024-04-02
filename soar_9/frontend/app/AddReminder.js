@@ -24,6 +24,7 @@ const AddReminder = () => {
     const [showFrequency, setShowFrequency] = useState(false);
     const [endDate, setEndDate] = useState(new Date());
     const [showEndDate, setShowEndDate] = useState(false);
+    const [makeId, setMakeId] = useState(0)
 
     const handleAddReminder = async () => {
         if (!title || !reminder || !date, !time) {
@@ -37,7 +38,7 @@ const AddReminder = () => {
             return;
         }
         const toAdd = {
-            id: Math.random().toString(36).substring(7),
+            id: getId,
             title: title,
             reminder: reminder,
             date: date,
@@ -57,6 +58,9 @@ const AddReminder = () => {
         setTime(new Date());
         setRepeatInterval("None");
         setEndDate(new Date());
+
+        toggleShowDate();
+        toggleShowTime();
     };
 
     const toggleShowDate = () => {
@@ -67,6 +71,10 @@ const AddReminder = () => {
         setShowTime(!showTime);
     }
 
+    const getId = () => {
+        setMakeId(makeId + 1);
+        return makeId;
+    }
 
     const toggleShowEndDate = () => {
         setShowEndDate(!showEndDate);
@@ -107,7 +115,7 @@ const AddReminder = () => {
                     value={date}
                     minimumDate={new Date()}
                     mode="date"
-                    display="default"
+                    display="spinner"
                     onChange={(event, selectedDate) => {
                         setShowDate(false);
                         setDate(selectedDate || date);
@@ -119,7 +127,7 @@ const AddReminder = () => {
                     value={time}
                     minimumDate={new Date()}
                     mode="time"
-                    display="default"
+                    display="spinner"
                     onChange={(event, selectedTime) => {
                         setShowTime(false);
                         setTime(selectedTime || time);
@@ -153,7 +161,7 @@ const AddReminder = () => {
                     minimumDate={new Date()}
                     value={endDate}
                     mode="date"
-                    display="default"
+                    display="spinner"
                     onChange={(event, selectedDate) => {
                         setShowEndDate(false);
                         setEndDate(selectedDate || endDate);

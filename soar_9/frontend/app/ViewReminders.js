@@ -131,7 +131,7 @@ const ViewReminders = () => {
                                         value={newDate}
                                         minimumDate={new Date()}
                                         mode="date"
-                                        display="default"
+                                        display="spinner"
                                         onChange={(event, selectedDate) => {
                                             setShowDate(false);
                                             setNewDate(selectedDate || newDate);
@@ -143,7 +143,7 @@ const ViewReminders = () => {
                                         value={newTime}
                                         minimumDate={new Date()}
                                         mode="time"
-                                        display="default"
+                                        display="spinner"
                                         onChange={(event, selectedTime) => {
                                             setShowTime(false);
                                             setNewTime(selectedTime || newTime);

@@ -221,7 +221,7 @@ if(Platform.OS === 'ios'){
               value={new Date(item.time)}
               mode="datetime"
               is24Hour={true}
-              display="default"
+              display="spinner"
               onChange={handleDateTimeChange}
             />
           )}
@@ -244,7 +244,7 @@ if(Platform.OS === 'ios'){
               <DateTimePicker
                 value={new Date(item.endDate)}
                 mode="date"
-                display="default"
+                display="spinner"
                 minimumDate={new Date()}
                 onChange={handleEndDateChange}
               />
@@ -302,7 +302,7 @@ if(Platform.OS === 'ios'){
         value={dateTime}
         mode="datetime"
         is24Hour={true}
-        display="default"
+        display="spinner"
         onChange={handleDateTimeChange}
       />
 
@@ -328,7 +328,7 @@ if(Platform.OS === 'ios'){
         <DateTimePicker
           value={endDate}
           mode="date"
-          display="default"
+          display="spinner"
           minimumDate={new Date()}
           onChange={handleEndDateChange}
         />

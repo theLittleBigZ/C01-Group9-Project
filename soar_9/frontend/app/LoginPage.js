@@ -71,6 +71,11 @@ const LoginPage = () => {
       <Pressable style={styles.button} onPress={() => router.replace("/RegisterPage")}>
         <Text style={styles.text}>{i18n.t('register')}</Text>
       </Pressable>
+
+      <Pressable style={styles.button} onPress={() => router.replace("/Homescreen")}>
+        <Text style={styles.text}>{i18n.t('home')}</Text>
+      </Pressable>
+      
       </ScrollView>
     </View>
   );

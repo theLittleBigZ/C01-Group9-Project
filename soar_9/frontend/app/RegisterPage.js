@@ -106,6 +106,11 @@ const RegisterPage = () => {
       <Pressable style={styles.button} onPress={() => router.replace("/LoginPage")}>
         <Text style={styles.text}>{i18n.t('haveAccount')}</Text>
       </Pressable>
+
+      <Pressable style={styles.button} onPress={() => router.replace("/Homescreen")}>
+        <Text style={styles.text}>{i18n.t('home')}</Text>
+      </Pressable>
+
       </ScrollView>
     </View>
   );

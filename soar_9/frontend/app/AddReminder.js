@@ -79,6 +79,8 @@ const AddReminder = () => {
     return (
         <View style={styles.container}>
             <Text style={styles.Header}>{i18n.t('addReminder')}</Text>
+            <ScrollView>
+            
             <TextInput
                 style={styles.input}
                 onChangeText={setTitle}
@@ -170,6 +172,7 @@ const AddReminder = () => {
             <Pressable style={styles.button} onPress={() => router.replace("/Homescreen")}>
                 <Text style={styles.text}>{i18n.t('home')}</Text>
             </Pressable>
+            </ScrollView>
 
         </View>
 

@@ -63,7 +63,7 @@ export const getTheme = async () => {
       return themes[colorScheme];
     }
   }catch (error) {
-    console.error('Error getting theme:', error);
+    // console.error('Error getting theme:', error);
     return themes.default;
   }
 }

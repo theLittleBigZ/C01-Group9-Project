@@ -59,8 +59,8 @@ const AddReminder = () => {
         setRepeatInterval("None");
         setEndDate(new Date());
 
-        toggleShowDate();
-        toggleShowTime();
+        setShowDate(false);
+        setShowTime(false);
     };
 
     const toggleShowDate = () => {

@@ -172,7 +172,7 @@ const ViewReminders = () => {
                                         value={newEndDate}
                                         minimumDate={new Date()}
                                         mode="date"
-                                        display="default"
+                                        display="spinner"
                                         onChange={(event, selectedDate) => {
                                             setShowEndDate(false);
                                             setNewEndDate(selectedDate || newEndDate);
@@ -204,10 +204,10 @@ const ViewReminders = () => {
                             
                             </>
                             )}
-                         <Pressable style={styles.reminderButton} onPress={() => handleEditReminder(item._id)}>
+                         <Pressable style={styles.reminderButton} onPress={() => handleEditReminder(item.id)}>
                             <Text style={styles.text}>{item.isEditing ? 'Save' : 'Edit'}</Text>
                         </Pressable>
-                        <Pressable style={styles.reminderButton} onPress={() => handleDeleteReminder(item._id)}>
+                        <Pressable style={styles.reminderButton} onPress={() => handleDeleteReminder(item.id)}>
                             <Text style={styles.text}>{i18n.t('Delete')}</Text>
                         </Pressable>   
                         </View>

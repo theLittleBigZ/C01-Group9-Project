@@ -215,7 +215,7 @@ export const deleteReminder = async (id) => {
     try {
         let reminders = await loadReminders();
         console.log('Reminders before:', reminders);
-        reminders = reminders.filter((r) => r._id !== id);
+        reminders = reminders.filter((r) => r.id !== id);
         console.log('Reminders after:', reminders);
         await AsyncStorage.setItem('@Reminders', JSON.stringify(reminders));
         // remove the notification

@@ -3,10 +3,10 @@ import axios from "axios";
 import publicIP from 'react-native-public-ip';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Notifications from 'expo-notifications';
+import GetIp from "react-native-public-ip";
 
-const BACKEND_URL = 'http://192.168.1.137:3000'; // change to your backend URL
-
-
+const IP = '192.168.2.17'; // ADD YOUR IP ADDRESS
+const BACKEND_URL = `http://${IP}:3000`;
 
 export const register = async (username, email, password) => {
     console.log('Registering user:', username, email, password);
@@ -236,7 +236,7 @@ export const updateReminder = async (id, updatedReminder) => {
     console.log('Updating reminder:', id, updatedReminder);
     try {
         let reminders = await loadReminders();
-        const index = reminders.findIndex((r) => r._id === id);
+        const index = reminders.findIndex((r) => r.id === id);
         if (index === -1) {
             console.error('Reminder not found:', id);
             return;

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import * as Contacts from 'expo-contacts';
-import { View, Text, Pressable, StyleSheet, ScrollView, FlatList } from 'react-native';
+import { View, Text, Pressable, TextInput, ScrollView, FlatList } from 'react-native';
 import * as Linking from 'expo-linking'
-import { Divider, TextInput } from 'react-native-paper'; 
+import { Divider} from 'react-native-paper'; 
 import i18n from './Translations/PrimaryLanguage';
 import { router } from 'expo-router';
 import { getStyles } from './Styling/Styles';

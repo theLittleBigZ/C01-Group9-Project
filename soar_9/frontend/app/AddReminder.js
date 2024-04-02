@@ -1,13 +1,11 @@
 import React, {useState, useEffect} from "react";
-import {View, Text, StyleSheet, ScrollView, Pressable, FlatList, Alert} from "react-native";
+import {View, Text, ScrollView, TextInput, Pressable, Alert} from "react-native";
 import {getStyles} from "./Styling/Styles";
 import { Picker } from "@react-native-picker/picker";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { addReminder } from "../services/apiServices";
 import i18n from "./Translations/PrimaryLanguage";
 import {router} from "expo-router";
-import { Platform } from "react-native";
-import { TextInput } from "react-native-paper";
 
 const repeatIntervals = ['None', 'Daily', 'Weekly'];
 
@@ -57,9 +55,6 @@ const AddReminder = () => {
         setTime(new Date());
         setRepeatInterval("None");
         setEndDate(new Date());
-
-        // setShowDate(false);
-        // setShowTime(false);
     };
 
     const toggleShowDate = () => {

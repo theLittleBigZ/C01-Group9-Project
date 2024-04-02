@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema({
     language: {
         type: String,
         required: false,
-        default: 'English',
+        default: 'en',
     },
     fontSize: {
         type: String,

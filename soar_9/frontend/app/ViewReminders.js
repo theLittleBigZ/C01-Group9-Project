@@ -138,7 +138,10 @@ const ViewReminders = () => {
                                         }}
                                     />
                                 )}
-                                {showDate && (
+                                <Pressable style={styles.button} onPress={toggleShowTime}>
+                                    <Text style={styles.text}>{i18n.t('pickDateTime')}</Text>
+                                </Pressable>
+                                {showTime && (
                                     <DateTimePicker
                                         value={newTime}
                                         minimumDate={new Date()}

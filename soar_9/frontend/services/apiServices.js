@@ -193,6 +193,9 @@ export const addReminder = async ( reminder ) => {
         if (reminders === null) {
             reminders = [];
         }
+        
+        reminder.id =  Date.now().toString(36) + Math.random().toString(36).substr(2, 5);
+
         reminders.push(reminder);
         await AsyncStorage.setItem('@Reminders', JSON.stringify(reminders));
         console.log('Reminder added');

@@ -38,7 +38,7 @@ const AddReminder = () => {
             return;
         }
         const toAdd = {
-            id: getId,
+            id: getId(),
             title: title,
             reminder: reminder,
             date: date,

@@ -59,8 +59,8 @@ const AddReminder = () => {
         setRepeatInterval("None");
         setEndDate(new Date());
 
-        setShowDate(false);
-        setShowTime(false);
+        // setShowDate(false);
+        // setShowTime(false);
     };
 
     const toggleShowDate = () => {
@@ -117,8 +117,8 @@ const AddReminder = () => {
                     mode="date"
                     display="spinner"
                     onChange={(event, selectedDate) => {
-                        setShowDate(false);
                         setDate(selectedDate || date);
+                        setShowDate(false);
                     }}
                 />
             )}    
@@ -129,8 +129,8 @@ const AddReminder = () => {
                     mode="time"
                     display="spinner"
                     onChange={(event, selectedTime) => {
-                        setShowTime(false);
                         setTime(selectedTime || time);
+                        setShowTime(false);
                     }}
                 />
             )}
@@ -163,8 +163,8 @@ const AddReminder = () => {
                     mode="date"
                     display="spinner"
                     onChange={(event, selectedDate) => {
-                        setShowEndDate(false);
                         setEndDate(selectedDate || endDate);
+                        setShowEndDate(false);
                     }}
                 />
             )}

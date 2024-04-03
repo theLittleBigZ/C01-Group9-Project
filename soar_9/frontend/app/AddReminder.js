@@ -30,7 +30,9 @@ const AddReminder = () => {
         }
 
         // Make sure time is at least 2 minutes in the future
-        if (new Date(time).getTime() < new Date().getTime() + 120000) {
+        let current = new Date(date);
+        current.setHours(time.getHours(), time.getMinutes());
+        if (current.getTime() < new Date().getTime() + 120000) {
             Alert.alert('Please select a time at least 2 minutes in the future');
             return;
         }
@@ -112,8 +114,8 @@ const AddReminder = () => {
                     mode="date"
                     display="spinner"
                     onChange={(event, selectedDate) => {
-                        setDate(selectedDate || date);
                         setShowDate(false);
+                        setDate(selectedDate || date);
                     }}
                 />
             )}

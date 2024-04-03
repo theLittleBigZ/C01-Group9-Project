@@ -75,17 +75,19 @@
 
             if (reminderToEdit.isEditing) {
                 const updatedReminder = {
-                    title: newTitle,
-                    reminder: newReminder,
-                    date: newDate,
-                    time: newTime,
-                    interval: newInterval,
-                    end: newEndDate
+                    title: newTitle || reminderToEdit.title,
+                    reminder: newReminder || reminderToEdit.reminder,
+                    date: newDate || reminderToEdit.date,
+                    time: newTime || reminderToEdit.time,
+                    interval: newInterval || reminderToEdit.interval,
+                    end: newEndDate || reminderToEdit.end
                 };
 
                 console.log('updatedReminder:', updatedReminder);
                 // if new time  is less than 2 minutes from now, alert user
-                if (new Date(newTime).getTime() < new Date().getTime() + 120000) {
+                let current = new Date(date);
+                current.setHours(time.getHours(), time.getMinutes());
+                if (current.getTime() < new Date().getTime() + 120000) {
                     Alert.alert('Please select a time at least 2 minutes in the future. Changes not saved');
                     return;
                 }
@@ -101,7 +103,7 @@
                     < FlatList 
                         data={reminders}
                         renderItem={({ item }) => (
-                            <View key={item.id} style={styles.reminder}>
+                            <View style={styles.reminder}>
                                 {item.isEditing ? (
                                     <>
                                     <TextInput
@@ -159,6 +161,7 @@
                                         <Picker
                                             selectedValue={newInterval}
                                             onValueChange={value => setNewInterval(value)}
+                                            style={styles.pickerstyle.inputAndroid}
                                         >
                                             {repeatIntervals.map(interval => (
                                                 <Picker.Item key={interval} label={interval} value={interval} />
@@ -193,8 +196,8 @@
                                     minute: '2-digit',})} </Text>
                                 { item.interval !== 'None' && (
                                     <>
-                                    <Text style={styles.contactName}>{i18n.t('frequency')}{item.interval} </Text>
-                                    <Text style={styles.contactName}>{i18n.t('pickEndDate')}{new Date(item.end).toLocaleDateString(undefined,{
+                                    <Text  style={[styles.contactName, {color: styles.icon.color}]}>{i18n.t('frequency')}{item.interval} </Text>
+                                    <Text  style={[styles.contactName, {color: styles.icon.color}]}>{i18n.t('pickEndDate')}{new Date(item.end).toLocaleDateString(undefined,{
                                         year: 'numeric',
                                         month: 'long',
                                         day: 'numeric',

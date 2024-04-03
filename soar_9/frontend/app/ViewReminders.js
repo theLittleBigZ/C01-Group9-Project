@@ -68,6 +68,8 @@
         }
 
         const handleEditReminder = async (id) => {
+
+            console.log('id:', id);
             // setOldInfo(id);
             setReminders(reminders.map(rem => rem.id === id ? { ...rem, isEditing: !rem.isEditing } : rem));
 
@@ -77,6 +79,7 @@
                 const updatedReminder = {
                     title: newTitle || reminderToEdit.title,
                     reminder: newReminder || reminderToEdit.reminder,
+
                     date: newDate || reminderToEdit.date,
                     time: newTime || reminderToEdit.time,
                     interval: newInterval || reminderToEdit.interval,
@@ -85,13 +88,14 @@
 
                 console.log('updatedReminder:', updatedReminder);
                 // if new time  is less than 2 minutes from now, alert user
-                let current = new Date(date);
-                current.setHours(time.getHours(), time.getMinutes());
+                let current = new Date(newDate);
+                current.setHours(newTime.getHours(), newTime.getMinutes());
                 if (current.getTime() < new Date().getTime() + 120000) {
                     Alert.alert('Please select a time at least 2 minutes in the future. Changes not saved');
                     return;
                 }
                 await updateReminder(id, updatedReminder);
+                console.log('reminder updated');
                 const data = await loadReminders();
                 setReminders(data);
             }
@@ -124,7 +128,7 @@
                                     />
 
                                     <Pressable style={styles.button} onPress={toggleShowDate}>
-                                        <Text style={styles.text}>{i18n.t('pickDateTime')}</Text>
+                                        <Text style={styles.text}>{i18n.t('date')}</Text>
                                     </Pressable>
                                     {showDate && (
                                         <DateTimePicker
@@ -133,13 +137,12 @@
                                             mode="date"
                                             display="spinner"
                                             onChange={(event, selectedDate) => {
-                                                setNewDate(selectedDate);
-                                                setShowDate(false);
+                                                setNewDate(selectedDate || newDate);
                                             }}
                                         />
                                     )}
                                     <Pressable style={styles.button} onPress={toggleShowTime}>
-                                        <Text style={styles.text}>{i18n.t('pickDateTime')}</Text>
+                                        <Text style={styles.text}>{i18n.t('time')}</Text>
                                     </Pressable>
                                     {showTime && (
                                         <DateTimePicker
@@ -149,7 +152,6 @@
                                             display="spinner"
                                             onChange={(event, selectedTime) => {
                                                 setNewTime(selectedTime || newTime);
-                                                setShowTime(false);
                                             }}
                                         />
                                     )}
@@ -188,12 +190,14 @@
                                     <>
                                 <Text style={[styles.contactName, {color: styles.icon.color}]}>{item.title}</Text>
                                 <Text style={[styles.contactName, {color: styles.icon.color}]}>{item.reminder}</Text>
-                                <Text style={[styles.contactName, {color: styles.icon.color}]}>Set for {new Date(item.time).toLocaleDateString(undefined,{
+                                <Text style={[styles.contactName, {color: styles.icon.color}]}>Set for {new Date(item.date).toLocaleDateString(undefined,{
                                     year: 'numeric',
                                     month: 'long',
-                                    day: 'numeric',
-                                    hour: '2-digit',
-                                    minute: '2-digit',})} </Text>
+                                    day: 'numeric',})} , {new Date(item.time).toLocaleTimeString(undefined,{
+                                        //hide year and month
+                                        hour: '2-digit',
+                                        minute: '2-digit',})
+                                    }  </Text>
                                 { item.interval !== 'None' && (
                                     <>
                                     <Text  style={[styles.contactName, {color: styles.icon.color}]}>{i18n.t('frequency')}{item.interval} </Text>

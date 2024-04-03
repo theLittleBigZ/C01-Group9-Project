@@ -104,7 +104,7 @@ const AddReminder = () => {
             />
 
             <Pressable style={styles.button} onPress={toggleShowDate}>
-                <Text style={styles.text}>{i18n.t('pickDateTime')}</Text>
+                <Text style={styles.text}>{i18n.t('date')}</Text>
             </Pressable>
             {showDate && (
                 <DateTimePicker
@@ -120,7 +120,7 @@ const AddReminder = () => {
                 />
             )}
             <Pressable style={styles.button} onPress={toggleShowTime}>
-                <Text style={styles.text}>{i18n.t('pickDateTime')}</Text>
+                <Text style={styles.text}>{i18n.t('time')}</Text>
             </Pressable>
             {showTime && (
                 <DateTimePicker

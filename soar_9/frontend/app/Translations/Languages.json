@@ -49,7 +49,9 @@
   "call": "اتصال",
   "dialer": "الاتصال",
   "clearNumber": "مسح الرقم",
-  "sttbutton": "اذهب إلى التحويل الصوتي إلى نص"
+  "sttbutton": "اذهب إلى التحويل الصوتي إلى نص",
+  "date": "تاريخ",
+  "time": "زمن",
 },
  "bn" : {
   "home": "হোম",
@@ -101,7 +103,9 @@
   "clearNumber": "নম্বর মুছে ফেলুন",
   "low": "নিম্ন",
   "high": "উচ্চ",
-  "sttbutton": "স্পিচ-টু-টেক্স্টে যান"
+  "sttbutton": "স্পিচ-টু-টেক্স্টে যান",
+  "date": "তারিখ",
+  "time": "সময়",
 },
 
  "bo" : {
@@ -154,7 +158,9 @@
   "clearNumber": "ཨེསི་ཨང་མ་གཏོང་བ་",
   "low": "ལོ་མིག",
   "high": "ཉེ་བར",
-  "sttbutton": "མིང་ནུས་ལེན་འབྱེད་འཛོལ་འགྱུར་"
+  "sttbutton": "མིང་ནུས་ལེན་འབྱེད་འཛོལ་འགྱུར་",
+  "date": "ཉིནམ",
+  "time": "དུས",
 },
  "en" : {
   "home": "Home",
@@ -206,9 +212,63 @@
   "call": "Call",
   "dialer": "Dialer",
   "clearNumber": "Clear Number",
-  "sttbutton": "Speech-To-Text"
-
-
+  "sttbutton": "Speech-To-Text",
+  "date": "Date",
+  "time": "Time",
+},
+"English": {
+  "home": "Home",
+  "contacts": "Contacts",
+  "settings": "Settings",
+  "signin": "Sign In",
+  "small": "Small",
+  "low": "Low",
+  "high": "High",
+  "medium": "Medium",
+  "large": "Large",
+  "enablespeechtotext": "Enable Speech to Text",
+  "fontsize": "Font Size",
+  "brightness": "Brightness",
+  "language": "Language",
+  "select": "Select",
+  "frequentlyused": "frequently used",
+  "apps": "Apps",
+  "navigateto": "Navigate To",
+  "signup": "Sign Up",
+  "close": "Close",
+  "register": "Register",
+  "haveAccount": "Have an account?",
+  "signout": "Sign Out",
+  "notifications": "Notifications",
+  "reminders": "Reminders",
+  "title": "Title",
+  "reminder": "Reminder",
+  "pickDateTime": "Pick Date and Time",
+  "save": "Save",
+  "frequency": "Frequency",
+  "pickEndDate": "Pick End Date",
+  "Delete": "Delete",
+  "edit": "Edit",
+  "addReminder": "Add Reminder",
+  "submit": "Submit",
+  "return": "Return",
+  "theme": "Theme",
+  "clearinput": "Clear Input",
+  "presstohear": "Press to Hear",
+  "texttospeech": "Text-To-Speech",
+  "favouriteContacts": "Favourite Contacts",
+  "allContacts": "All Contacts",
+  "searchContacts": "Search Contacts",
+  "noFavouriteContacts": "Go to All Contacts to save your favourite contacts!",
+  "clearSearch": "Clear Search",
+  "removeFavourite": "Remove Favourite",
+  "addFavourite": "Add Favorite",
+  "call": "Call",
+  "dialer": "Dialer",
+  "clearNumber": "Clear Number",
+  "sttbutton": "Speech-To-Text",
+  "date": "Date",
+  "time": "Time",
 },
  "es" : {
   "home": "Inicio",
@@ -260,7 +320,9 @@
     "clearNumber": "Borrar número",
     "low": "Bajo",
     "high": "Alto",
-    "sttbutton": "Ir a conversión de voz a texto"
+    "sttbutton": "Ir a conversión de voz a texto",
+    "date": "Fecha",
+    "time": "Hora",
 
 },
  "fa" : {
@@ -313,7 +375,9 @@
     "clearNumber": "پاک کردن شماره",
     "low": "کم",
     "high": "بالا",
-  "sttbutton": "رفتن به گفتار به متن"
+  "sttbutton": "رفتن به گفتار به متن",
+  "date": "تاریخ",
+  "time": "زمان"
 
 },
  "fr" :{
@@ -366,7 +430,9 @@
   "clearNumber": "Effacer le numéro",
   "low": "Faible",
   "high": "Élevé",
-  "sttbutton": "Aller à la conversion de la parole en texte"
+  "sttbutton": "Aller à la conversion de la parole en texte",
+  "date": "Date",
+  "time": "Temps"
 
 
 },
@@ -420,7 +486,9 @@
     "clearNumber": "स्पष्ट संख्या",
     "low": "कम",
     "high": "उच्च",
-    "sttbutton": "बोल को टेक्स्ट में जाएं"
+    "sttbutton": "बोल को टेक्स्ट में जाएं",
+    "date": "तारीख",
+  "time": "समय"
 
 },
  "id" : {
@@ -473,7 +541,9 @@
     "clearNumber": "Bersihkan Nomor",
     "low": "Rendah",
     "high": "Tinggi",
-    "sttbutton": "Pergi ke teks ucapan"
+    "sttbutton": "Pergi ke teks ucapan",
+    "date": "Tanggal",
+    "time": "Waktu"
 },
  "pt" : {
   "home": "Página inicial",
@@ -525,7 +595,9 @@
     "clearNumber": "Limpar Número",
     "low": "Baixo",
     "high": "Alto",
-    "sttbutton": "Ir para conversão de fala para texto"
+    "sttbutton": "Ir para conversão de fala para texto",
+    "date": "Data",
+    "time": "Hora"
 },
  "ru" : {
   "home": "Домой",
@@ -577,7 +649,9 @@
     "clearNumber": "очистить номер",
     "low": "Низкий",
     "high": "Высокий",
-    "sttbutton": "Перейти к речи в текст"
+    "sttbutton": "Перейти к речи в текст",
+    "date": "Дата",
+    "time": "Время"
 },
  "th" : {
   "home": "หน้าแรก",
@@ -629,7 +703,9 @@
     "clearNumber": "ล้างหมายเลข",
     "low": "ต่ำ",
     "high": "สูง",
-    "sttbutton": "ไปที่แปลงเสียงเป็นข้อความ"
+    "sttbutton": "ไปที่แปลงเสียงเป็นข้อความ",
+    "date": "วันที่",
+    "time": "เวลา"
 },
  "ur" : {
   "home": "ہوم",
@@ -681,7 +757,9 @@
     "clearNumber": "نمبر صاف کریں",
     "low": "کم",
     "high": "زیادہ",
-    "sttbutton": "بول کو متن میں جائیں"
+    "sttbutton": "بول کو متن میں جائیں",
+    "date": "تاریخ",
+    "time": "وقت"
 },
  "vi" : {
   "home": "Trang chủ",
@@ -733,7 +811,9 @@
     "clearNumber": "Xóa số",
     "low": "Thấp",
     "high": "Cao",
-    "sttbutton": "Đi đến chuyển đổi giọng nói thành văn bản"
+    "sttbutton": "Đi đến chuyển đổi giọng nói thành văn bản",
+    "date": "Ngày",
+    "time": "Thời gian"
 },
  "zh" : {
   "home": "主页",
@@ -785,5 +865,7 @@
     "clearNumber": "清除号码",
     "low": "低",
     "high": "高",
-    "sttbutton": "前往语音转文字"
+    "sttbutton": "前往语音转文字",
+    "date": "日期",
+    "time": "时间"
 }}
